@@ -1304,7 +1304,6 @@
         private System.Windows.Forms.Button button_add;
         public System.Windows.Forms.ListView listView_device;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TabControl tabcontrol_menu;
         private System.Windows.Forms.TabPage tabPage_device;
         private System.Windows.Forms.TabPage tabPage_video;
         private System.Windows.Forms.TabPage tabPage_image;
@@ -1408,6 +1407,7 @@
         private System.Windows.Forms.WebBrowser webBrowser;
         private System.Windows.Forms.Button button_event_cancel;
         private System.Windows.Forms.Button button_event_modify;
+        public System.Windows.Forms.TabControl tabcontrol_menu;
     }
 }
 

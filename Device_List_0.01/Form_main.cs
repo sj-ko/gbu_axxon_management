@@ -16,7 +16,8 @@ namespace Device_List_0._01
     public partial class Form_main : Form
     {
 
-        
+        public List<Camera> camera_list = new List<Camera>();
+
         /////for button_image/////
         private int brightness;
         private int contrast;
@@ -35,7 +36,8 @@ namespace Device_List_0._01
             listView_device.Columns.Add("PW");
 
 
-            List<device> device_add = new List<device>();
+            
+            
 
             /////for button_image/////
             brightness = trackBar_brightness.Value;

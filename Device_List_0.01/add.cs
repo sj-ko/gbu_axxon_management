@@ -31,7 +31,9 @@ namespace Device_List_0._01
             lvi.SubItems.Add(textBox_ID.Text);
             lvi.SubItems.Add(textBox_PW.Text);
             m.listView_device.Items.Add(lvi);
-            //device_add.Add(new device()){device_manufacturer= comboBox_maker.SelectedItem.ToString(),device_IP= textBox_IP.Text,device_ID= textBox_ID,device_pw= textBox_PW});
+
+            m.camera_list.Add(new Camera() { camera_manufacturer = comboBox_maker.SelectedItem.ToString(), camera_IP = textBox_IP.Text, camera_ID = textBox_ID.ToString(), camera_PW = textBox_PW.ToString() });
+            
         }
     }
 }
