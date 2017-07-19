@@ -59,12 +59,15 @@ namespace Device_List_0._01
         }
         private void button_modify_Click(object sender, EventArgs e)
         {
-
+            Form_modify modi = new Form_modify();
+            modi.Owner = this;
+            modi.Show();
         }
 
         private void button_remove_Click(object sender, EventArgs e)
         {
-
+            camera_list.RemoveAt(listView_device.SelectedItems[0].Index);    //리스트 삭제하면서 생성했던 클래스도 삭제하기.. 
+            listView_device.Items.Remove(listView_device.SelectedItems[0]);
         }
 
 
@@ -98,5 +101,9 @@ namespace Device_List_0._01
             
         }
 
+        private void listView_device_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

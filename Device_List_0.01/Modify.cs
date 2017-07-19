@@ -21,5 +21,44 @@ namespace Device_List_0._01
         {
 
         }
+
+        private void button_ok_Click(object sender, EventArgs e)
+        {
+            Form_main m = (Form_main)this.Owner;
+
+            int tmp = m.listView_device.SelectedItems[0].Index;
+            m.listView_device.Items.Remove(m.listView_device.SelectedItems[0]);
+
+           
+
+            ListViewItem lvi = new ListViewItem(comboBox_maker.SelectedItem.ToString());
+            lvi.SubItems.Add(textBox_IP.Text);
+            lvi.SubItems.Add(textBox_ID.Text);
+            lvi.SubItems.Add(textBox_PW.Text);
+            m.listView_device.Items.Add(lvi);
+
+
+            //m.camera_list[tmp].camera_manufacturer = comboBox_maker.SelectedItem.ToString();
+            m.camera_list.RemoveAt(tmp);
+            m.camera_list.Add(new Camera() { camera_manufacturer = comboBox_maker.SelectedItem.ToString(), camera_IP = textBox_IP.Text, camera_ID = textBox_ID.ToString(), camera_PW = textBox_PW.ToString() });
+
+            //................................................................................///
+            
+            m.camera_list[m.camera_list.Count - 1].device.device_name = "임시이름";
+            ///................]
+
+
+            MessageBox.Show("수정되었습니다.");
+            this.Close();
+
+
+
+
+        }
+
+        private void button_cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -16,5 +16,18 @@ namespace Device_List_0._01
         {
             InitializeComponent();
         }
+
+        private void button_no_Click(object sender, EventArgs e)
+        {
+            Form_add f = (Form_add)this.Owner;
+            this.Close();
+            f.Close();
+        }
+
+        private void button_yes_Click(object sender, EventArgs e)
+        {
+            Form_add f = (Form_add)this.Owner;
+            this.Close();
+        }
     }
 }

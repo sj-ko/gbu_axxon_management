@@ -13,12 +13,12 @@ namespace Device_List_0._01
         public string camera_ID = "";
         public string camera_PW = "";
 
-        Device device = new Device();
-        Video video = new Video();
-        Image image = new Image();
-        Network network = new Network();
-        Archive archive = new Archive();
-        Event eventsetting = new Event();
-        Webpage webpage = new Webpage();
+        public Device device = new Device();
+        public Video video = new Video();
+        public Image image = new Image();
+        public Network network = new Network();
+        public Archive archive = new Archive();
+        public Event eventsetting = new Event();
+        public Webpage webpage = new Webpage();
     }
 }
