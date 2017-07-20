@@ -37,6 +37,7 @@ namespace Device_List_0._01
             lvi.SubItems.Add(textBox_PW.Text);
             m.listView_device.Items.Add(lvi);
 
+            //todoListview.SelectedItems[0].SubItems[0].Text = memoTextBox.Text; 메모
 
             //m.camera_list[tmp].camera_manufacturer = comboBox_maker.SelectedItem.ToString();
             m.camera_list.RemoveAt(tmp);

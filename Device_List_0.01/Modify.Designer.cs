@@ -122,6 +122,7 @@
             this.button_ok.TabIndex = 21;
             this.button_ok.Text = "확인";
             this.button_ok.UseVisualStyleBackColor = false;
+            this.button_ok.Click += new System.EventHandler(this.button_ok_Click);
             // 
             // button_cancel
             // 
@@ -132,6 +133,7 @@
             this.button_cancel.TabIndex = 22;
             this.button_cancel.Text = "취소";
             this.button_cancel.UseVisualStyleBackColor = false;
+            this.button_cancel.Click += new System.EventHandler(this.button_cancel_Click);
             // 
             // Form_modify
             // 

@@ -50,6 +50,7 @@
             this.button_yes.TabIndex = 2;
             this.button_yes.Text = "네";
             this.button_yes.UseVisualStyleBackColor = true;
+            this.button_yes.Click += new System.EventHandler(this.button_yes_Click);
             // 
             // button_no
             // 
@@ -59,6 +60,7 @@
             this.button_no.TabIndex = 3;
             this.button_no.Text = "아니요";
             this.button_no.UseVisualStyleBackColor = true;
+            this.button_no.Click += new System.EventHandler(this.button_no_Click);
             // 
             // Form_Notification
             // 

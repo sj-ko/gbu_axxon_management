@@ -30,7 +30,6 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.button_remove = new System.Windows.Forms.Button();
-            this.button_modify = new System.Windows.Forms.Button();
             this.button_add = new System.Windows.Forms.Button();
             this.listView_device = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
@@ -39,6 +38,12 @@
             this.button_device_cancel = new System.Windows.Forms.Button();
             this.button_device_modify = new System.Windows.Forms.Button();
             this.groupBox_device = new System.Windows.Forms.GroupBox();
+            this.label_dfireware = new System.Windows.Forms.Label();
+            this.label_dmanufacturer = new System.Windows.Forms.Label();
+            this.label_dmodel = new System.Windows.Forms.Label();
+            this.label_firmware = new System.Windows.Forms.Label();
+            this.label_manufacturer = new System.Windows.Forms.Label();
+            this.label_model = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -175,7 +180,6 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.button_remove);
-            this.splitContainer1.Panel1.Controls.Add(this.button_modify);
             this.splitContainer1.Panel1.Controls.Add(this.button_add);
             this.splitContainer1.Panel1.Controls.Add(this.listView_device);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
@@ -191,7 +195,7 @@
             // 
             // button_remove
             // 
-            this.button_remove.Location = new System.Drawing.Point(190, 508);
+            this.button_remove.Location = new System.Drawing.Point(151, 508);
             this.button_remove.Name = "button_remove";
             this.button_remove.Size = new System.Drawing.Size(71, 23);
             this.button_remove.TabIndex = 8;
@@ -199,19 +203,9 @@
             this.button_remove.UseVisualStyleBackColor = true;
             this.button_remove.Click += new System.EventHandler(this.button_remove_Click);
             // 
-            // button_modify
-            // 
-            this.button_modify.Location = new System.Drawing.Point(101, 508);
-            this.button_modify.Name = "button_modify";
-            this.button_modify.Size = new System.Drawing.Size(71, 23);
-            this.button_modify.TabIndex = 7;
-            this.button_modify.Text = "Modify";
-            this.button_modify.UseVisualStyleBackColor = true;
-            this.button_modify.Click += new System.EventHandler(this.button_modify_Click);
-            // 
             // button_add
             // 
-            this.button_add.Location = new System.Drawing.Point(12, 508);
+            this.button_add.Location = new System.Drawing.Point(42, 508);
             this.button_add.Name = "button_add";
             this.button_add.Size = new System.Drawing.Size(71, 23);
             this.button_add.TabIndex = 6;
@@ -221,14 +215,19 @@
             // 
             // listView_device
             // 
+            this.listView_device.Activation = System.Windows.Forms.ItemActivation.OneClick;
             this.listView_device.FullRowSelect = true;
             this.listView_device.GridLines = true;
+            this.listView_device.HideSelection = false;
             this.listView_device.HoverSelection = true;
-            this.listView_device.Location = new System.Drawing.Point(12, 53);
+            this.listView_device.Location = new System.Drawing.Point(12, 57);
+            this.listView_device.MultiSelect = false;
             this.listView_device.Name = "listView_device";
             this.listView_device.Size = new System.Drawing.Size(249, 449);
             this.listView_device.TabIndex = 7;
             this.listView_device.UseCompatibleStateImageBehavior = false;
+            this.listView_device.SelectedIndexChanged += new System.EventHandler(this.listView_device_SelectedIndexChanged);
+            this.listView_device.Click += new System.EventHandler(this.listView_device_Click);
             // 
             // label1
             // 
@@ -276,6 +275,7 @@
             this.button_device_cancel.TabIndex = 2;
             this.button_device_cancel.Text = "Cancel";
             this.button_device_cancel.UseVisualStyleBackColor = true;
+            this.button_device_cancel.Click += new System.EventHandler(this.button_device_cancel_Click);
             // 
             // button_device_modify
             // 
@@ -285,9 +285,16 @@
             this.button_device_modify.TabIndex = 1;
             this.button_device_modify.Text = "Modify";
             this.button_device_modify.UseVisualStyleBackColor = true;
+            this.button_device_modify.Click += new System.EventHandler(this.button_device_modify_Click);
             // 
             // groupBox_device
             // 
+            this.groupBox_device.Controls.Add(this.label_dfireware);
+            this.groupBox_device.Controls.Add(this.label_dmanufacturer);
+            this.groupBox_device.Controls.Add(this.label_dmodel);
+            this.groupBox_device.Controls.Add(this.label_firmware);
+            this.groupBox_device.Controls.Add(this.label_manufacturer);
+            this.groupBox_device.Controls.Add(this.label_model);
             this.groupBox_device.Controls.Add(this.label6);
             this.groupBox_device.Controls.Add(this.label5);
             this.groupBox_device.Controls.Add(this.label4);
@@ -304,6 +311,55 @@
             this.groupBox_device.TabIndex = 0;
             this.groupBox_device.TabStop = false;
             this.groupBox_device.Text = "Device";
+            this.groupBox_device.Enter += new System.EventHandler(this.groupBox_device_Enter);
+            // 
+            // label_dfireware
+            // 
+            this.label_dfireware.AutoSize = true;
+            this.label_dfireware.Location = new System.Drawing.Point(119, 176);
+            this.label_dfireware.Name = "label_dfireware";
+            this.label_dfireware.Size = new System.Drawing.Size(0, 12);
+            this.label_dfireware.TabIndex = 14;
+            // 
+            // label_dmanufacturer
+            // 
+            this.label_dmanufacturer.AutoSize = true;
+            this.label_dmanufacturer.Location = new System.Drawing.Point(119, 151);
+            this.label_dmanufacturer.Name = "label_dmanufacturer";
+            this.label_dmanufacturer.Size = new System.Drawing.Size(0, 12);
+            this.label_dmanufacturer.TabIndex = 13;
+            // 
+            // label_dmodel
+            // 
+            this.label_dmodel.AutoSize = true;
+            this.label_dmodel.Location = new System.Drawing.Point(119, 126);
+            this.label_dmodel.Name = "label_dmodel";
+            this.label_dmodel.Size = new System.Drawing.Size(0, 12);
+            this.label_dmodel.TabIndex = 12;
+            // 
+            // label_firmware
+            // 
+            this.label_firmware.AutoSize = true;
+            this.label_firmware.Location = new System.Drawing.Point(119, 176);
+            this.label_firmware.Name = "label_firmware";
+            this.label_firmware.Size = new System.Drawing.Size(0, 12);
+            this.label_firmware.TabIndex = 11;
+            // 
+            // label_manufacturer
+            // 
+            this.label_manufacturer.AutoSize = true;
+            this.label_manufacturer.Location = new System.Drawing.Point(121, 151);
+            this.label_manufacturer.Name = "label_manufacturer";
+            this.label_manufacturer.Size = new System.Drawing.Size(0, 12);
+            this.label_manufacturer.TabIndex = 10;
+            // 
+            // label_model
+            // 
+            this.label_model.AutoSize = true;
+            this.label_model.Location = new System.Drawing.Point(121, 126);
+            this.label_model.Name = "label_model";
+            this.label_model.Size = new System.Drawing.Size(0, 12);
+            this.label_model.TabIndex = 9;
             // 
             // label6
             // 
@@ -749,6 +805,7 @@
             this.button7_network_cancel.TabIndex = 4;
             this.button7_network_cancel.Text = "Cancel";
             this.button7_network_cancel.UseVisualStyleBackColor = true;
+            this.button7_network_cancel.Click += new System.EventHandler(this.button7_network_cancel_Click);
             // 
             // button_network_modify
             // 
@@ -758,6 +815,7 @@
             this.button_network_modify.TabIndex = 3;
             this.button_network_modify.Text = "Modify";
             this.button_network_modify.UseVisualStyleBackColor = true;
+            this.button_network_modify.Click += new System.EventHandler(this.button_network_modify_Click);
             // 
             // groupBox_ip
             // 
@@ -1300,27 +1358,20 @@
 
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button button_remove;
-        private System.Windows.Forms.Button button_modify;
         private System.Windows.Forms.Button button_add;
         public System.Windows.Forms.ListView listView_device;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TabPage tabPage_device;
         private System.Windows.Forms.TabPage tabPage_video;
         private System.Windows.Forms.TabPage tabPage_image;
         private System.Windows.Forms.TabPage tabPage_network;
         private System.Windows.Forms.TabPage tabPage_archive;
         private System.Windows.Forms.TabPage tabPage_event;
         private System.Windows.Forms.TabPage tabPage_webpage;
-        private System.Windows.Forms.GroupBox groupBox_device;
-        private System.Windows.Forms.TextBox textBox_username;
         private System.Windows.Forms.Label Username;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox_name;
-        private System.Windows.Forms.CheckBox checkBox_enabled;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox_password;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox_sub_stream;
         private System.Windows.Forms.TextBox textBox_bitrate_sub;
@@ -1352,10 +1403,6 @@
         private System.Windows.Forms.TrackBar trackBar_sharpness;
         private System.Windows.Forms.TrackBar trackBar_contrast;
         private System.Windows.Forms.GroupBox groupBox_ip;
-        private System.Windows.Forms.TextBox textBox_rtsp_port;
-        private System.Windows.Forms.TextBox textBox_http_port;
-        private System.Windows.Forms.TextBox textBox_https_port;
-        private System.Windows.Forms.TextBox textBox_ip_adress;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label23;
@@ -1408,6 +1455,22 @@
         private System.Windows.Forms.Button button_event_cancel;
         private System.Windows.Forms.Button button_event_modify;
         public System.Windows.Forms.TabControl tabcontrol_menu;
+        public System.Windows.Forms.TabPage tabPage_device;
+        public System.Windows.Forms.GroupBox groupBox_device;
+        public System.Windows.Forms.TextBox textBox_username;
+        public System.Windows.Forms.TextBox textBox_name;
+        public System.Windows.Forms.CheckBox checkBox_enabled;
+        public System.Windows.Forms.TextBox textBox_password;
+        private System.Windows.Forms.Label label_firmware;
+        private System.Windows.Forms.Label label_manufacturer;
+        private System.Windows.Forms.Label label_model;
+        public System.Windows.Forms.Label label_dmodel;
+        public System.Windows.Forms.Label label_dfireware;
+        public System.Windows.Forms.Label label_dmanufacturer;
+        public System.Windows.Forms.TextBox textBox_rtsp_port;
+        public System.Windows.Forms.TextBox textBox_http_port;
+        public System.Windows.Forms.TextBox textBox_https_port;
+        public System.Windows.Forms.TextBox textBox_ip_adress;
     }
 }
 
