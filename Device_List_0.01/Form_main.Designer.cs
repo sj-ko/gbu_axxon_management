@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.button_remove = new System.Windows.Forms.Button();
             this.button_add = new System.Windows.Forms.Button();
@@ -143,6 +144,7 @@
             this.tabPage_webpage = new System.Windows.Forms.TabPage();
             this.groupBox_webpage = new System.Windows.Forms.GroupBox();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
+            this.toolTip_http = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -394,6 +396,8 @@
             this.textBox_password.Name = "textBox_password";
             this.textBox_password.Size = new System.Drawing.Size(121, 21);
             this.textBox_password.TabIndex = 4;
+            this.textBox_password.UseSystemPasswordChar = true;
+            this.textBox_password.TextChanged += new System.EventHandler(this.textBox_password_TextChanged);
             // 
             // label3
             // 
@@ -431,6 +435,7 @@
             // 
             // textBox_name
             // 
+            this.textBox_name.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.textBox_name.Location = new System.Drawing.Point(121, 48);
             this.textBox_name.Name = "textBox_name";
             this.textBox_name.Size = new System.Drawing.Size(121, 21);
@@ -876,6 +881,7 @@
             this.textBox_rtsp_port.Name = "textBox_rtsp_port";
             this.textBox_rtsp_port.Size = new System.Drawing.Size(121, 21);
             this.textBox_rtsp_port.TabIndex = 13;
+            this.textBox_rtsp_port.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_rtsp_port_KeyPress);
             // 
             // textBox_http_port
             // 
@@ -883,6 +889,8 @@
             this.textBox_http_port.Name = "textBox_http_port";
             this.textBox_http_port.Size = new System.Drawing.Size(121, 21);
             this.textBox_http_port.TabIndex = 12;
+            this.toolTip_http.SetToolTip(this.textBox_http_port, "0~35535 사이의 값을 입력해주세요.");
+            this.textBox_http_port.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_http_port_KeyPress);
             // 
             // textBox_https_port
             // 
@@ -890,6 +898,7 @@
             this.textBox_https_port.Name = "textBox_https_port";
             this.textBox_https_port.Size = new System.Drawing.Size(121, 21);
             this.textBox_https_port.TabIndex = 11;
+            this.textBox_https_port.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_https_port_KeyPress);
             // 
             // textBox_ip_adress
             // 
@@ -897,6 +906,8 @@
             this.textBox_ip_adress.Name = "textBox_ip_adress";
             this.textBox_ip_adress.Size = new System.Drawing.Size(121, 21);
             this.textBox_ip_adress.TabIndex = 10;
+            this.textBox_ip_adress.TextChanged += new System.EventHandler(this.textBox_ip_adress_TextChanged);
+            this.textBox_ip_adress.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_ip_adress_KeyPress);
             // 
             // tabPage_archive
             // 
@@ -1471,6 +1482,7 @@
         public System.Windows.Forms.TextBox textBox_http_port;
         public System.Windows.Forms.TextBox textBox_https_port;
         public System.Windows.Forms.TextBox textBox_ip_adress;
+        public System.Windows.Forms.ToolTip toolTip_http;
     }
 }
 

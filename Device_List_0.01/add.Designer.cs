@@ -80,6 +80,7 @@
             this.textBox_IP.Name = "textBox_IP";
             this.textBox_IP.Size = new System.Drawing.Size(145, 21);
             this.textBox_IP.TabIndex = 12;
+            this.textBox_IP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_IP_KeyPress);
             // 
             // label3
             // 
@@ -112,6 +113,7 @@
             this.textBox_PW.Name = "textBox_PW";
             this.textBox_PW.Size = new System.Drawing.Size(145, 21);
             this.textBox_PW.TabIndex = 16;
+            this.textBox_PW.TextChanged += new System.EventHandler(this.textBox_PW_TextChanged);
             // 
             // button_ok
             // 
