@@ -58,6 +58,28 @@ namespace Device_List_0._01
             m.label_dmanufacturer.Text = m.camera_list[tmp - 1].device.device_manufacturer;
             m.label_dfireware.Text = m.camera_list[tmp - 1].device.device_firmware;
 
+            //m.camera_list[tmp - 1].video.video_main_resolution.SelectedIndex = 0;
+            m.camera_list[tmp - 1].video.video_main_framerate ="0"+tmp;
+            //m.camera_list[tmp - 1].video.video_main_codec.SelectedIndex = 0;
+            m.camera_list[tmp - 1].video.video_main_quality = "0" + tmp;
+            m.camera_list[tmp - 1].video.video_main_bitrate = "100" + tmp;
+            //m.camera_list[tmp - 1].video.video_sub_resolution.SelectedIndex = 0;
+            m.camera_list[tmp - 1].video.video_sub_framerate = "0" + tmp;
+            //m.camera_list[tmp - 1].video.video_sub_codec.SelectedIndex = 0;
+            m.camera_list[tmp - 1].video.video_sub_quality = "0" + tmp;
+            m.camera_list[tmp - 1].video.video_sub_bitrate = "100" + tmp;
+
+            //m.comboBox_resolution_main.SelectedIndex = m.camera_list[tmp - 1].video.video_main_resolution.SelectedIndex;
+            m.textBox_framerate_main.Text = m.camera_list[tmp - 1].video.video_main_framerate;
+            //m.comboBox_codec_main.SelectedIndex = m.camera_list[tmp - 1].video.video_main_codec.SelectedIndex;
+            m.textBox_quality_main.Text = m.camera_list[tmp - 1].video.video_main_quality;
+            m.textBox_bitrate_main.Text = m.camera_list[tmp - 1].video.video_main_bitrate;
+            //m.comboBox_resolution_sub.SelectedIndex = m.camera_list[tmp - 1].video.video_sub_resolution.SelectedIndex;
+            m.textBox_framerate_sub.Text = m.camera_list[tmp - 1].video.video_sub_framerate;
+            //m.comboBox_codec_sub.SelectedIndex = m.camera_list[tmp - 1].video.video_sub_codec.SelectedIndex;
+            m.textBox_quality_sub.Text = m.camera_list[tmp - 1].video.video_sub_quality;
+            m.textBox_bitrate_sub.Text = m.camera_list[tmp - 1].video.video_sub_bitrate;
+
             m.camera_list[tmp - 1].network.network_IP = textBox_IP.Text;
             m.camera_list[tmp - 1].network.network_http = "1" + tmp;
             m.camera_list[tmp - 1].network.network_https = "2" + tmp;
@@ -68,7 +90,8 @@ namespace Device_List_0._01
             m.textBox_https_port.Text = m.camera_list[tmp - 1].network.network_https;
             m.textBox_rtsp_port.Text = m.camera_list[tmp - 1].network.network_rtsp;
 
-
+            
+           
             ///m.탭메뉴 아이템들 할당이 add.cs에서 item add될때마다가 아닌 list_view의 아이템을 클릭할 때 마다 선택된 아이템의 설정이 tab메뉴에 보이도록 수정,,,? ? ?
             ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -90,95 +113,9 @@ namespace Device_List_0._01
 
         private void textBox_IP_KeyPress(object sender, KeyPressEventArgs e)
         {
+            Range r = new Range();
+            r.ipset(sender, e, textBox_IP);
 
-            int iPos = 0;               // IP 구역의 현재 위치
-            int iDelimitNumber = 0;     // IP 구역의 갯수
-
-            int iLength = textBox_IP.Text.Length;
-            int iIndex = textBox_IP.Text.LastIndexOf(".");
-
-            int iIndex2 = -1;
-            while (true)
-            {
-                iIndex2 = textBox_IP.Text.IndexOf(".", iIndex2 + 1);
-
-                if (iIndex2 == -1)      //. 탐색 끝
-                    break;
-
-                ++iDelimitNumber;
-            }
-
-            // 숫자키와 백스페이스, '.' 만 입력 가능
-            if ((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != '.')
-            {
-                MessageBox.Show("숫자만 입력 가능합니다", "오류");
-                e.Handled = true;
-                return;
-            }
-
-            if (e.KeyChar != 8)
-            {
-                if (e.KeyChar != '.')
-                {
-                    if (iIndex > 0)
-                        iPos = iLength - iIndex;
-                    else
-                        iPos = iLength + 1;
-
-                    if (iPos == 3)
-                    {
-                        // 255 이상 체크
-                        string strTmp = textBox_IP.Text.Substring(iIndex + 1) + e.KeyChar;
-                        if (Int32.Parse(strTmp) > 255)
-                        {
-                            MessageBox.Show("255를 넘길수 없습니다.", "오류");
-                            e.Handled = true;
-                            return;
-                        }
-                        else
-                        {
-                            // 3자리가 넘어가면 자동으로 .을 찍어준다
-                            if (iDelimitNumber < 3)
-                            {
-                                textBox_IP.AppendText(e.KeyChar.ToString());
-                                textBox_IP.AppendText(".");
-                                iDelimitNumber++;
-                                e.Handled = true;
-                                return;
-                            }
-                        }
-                    }
-
-                    // IP 마지막 4자리째는 무조건 무시
-                    if (iPos == 4)
-                    {
-                        e.Handled = true;
-                        return;
-                    }
-                }
-                else
-                {
-                    // 아이피가 3구역 이상 쓰였으면, 이후 키는 무시한다
-                    if (iDelimitNumber + 1 > 3)
-                    {
-                        MessageBox.Show("IP 주소가 정확하지 않습니다.", "오류");
-                        e.Handled = true;
-                        return;
-                    }
-                    else
-                    {
-                        // 연속으로 .을 찍었으면 오류
-                        if (textBox_IP.Text.EndsWith("."))
-                        {
-                            MessageBox.Show("IP 주소가 정확하지 않습니다.", "오류");
-                            e.Handled = true;
-                            return;
-                        }
-                        else
-                            iDelimitNumber++;
-                    }
-                }
-            }
         }
     }
 }

@@ -61,14 +61,14 @@
             this.groupBox_sub_stream = new System.Windows.Forms.GroupBox();
             this.textBox_bitrate_sub = new System.Windows.Forms.TextBox();
             this.textBox_quality_sub = new System.Windows.Forms.TextBox();
-            this.textBox_framerate__sub = new System.Windows.Forms.TextBox();
+            this.textBox_framerate_sub = new System.Windows.Forms.TextBox();
             this.comboBox_codec_sub = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.comboBox_resolution_main_sub = new System.Windows.Forms.ComboBox();
+            this.comboBox_resolution_sub = new System.Windows.Forms.ComboBox();
             this.groupBox_main_stream = new System.Windows.Forms.GroupBox();
             this.textBox_bitrate_main = new System.Windows.Forms.TextBox();
             this.textBox_quality_main = new System.Windows.Forms.TextBox();
@@ -228,7 +228,6 @@
             this.listView_device.Size = new System.Drawing.Size(249, 449);
             this.listView_device.TabIndex = 7;
             this.listView_device.UseCompatibleStateImageBehavior = false;
-            this.listView_device.SelectedIndexChanged += new System.EventHandler(this.listView_device_SelectedIndexChanged);
             this.listView_device.Click += new System.EventHandler(this.listView_device_Click);
             // 
             // label1
@@ -313,7 +312,6 @@
             this.groupBox_device.TabIndex = 0;
             this.groupBox_device.TabStop = false;
             this.groupBox_device.Text = "Device";
-            this.groupBox_device.Enter += new System.EventHandler(this.groupBox_device_Enter);
             // 
             // label_dfireware
             // 
@@ -397,7 +395,6 @@
             this.textBox_password.Size = new System.Drawing.Size(121, 21);
             this.textBox_password.TabIndex = 4;
             this.textBox_password.UseSystemPasswordChar = true;
-            this.textBox_password.TextChanged += new System.EventHandler(this.textBox_password_TextChanged);
             // 
             // label3
             // 
@@ -474,6 +471,7 @@
             this.button_video_cancel.TabIndex = 4;
             this.button_video_cancel.Text = "Cancel";
             this.button_video_cancel.UseVisualStyleBackColor = true;
+            this.button_video_cancel.Click += new System.EventHandler(this.button_video_cancel_Click);
             // 
             // button_video_modify
             // 
@@ -483,19 +481,20 @@
             this.button_video_modify.TabIndex = 3;
             this.button_video_modify.Text = "Modify";
             this.button_video_modify.UseVisualStyleBackColor = true;
+            this.button_video_modify.Click += new System.EventHandler(this.button_video_modify_Click);
             // 
             // groupBox_sub_stream
             // 
             this.groupBox_sub_stream.Controls.Add(this.textBox_bitrate_sub);
             this.groupBox_sub_stream.Controls.Add(this.textBox_quality_sub);
-            this.groupBox_sub_stream.Controls.Add(this.textBox_framerate__sub);
+            this.groupBox_sub_stream.Controls.Add(this.textBox_framerate_sub);
             this.groupBox_sub_stream.Controls.Add(this.comboBox_codec_sub);
             this.groupBox_sub_stream.Controls.Add(this.label12);
             this.groupBox_sub_stream.Controls.Add(this.label13);
             this.groupBox_sub_stream.Controls.Add(this.label14);
             this.groupBox_sub_stream.Controls.Add(this.label15);
             this.groupBox_sub_stream.Controls.Add(this.label16);
-            this.groupBox_sub_stream.Controls.Add(this.comboBox_resolution_main_sub);
+            this.groupBox_sub_stream.Controls.Add(this.comboBox_resolution_sub);
             this.groupBox_sub_stream.Location = new System.Drawing.Point(6, 185);
             this.groupBox_sub_stream.Name = "groupBox_sub_stream";
             this.groupBox_sub_stream.Size = new System.Drawing.Size(277, 162);
@@ -509,6 +508,7 @@
             this.textBox_bitrate_sub.Name = "textBox_bitrate_sub";
             this.textBox_bitrate_sub.Size = new System.Drawing.Size(121, 21);
             this.textBox_bitrate_sub.TabIndex = 11;
+            this.textBox_bitrate_sub.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_bitrate_sub_KeyPress);
             // 
             // textBox_quality_sub
             // 
@@ -516,17 +516,23 @@
             this.textBox_quality_sub.Name = "textBox_quality_sub";
             this.textBox_quality_sub.Size = new System.Drawing.Size(121, 21);
             this.textBox_quality_sub.TabIndex = 10;
+            this.textBox_quality_sub.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_quality_sub_KeyPress);
             // 
-            // textBox_framerate__sub
+            // textBox_framerate_sub
             // 
-            this.textBox_framerate__sub.Location = new System.Drawing.Point(120, 50);
-            this.textBox_framerate__sub.Name = "textBox_framerate__sub";
-            this.textBox_framerate__sub.Size = new System.Drawing.Size(121, 21);
-            this.textBox_framerate__sub.TabIndex = 9;
+            this.textBox_framerate_sub.Location = new System.Drawing.Point(120, 50);
+            this.textBox_framerate_sub.Name = "textBox_framerate_sub";
+            this.textBox_framerate_sub.Size = new System.Drawing.Size(121, 21);
+            this.textBox_framerate_sub.TabIndex = 9;
+            this.textBox_framerate_sub.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_framerate_sub_KeyPress);
             // 
             // comboBox_codec_sub
             // 
             this.comboBox_codec_sub.FormattingEnabled = true;
+            this.comboBox_codec_sub.Items.AddRange(new object[] {
+            "H.264",
+            "H.265",
+            "MJPEG"});
             this.comboBox_codec_sub.Location = new System.Drawing.Point(120, 75);
             this.comboBox_codec_sub.Name = "comboBox_codec_sub";
             this.comboBox_codec_sub.Size = new System.Drawing.Size(121, 20);
@@ -577,13 +583,18 @@
             this.label16.TabIndex = 3;
             this.label16.Text = "Resolution";
             // 
-            // comboBox_resolution_main_sub
+            // comboBox_resolution_sub
             // 
-            this.comboBox_resolution_main_sub.FormattingEnabled = true;
-            this.comboBox_resolution_main_sub.Location = new System.Drawing.Point(120, 25);
-            this.comboBox_resolution_main_sub.Name = "comboBox_resolution_main_sub";
-            this.comboBox_resolution_main_sub.Size = new System.Drawing.Size(121, 20);
-            this.comboBox_resolution_main_sub.TabIndex = 1;
+            this.comboBox_resolution_sub.FormattingEnabled = true;
+            this.comboBox_resolution_sub.Items.AddRange(new object[] {
+            "1920x1080",
+            "1280x720",
+            "704x480",
+            "640x480"});
+            this.comboBox_resolution_sub.Location = new System.Drawing.Point(120, 25);
+            this.comboBox_resolution_sub.Name = "comboBox_resolution_sub";
+            this.comboBox_resolution_sub.Size = new System.Drawing.Size(121, 20);
+            this.comboBox_resolution_sub.TabIndex = 1;
             // 
             // groupBox_main_stream
             // 
@@ -610,6 +621,7 @@
             this.textBox_bitrate_main.Name = "textBox_bitrate_main";
             this.textBox_bitrate_main.Size = new System.Drawing.Size(121, 21);
             this.textBox_bitrate_main.TabIndex = 11;
+            this.textBox_bitrate_main.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_bitrate_main_KeyPress);
             // 
             // textBox_quality_main
             // 
@@ -617,6 +629,7 @@
             this.textBox_quality_main.Name = "textBox_quality_main";
             this.textBox_quality_main.Size = new System.Drawing.Size(121, 21);
             this.textBox_quality_main.TabIndex = 10;
+            this.textBox_quality_main.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_quality_main_KeyPress);
             // 
             // textBox_framerate_main
             // 
@@ -624,10 +637,15 @@
             this.textBox_framerate_main.Name = "textBox_framerate_main";
             this.textBox_framerate_main.Size = new System.Drawing.Size(121, 21);
             this.textBox_framerate_main.TabIndex = 9;
+            this.textBox_framerate_main.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_framerate_main_KeyPress);
             // 
             // comboBox_codec_main
             // 
             this.comboBox_codec_main.FormattingEnabled = true;
+            this.comboBox_codec_main.Items.AddRange(new object[] {
+            "H.264",
+            "H.265",
+            "MJPEG"});
             this.comboBox_codec_main.Location = new System.Drawing.Point(120, 75);
             this.comboBox_codec_main.Name = "comboBox_codec_main";
             this.comboBox_codec_main.Size = new System.Drawing.Size(121, 20);
@@ -681,6 +699,11 @@
             // comboBox_resolution_main
             // 
             this.comboBox_resolution_main.FormattingEnabled = true;
+            this.comboBox_resolution_main.Items.AddRange(new object[] {
+            "1920x1080",
+            "1280x720",
+            "704x480",
+            "640x480"});
             this.comboBox_resolution_main.Location = new System.Drawing.Point(120, 25);
             this.comboBox_resolution_main.Name = "comboBox_resolution_main";
             this.comboBox_resolution_main.Size = new System.Drawing.Size(121, 20);
@@ -891,6 +914,7 @@
             this.textBox_http_port.TabIndex = 12;
             this.toolTip_http.SetToolTip(this.textBox_http_port, "0~35535 사이의 값을 입력해주세요.");
             this.textBox_http_port.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_http_port_KeyPress);
+           
             // 
             // textBox_https_port
             // 
@@ -906,7 +930,6 @@
             this.textBox_ip_adress.Name = "textBox_ip_adress";
             this.textBox_ip_adress.Size = new System.Drawing.Size(121, 21);
             this.textBox_ip_adress.TabIndex = 10;
-            this.textBox_ip_adress.TextChanged += new System.EventHandler(this.textBox_ip_adress_TextChanged);
             this.textBox_ip_adress.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_ip_adress_KeyPress);
             // 
             // tabPage_archive
@@ -931,6 +954,7 @@
             this.button_archive_cancel.TabIndex = 4;
             this.button_archive_cancel.Text = "Cancel";
             this.button_archive_cancel.UseVisualStyleBackColor = true;
+            this.button_archive_cancel.Click += new System.EventHandler(this.button_archive_cancel_Click);
             // 
             // button_archive_modify
             // 
@@ -940,6 +964,7 @@
             this.button_archive_modify.TabIndex = 3;
             this.button_archive_modify.Text = "Modify";
             this.button_archive_modify.UseVisualStyleBackColor = true;
+            this.button_archive_modify.Click += new System.EventHandler(this.button_archive_modify_Click);
             // 
             // groupBox_archive_information
             // 
@@ -1057,6 +1082,9 @@
             // comboBox_record_strean
             // 
             this.comboBox_record_strean.FormattingEnabled = true;
+            this.comboBox_record_strean.Items.AddRange(new object[] {
+            "Main Stream",
+            "Sub Stream"});
             this.comboBox_record_strean.Location = new System.Drawing.Point(120, 125);
             this.comboBox_record_strean.Name = "comboBox_record_strean";
             this.comboBox_record_strean.Size = new System.Drawing.Size(121, 20);
@@ -1068,6 +1096,7 @@
             this.textBox_framerate.Name = "textBox_framerate";
             this.textBox_framerate.Size = new System.Drawing.Size(121, 21);
             this.textBox_framerate.TabIndex = 12;
+            this.textBox_framerate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_framerate_KeyPress);
             // 
             // textBox_record_time
             // 
@@ -1075,10 +1104,15 @@
             this.textBox_record_time.Name = "textBox_record_time";
             this.textBox_record_time.Size = new System.Drawing.Size(121, 21);
             this.textBox_record_time.TabIndex = 11;
+            this.textBox_record_time.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_record_time_KeyPress);
             // 
             // comboBox_record_period
             // 
             this.comboBox_record_period.FormattingEnabled = true;
+            this.comboBox_record_period.Items.AddRange(new object[] {
+            "Always",
+            "Event",
+            "Schedule"});
             this.comboBox_record_period.Location = new System.Drawing.Point(120, 50);
             this.comboBox_record_period.Name = "comboBox_record_period";
             this.comboBox_record_period.Size = new System.Drawing.Size(121, 20);
@@ -1087,6 +1121,10 @@
             // comboBox_storage
             // 
             this.comboBox_storage.FormattingEnabled = true;
+            this.comboBox_storage.Items.AddRange(new object[] {
+            "Archive 1",
+            "Archive 2",
+            "Archive 3"});
             this.comboBox_storage.Location = new System.Drawing.Point(120, 25);
             this.comboBox_storage.Name = "comboBox_storage";
             this.comboBox_storage.Size = new System.Drawing.Size(121, 20);
@@ -1204,6 +1242,9 @@
             // comboBox_event_type
             // 
             this.comboBox_event_type.FormattingEnabled = true;
+            this.comboBox_event_type.Items.AddRange(new object[] {
+            "Motion in Area",
+            "Line Detection"});
             this.comboBox_event_type.Location = new System.Drawing.Point(120, 50);
             this.comboBox_event_type.Name = "comboBox_event_type";
             this.comboBox_event_type.Size = new System.Drawing.Size(121, 20);
@@ -1215,6 +1256,7 @@
             this.textBox_sensitivity.Name = "textBox_sensitivity";
             this.textBox_sensitivity.Size = new System.Drawing.Size(121, 21);
             this.textBox_sensitivity.TabIndex = 14;
+            this.textBox_sensitivity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_sensitivity_KeyPress);
             // 
             // textBox_maximum
             // 
@@ -1222,6 +1264,7 @@
             this.textBox_maximum.Name = "textBox_maximum";
             this.textBox_maximum.Size = new System.Drawing.Size(121, 21);
             this.textBox_maximum.TabIndex = 13;
+            this.textBox_maximum.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_maximum_KeyPress);
             // 
             // textBox_minimux
             // 
@@ -1229,6 +1272,7 @@
             this.textBox_minimux.Name = "textBox_minimux";
             this.textBox_minimux.Size = new System.Drawing.Size(121, 21);
             this.textBox_minimux.TabIndex = 12;
+            this.textBox_minimux.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_minimux_KeyPress);
             // 
             // textBox_event_name
             // 
@@ -1385,34 +1429,21 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox_sub_stream;
-        private System.Windows.Forms.TextBox textBox_bitrate_sub;
-        private System.Windows.Forms.TextBox textBox_quality_sub;
-        private System.Windows.Forms.TextBox textBox_framerate__sub;
-        private System.Windows.Forms.ComboBox comboBox_codec_sub;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.ComboBox comboBox_resolution_main_sub;
         private System.Windows.Forms.GroupBox groupBox_main_stream;
-        private System.Windows.Forms.TextBox textBox_bitrate_main;
-        private System.Windows.Forms.TextBox textBox_quality_main;
-        private System.Windows.Forms.TextBox textBox_framerate_main;
-        private System.Windows.Forms.ComboBox comboBox_codec_main;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboBox_resolution_main;
         private System.Windows.Forms.GroupBox groupBox_image;
-        private System.Windows.Forms.TrackBar trackBar_brightness;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TrackBar trackBar_sharpness;
-        private System.Windows.Forms.TrackBar trackBar_contrast;
         private System.Windows.Forms.GroupBox groupBox_ip;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
@@ -1429,11 +1460,6 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.ComboBox comboBox_record_strean;
-        private System.Windows.Forms.TextBox textBox_framerate;
-        private System.Windows.Forms.TextBox textBox_record_time;
-        private System.Windows.Forms.ComboBox comboBox_record_period;
-        private System.Windows.Forms.ComboBox comboBox_storage;
         private System.Windows.Forms.GroupBox groupBox_list;
         private System.Windows.Forms.ListView listView_event_list;
         private System.Windows.Forms.GroupBox groupBox_webpage;
@@ -1447,11 +1473,6 @@
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.ComboBox comboBox_event_type;
-        private System.Windows.Forms.TextBox textBox_sensitivity;
-        private System.Windows.Forms.TextBox textBox_maximum;
-        private System.Windows.Forms.TextBox textBox_minimux;
-        private System.Windows.Forms.TextBox textBox_event_name;
         private System.Windows.Forms.Button button_device_cancel;
         private System.Windows.Forms.Button button_device_modify;
         private System.Windows.Forms.Button button_video_cancel;
@@ -1462,7 +1483,6 @@
         private System.Windows.Forms.Button button_network_modify;
         private System.Windows.Forms.Button button_archive_cancel;
         private System.Windows.Forms.Button button_archive_modify;
-        private System.Windows.Forms.WebBrowser webBrowser;
         private System.Windows.Forms.Button button_event_cancel;
         private System.Windows.Forms.Button button_event_modify;
         public System.Windows.Forms.TabControl tabcontrol_menu;
@@ -1483,6 +1503,30 @@
         public System.Windows.Forms.TextBox textBox_https_port;
         public System.Windows.Forms.TextBox textBox_ip_adress;
         public System.Windows.Forms.ToolTip toolTip_http;
+        public System.Windows.Forms.TextBox textBox_bitrate_sub;
+        public System.Windows.Forms.TextBox textBox_quality_sub;
+        public System.Windows.Forms.TextBox textBox_framerate_sub;
+        public System.Windows.Forms.ComboBox comboBox_codec_sub;
+        public System.Windows.Forms.ComboBox comboBox_resolution_sub;
+        public System.Windows.Forms.TextBox textBox_bitrate_main;
+        public System.Windows.Forms.TextBox textBox_quality_main;
+        public System.Windows.Forms.TextBox textBox_framerate_main;
+        public System.Windows.Forms.ComboBox comboBox_codec_main;
+        public System.Windows.Forms.ComboBox comboBox_resolution_main;
+        public System.Windows.Forms.TrackBar trackBar_brightness;
+        public System.Windows.Forms.TrackBar trackBar_sharpness;
+        public System.Windows.Forms.TrackBar trackBar_contrast;
+        public System.Windows.Forms.ComboBox comboBox_record_strean;
+        public System.Windows.Forms.TextBox textBox_framerate;
+        public System.Windows.Forms.TextBox textBox_record_time;
+        public System.Windows.Forms.ComboBox comboBox_record_period;
+        public System.Windows.Forms.ComboBox comboBox_storage;
+        public System.Windows.Forms.ComboBox comboBox_event_type;
+        public System.Windows.Forms.TextBox textBox_sensitivity;
+        public System.Windows.Forms.TextBox textBox_maximum;
+        public System.Windows.Forms.TextBox textBox_minimux;
+        public System.Windows.Forms.TextBox textBox_event_name;
+        public System.Windows.Forms.WebBrowser webBrowser;
     }
 }
 

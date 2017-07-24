@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-
 namespace Device_List_0._01
 {
-
 
     public partial class Form_main : Form
     {
 
         public List<Camera> camera_list = new List<Camera>();
-
+        //public KeyEventArgs p;
         /////for button_image/////
         private int brightness;
         private int contrast;
@@ -29,14 +27,12 @@ namespace Device_List_0._01
             listView_device.Columns.Add("ID");
             listView_device.Columns.Add("PW");
 
-
             /////for button_image/////
             brightness = trackBar_brightness.Value;
             contrast = trackBar_contrast.Value;
             sharpness = trackBar_sharpness.Value;
             //////////////////////////////
 
-           
         }
         private void Form_main_Load(object sender, EventArgs e)
         {
@@ -50,7 +46,6 @@ namespace Device_List_0._01
             add.Owner = this;
             add.Show();
         }
-
 
         private void button_remove_Click(object sender, EventArgs e)
         {
@@ -79,7 +74,6 @@ namespace Device_List_0._01
 
         }
 
-
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -95,40 +89,18 @@ namespace Device_List_0._01
 
         }
 
-        private void button_image_modify_Click(object sender, EventArgs e)
-        {
-            brightness = trackBar_brightness.Value;
-            contrast = trackBar_contrast.Value;
-            sharpness = trackBar_sharpness.Value;
-        }
 
-        private void button_image_cancel_Click(object sender, EventArgs e)
-        {
-            trackBar_brightness.Value= brightness;
-            trackBar_contrast.Value = contrast;
-            trackBar_sharpness.Value = sharpness;
-            
-        }
-
-        private void listView_device_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-
-            
-            
-        }
-
-        private void groupBox_device_Enter(object sender, EventArgs e)
-        {
-
-        }
-
+       
+        /// /////////////////////////////////////////////////////////////////////////////////////////////////
+        //////<>////////
         private void listView_device_Click(object sender, EventArgs e)      //리스트 아이템 클릭시 tab 속성들 변경
         {
 
-            int tmp = listView_device.FocusedItem.Index;
+            int tmp = 0;
+            if (listView_device.FocusedItem != null)
+                tmp = listView_device.FocusedItem.Index;
 
-            
+
             textBox_name.Text = camera_list[tmp].device.device_name;
             textBox_username.Text = camera_list[tmp].device.device_username;
             textBox_password.Text = camera_list[tmp].device.device_PW;
@@ -143,10 +115,13 @@ namespace Device_List_0._01
             textBox_rtsp_port.Text = camera_list[tmp].network.network_rtsp;
 
         }
-
+        /// /////////////////////////////////////////////////////////////////////////////////////////////////
+        //////<Device Setting>//////////
         private void button_device_modify_Click(object sender, EventArgs e)
         {
-            int tmp = listView_device.FocusedItem.Index;
+            int tmp = 0;
+            if (listView_device.FocusedItem != null)
+                tmp = listView_device.FocusedItem.Index;
             string pw = "";
             for (int i = 0; i < textBox_password.TextLength; i++)
                 pw = pw + "*";
@@ -162,16 +137,138 @@ namespace Device_List_0._01
 
         private void button_device_cancel_Click(object sender, EventArgs e)
         {
-            int tmp = listView_device.FocusedItem.Index;
+            int tmp = 0;
+            if (listView_device.FocusedItem != null)
+                tmp = listView_device.FocusedItem.Index;
 
             textBox_name.Text = camera_list[tmp].device.device_name;
             textBox_username.Text = camera_list[tmp].device.device_username;
             textBox_password.Text = camera_list[tmp].device.device_PW;
         }
 
+        /// /////////////////////////////////////////////////////////////////////////////////////////////////
+        //////<Video Streaming>////////////
+        private void textBox_framerate_main_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Range r = new Range();
+            r.rangeset(sender, e, textBox_framerate_main, 1, 60);
+        }
+
+        private void textBox_quality_main_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Range r = new Range();
+            r.rangeset(sender, e, textBox_quality_main, 1, 10);
+        }
+
+        private void textBox_bitrate_main_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Range r = new Range();
+            r.rangeset(sender, e, textBox_bitrate_main, 100, 10000);
+        }
+
+        private void textBox_framerate_sub_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Range r = new Range();
+            r.rangeset(sender, e, textBox_framerate_sub, 1, 60);
+        }
+
+        private void textBox_quality_sub_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Range r = new Range();
+            r.rangeset(sender, e, textBox_quality_sub, 1, 10);
+        }
+
+        private void textBox_bitrate_sub_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Range r = new Range();
+            r.rangeset(sender, e, textBox_bitrate_sub, 100, 10000);
+        }
+
+        private void button_video_modify_Click(object sender, EventArgs e)
+        {
+            int tmp=0;
+            if (listView_device.FocusedItem != null)
+                tmp = listView_device.FocusedItem.Index;
+            camera_list[tmp].video.video_main_resolution.SelectedIndex = comboBox_resolution_main.SelectedIndex;
+            camera_list[tmp].video.video_main_framerate = textBox_framerate_main.Text;
+            camera_list[tmp].video.video_main_codec.SelectedIndex = comboBox_codec_main.SelectedIndex;
+            camera_list[tmp].video.video_main_quality = textBox_quality_main.Text;
+            camera_list[tmp].video.video_main_bitrate = textBox_bitrate_main.Text;
+
+            camera_list[tmp].video.video_sub_resolution.SelectedIndex = comboBox_resolution_sub.SelectedIndex;
+            camera_list[tmp].video.video_sub_framerate = textBox_framerate_sub.Text;
+            camera_list[tmp].video.video_sub_codec.SelectedIndex = comboBox_codec_sub.SelectedIndex;
+            camera_list[tmp].video.video_sub_quality = textBox_quality_sub.Text;
+            camera_list[tmp].video.video_sub_bitrate = textBox_bitrate_sub.Text;
+        }
+
+        private void button_video_cancel_Click(object sender, EventArgs e)
+        {
+            int tmp = 0;
+            if (listView_device.FocusedItem != null)
+                tmp = listView_device.FocusedItem.Index;
+
+
+            comboBox_resolution_main.SelectedIndex = camera_list[tmp].video.video_main_resolution.SelectedIndex;
+            textBox_framerate_main.Text= camera_list[tmp].video.video_main_framerate;
+            comboBox_codec_main.SelectedIndex = camera_list[tmp].video.video_main_codec.SelectedIndex;
+            textBox_quality_main.Text = camera_list[tmp].video.video_main_quality;
+            textBox_bitrate_main.Text = camera_list[tmp].video.video_main_bitrate;
+
+            comboBox_resolution_sub.SelectedIndex = camera_list[tmp].video.video_sub_resolution.SelectedIndex;
+            textBox_framerate_sub.Text = camera_list[tmp].video.video_sub_framerate;
+            comboBox_codec_sub.SelectedIndex = camera_list[tmp].video.video_sub_codec.SelectedIndex;
+            textBox_quality_sub.Text = camera_list[tmp].video.video_sub_quality;
+            textBox_bitrate_sub.Text = camera_list[tmp].video.video_sub_bitrate;
+        }
+        /// /////////////////////////////////////////////////////////////////////////////////////////////////
+        //////<Image Setting>///////////
+        private void button_image_modify_Click(object sender, EventArgs e)
+        {
+            brightness = trackBar_brightness.Value;
+            contrast = trackBar_contrast.Value;
+            sharpness = trackBar_sharpness.Value;
+        }
+
+        private void button_image_cancel_Click(object sender, EventArgs e)
+        {
+            trackBar_brightness.Value = brightness;
+            trackBar_contrast.Value = contrast;
+            trackBar_sharpness.Value = sharpness;
+        }
+
+        /// /////////////////////////////////////////////////////////////////////////////////////////////////
+        //////<Network Setting>///////////
+        private void textBox_ip_adress_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Range r = new Range();
+            r.ipset(sender, e, textBox_ip_adress);
+        }
+
+
+        private void textBox_http_port_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Range r = new Range();
+            r.rangeset(sender, e, textBox_http_port, 0, 65535);
+        }
+
+        private void textBox_https_port_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Range r = new Range();
+            r.rangeset(sender, e, textBox_https_port, 0, 65535);
+        }
+
+        private void textBox_rtsp_port_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Range r = new Range();
+            r.rangeset(sender, e, textBox_rtsp_port, 0, 65535);
+        }
+
         private void button_network_modify_Click(object sender, EventArgs e)
         {
-            int tmp = listView_device.FocusedItem.Index;
+            int tmp = 0;
+            if (listView_device.FocusedItem!= null)
+                tmp = listView_device.FocusedItem.Index;
             //int tmp = listView_device.FocusedItem.Index== null ? 0:listView_device.FocusedItem.Index;
 
             camera_list[tmp].network.network_IP = textBox_ip_adress.Text;
@@ -184,7 +281,9 @@ namespace Device_List_0._01
 
         private void button7_network_cancel_Click(object sender, EventArgs e)
         {
-            int tmp = listView_device.FocusedItem.Index;
+            int tmp = 0;
+            if (listView_device.FocusedItem != null)
+                tmp = listView_device.FocusedItem.Index;
 
             textBox_ip_adress.Text = camera_list[tmp].network.network_IP;
             textBox_http_port.Text = camera_list[tmp].network.network_http;
@@ -192,174 +291,53 @@ namespace Device_List_0._01
             textBox_rtsp_port.Text = camera_list[tmp].network.network_rtsp;
         }
 
-        private void textBox_password_TextChanged(object sender, EventArgs e)
+        /// /////////////////////////////////////////////////////////////////////////////////////////////////
+        //////<Archive Setting>////////
+        private void textBox_record_time_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Range r = new Range();
+            r.rangeset(sender, e, textBox_record_time, 0, 10);
+        }
+
+        private void textBox_framerate_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Range r = new Range();
+            r.rangeset(sender, e, textBox_framerate, 1, 60);
+        }
+        private void button_archive_modify_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void textBox_http_port_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void textBox_ip_adress_TextChanged(object sender, EventArgs e)
+        private void button_archive_cancel_Click(object sender, EventArgs e)
         {
 
         }
-
-        private void textBox_http_port_KeyPress(object sender, KeyPressEventArgs e)
+        /// /////////////////////////////////////////////////////////////////////////////////////////////////
+        //////<Event Setting>////////
+        private void textBox_sensitivity_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!(char.IsDigit(e.KeyChar) || e.KeyChar == Convert.ToChar(Keys.Back)))       //숫자만 입력
-            {
-                e.Handled = true;
-            }
-
-            int tmp = Convert.ToInt32((textBox_http_port.Text == string.Empty ? "0" : textBox_http_port.Text));
-            if (tmp < 0 || tmp > 65535)
-            {
-                MessageBox.Show("0~65535 사이의 값을 입력해주세요.");
-                
-                tmp = tmp / 10;
-                
-                textBox_http_port.Text = Convert.ToString(tmp);
-              
-                e.Handled = true;
-            }
-
+            Range r = new Range();
+            r.rangeset(sender, e, textBox_sensitivity, 1, 100);
         }
 
-        private void textBox_https_port_KeyPress(object sender, KeyPressEventArgs e)
+        private void textBox_minimux_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!(char.IsDigit(e.KeyChar) || e.KeyChar == Convert.ToChar(Keys.Back)))       //숫자만 입력
-            {
-                e.Handled = true;
-            }
-
-            int tmp = Convert.ToInt32((textBox_https_port.Text == string.Empty ? "0" : textBox_https_port.Text));
-            if (tmp < 0 || tmp > 65535)
-            {
-                MessageBox.Show("0~65535 사이의 값을 입력해주세요.");
-
-                tmp = tmp / 10;
-
-                textBox_https_port.Text = Convert.ToString(tmp);
-
-                e.Handled = true;
-            }
+            Range r = new Range();
+            r.rangeset(sender, e, textBox_minimux, 1, 100);
         }
 
-        private void textBox_rtsp_port_KeyPress(object sender, KeyPressEventArgs e)
+        private void textBox_maximum_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!(char.IsDigit(e.KeyChar) || e.KeyChar == Convert.ToChar(Keys.Back)))       //숫자만 입력
-            {
-                e.Handled = true;
-            }
-
-            int tmp = Convert.ToInt32((textBox_rtsp_port.Text == string.Empty ? "0" : textBox_rtsp_port.Text));
-            if (tmp < 0 || tmp > 65535)
-            {
-                MessageBox.Show("0~65535 사이의 값을 입력해주세요.");
-
-                tmp = tmp / 10;
-
-                textBox_rtsp_port.Text = Convert.ToString(tmp);
-
-                e.Handled = true;
-            }
+            Range r = new Range();
+            r.rangeset(sender, e, textBox_maximum, 1, 100);
         }
 
-        private void textBox_ip_adress_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            int iPos = 0;               // IP 구역의 현재 위치
-            int iDelimitNumber = 0;     // IP 구역의 갯수
 
-            int iLength = textBox_ip_adress.Text.Length;
-            int iIndex = textBox_ip_adress.Text.LastIndexOf(".");
 
-            int iIndex2 = -1;
-            while (true)
-            {
-                iIndex2 = textBox_ip_adress.Text.IndexOf(".", iIndex2 + 1);
-                
-                if (iIndex2 == -1)      //. 탐색 끝
-                    break;
+        /// /////////////////////////////////////////////////////////////////////////////////////////////////
+        //////<webpage>////////
 
-                ++iDelimitNumber;
-            }
 
-            // 숫자키와 백스페이스, '.' 만 입력 가능
-            if ((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != '.')
-            {
-                MessageBox.Show("숫자만 입력 가능합니다", "오류");
-                e.Handled = true;
-                return;
-            }
-
-            if (e.KeyChar != 8)
-            {
-                if (e.KeyChar != '.')
-                {
-                    if (iIndex > 0)
-                        iPos = iLength - iIndex;
-                    else
-                        iPos = iLength + 1;
-
-                    if (iPos == 3)
-                    {
-                        // 255 이상 체크
-                        string strTmp = textBox_ip_adress.Text.Substring(iIndex + 1) + e.KeyChar;
-                        if (Int32.Parse(strTmp) > 255)
-                        {
-                            MessageBox.Show("255를 넘길수 없습니다.", "오류");
-                            e.Handled = true;
-                            return;
-                        }
-                        else
-                        {
-                            // 3자리가 넘어가면 자동으로 .을 찍어준다
-                            if (iDelimitNumber < 3)
-                            {
-                                textBox_ip_adress.AppendText(e.KeyChar.ToString());
-                                textBox_ip_adress.AppendText(".");
-                                iDelimitNumber++;
-                                e.Handled = true;
-                                return;
-                            }
-                        }
-                    }
-
-                    // IP 마지막 4자리째는 무조건 무시
-                    if (iPos == 4)
-                    {
-                        e.Handled = true;
-                        return;
-                    }
-                }
-                else
-                {
-                    // 아이피가 3구역 이상 쓰였으면, 이후 키는 무시한다
-                    if (iDelimitNumber + 1 > 3)
-                    {
-                        MessageBox.Show("IP 주소가 정확하지 않습니다.", "오류");
-                        e.Handled = true;
-                        return;
-                    }
-                    else
-                    {
-                        // 연속으로 .을 찍었으면 오류
-                        if (textBox_ip_adress.Text.EndsWith("."))
-                        {
-                            MessageBox.Show("IP 주소가 정확하지 않습니다.", "오류");
-                            e.Handled = true;
-                            return;
-                        }
-                        else
-                            iDelimitNumber++;
-                    }
-                }
-            }
-
-           
-        }
     }
 }
