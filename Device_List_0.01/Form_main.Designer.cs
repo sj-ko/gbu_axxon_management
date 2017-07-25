@@ -106,6 +106,10 @@
             this.button_archive_cancel = new System.Windows.Forms.Button();
             this.button_archive_modify = new System.Windows.Forms.Button();
             this.groupBox_archive_information = new System.Windows.Forms.GroupBox();
+            this.label_archive_free = new System.Windows.Forms.Label();
+            this.label_archive_total = new System.Windows.Forms.Label();
+            this.label_archive_type = new System.Windows.Forms.Label();
+            this.label_archive_name = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
@@ -116,7 +120,7 @@
             this.label26 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
-            this.comboBox_record_strean = new System.Windows.Forms.ComboBox();
+            this.comboBox_record_stream = new System.Windows.Forms.ComboBox();
             this.textBox_framerate = new System.Windows.Forms.TextBox();
             this.textBox_record_time = new System.Windows.Forms.TextBox();
             this.comboBox_record_period = new System.Windows.Forms.ComboBox();
@@ -914,7 +918,6 @@
             this.textBox_http_port.TabIndex = 12;
             this.toolTip_http.SetToolTip(this.textBox_http_port, "0~35535 사이의 값을 입력해주세요.");
             this.textBox_http_port.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_http_port_KeyPress);
-           
             // 
             // textBox_https_port
             // 
@@ -968,6 +971,10 @@
             // 
             // groupBox_archive_information
             // 
+            this.groupBox_archive_information.Controls.Add(this.label_archive_free);
+            this.groupBox_archive_information.Controls.Add(this.label_archive_total);
+            this.groupBox_archive_information.Controls.Add(this.label_archive_type);
+            this.groupBox_archive_information.Controls.Add(this.label_archive_name);
             this.groupBox_archive_information.Controls.Add(this.label32);
             this.groupBox_archive_information.Controls.Add(this.label31);
             this.groupBox_archive_information.Controls.Add(this.label30);
@@ -978,6 +985,38 @@
             this.groupBox_archive_information.TabIndex = 1;
             this.groupBox_archive_information.TabStop = false;
             this.groupBox_archive_information.Text = "Archive Information";
+            // 
+            // label_archive_free
+            // 
+            this.label_archive_free.AutoSize = true;
+            this.label_archive_free.Location = new System.Drawing.Point(118, 100);
+            this.label_archive_free.Name = "label_archive_free";
+            this.label_archive_free.Size = new System.Drawing.Size(0, 12);
+            this.label_archive_free.TabIndex = 8;
+            // 
+            // label_archive_total
+            // 
+            this.label_archive_total.AutoSize = true;
+            this.label_archive_total.Location = new System.Drawing.Point(118, 75);
+            this.label_archive_total.Name = "label_archive_total";
+            this.label_archive_total.Size = new System.Drawing.Size(0, 12);
+            this.label_archive_total.TabIndex = 7;
+            // 
+            // label_archive_type
+            // 
+            this.label_archive_type.AutoSize = true;
+            this.label_archive_type.Location = new System.Drawing.Point(118, 50);
+            this.label_archive_type.Name = "label_archive_type";
+            this.label_archive_type.Size = new System.Drawing.Size(0, 12);
+            this.label_archive_type.TabIndex = 5;
+            // 
+            // label_archive_name
+            // 
+            this.label_archive_name.AutoSize = true;
+            this.label_archive_name.Location = new System.Drawing.Point(118, 25);
+            this.label_archive_name.Name = "label_archive_name";
+            this.label_archive_name.Size = new System.Drawing.Size(0, 12);
+            this.label_archive_name.TabIndex = 6;
             // 
             // label32
             // 
@@ -1022,7 +1061,7 @@
             this.groupBox_archive_setting.Controls.Add(this.label26);
             this.groupBox_archive_setting.Controls.Add(this.label25);
             this.groupBox_archive_setting.Controls.Add(this.label24);
-            this.groupBox_archive_setting.Controls.Add(this.comboBox_record_strean);
+            this.groupBox_archive_setting.Controls.Add(this.comboBox_record_stream);
             this.groupBox_archive_setting.Controls.Add(this.textBox_framerate);
             this.groupBox_archive_setting.Controls.Add(this.textBox_record_time);
             this.groupBox_archive_setting.Controls.Add(this.comboBox_record_period);
@@ -1057,9 +1096,9 @@
             this.label26.AutoSize = true;
             this.label26.Location = new System.Drawing.Point(17, 128);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(85, 12);
+            this.label26.Size = new System.Drawing.Size(89, 12);
             this.label26.TabIndex = 15;
-            this.label26.Text = "Record Strean";
+            this.label26.Text = "Record Stream";
             // 
             // label25
             // 
@@ -1079,16 +1118,16 @@
             this.label24.TabIndex = 2;
             this.label24.Text = "Storage";
             // 
-            // comboBox_record_strean
+            // comboBox_record_stream
             // 
-            this.comboBox_record_strean.FormattingEnabled = true;
-            this.comboBox_record_strean.Items.AddRange(new object[] {
+            this.comboBox_record_stream.FormattingEnabled = true;
+            this.comboBox_record_stream.Items.AddRange(new object[] {
             "Main Stream",
             "Sub Stream"});
-            this.comboBox_record_strean.Location = new System.Drawing.Point(120, 125);
-            this.comboBox_record_strean.Name = "comboBox_record_strean";
-            this.comboBox_record_strean.Size = new System.Drawing.Size(121, 20);
-            this.comboBox_record_strean.TabIndex = 13;
+            this.comboBox_record_stream.Location = new System.Drawing.Point(120, 125);
+            this.comboBox_record_stream.Name = "comboBox_record_stream";
+            this.comboBox_record_stream.Size = new System.Drawing.Size(121, 20);
+            this.comboBox_record_stream.TabIndex = 13;
             // 
             // textBox_framerate
             // 
@@ -1349,7 +1388,7 @@
             this.groupBox_webpage.Size = new System.Drawing.Size(621, 435);
             this.groupBox_webpage.TabIndex = 1;
             this.groupBox_webpage.TabStop = false;
-            this.groupBox_webpage.Text = "Webpage";
+            this.groupBox_webpage.Enter += new System.EventHandler(this.groupBox_webpage_Enter);
             // 
             // webBrowser
             // 
@@ -1516,7 +1555,7 @@
         public System.Windows.Forms.TrackBar trackBar_brightness;
         public System.Windows.Forms.TrackBar trackBar_sharpness;
         public System.Windows.Forms.TrackBar trackBar_contrast;
-        public System.Windows.Forms.ComboBox comboBox_record_strean;
+        public System.Windows.Forms.ComboBox comboBox_record_stream;
         public System.Windows.Forms.TextBox textBox_framerate;
         public System.Windows.Forms.TextBox textBox_record_time;
         public System.Windows.Forms.ComboBox comboBox_record_period;
@@ -1527,6 +1566,10 @@
         public System.Windows.Forms.TextBox textBox_minimux;
         public System.Windows.Forms.TextBox textBox_event_name;
         public System.Windows.Forms.WebBrowser webBrowser;
+        public System.Windows.Forms.Label label_archive_free;
+        public System.Windows.Forms.Label label_archive_total;
+        public System.Windows.Forms.Label label_archive_type;
+        public System.Windows.Forms.Label label_archive_name;
     }
 }
 

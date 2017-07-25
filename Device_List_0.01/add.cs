@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Device_List_0._01
 {
@@ -40,17 +41,18 @@ namespace Device_List_0._01
 
             //................................................................................///이 아래부터 나중에수정할것들//
             /////////입력받은 maker, ip, id, pw 로 카메라 검색/ tab 메뉴의 항목에 값 저장&초기값으로 초기화..
-            ///////////////////////////////Device Setting하고 Network Setting만
+            ///////////////////////////////Device Setting///////////////////////
             int tmp = m.camera_list.Count;
+            m.camera_list[tmp - 1].device.enable = true;
             m.camera_list[tmp - 1].device.device_name = "임시이름 "+tmp;
-            ///................]
+            m.camera_list[tmp - 1].device.device_username = "임시유저 " + tmp;
             m.camera_list[tmp - 1].device.device_PW = textBox_PW.Text;
-            m.camera_list[tmp - 1].device.device_username = "임시유저 "+tmp;
+            m.camera_list[tmp - 1].device.device_model = "임시모델 " + tmp;
             m.camera_list[tmp - 1].device.device_manufacturer = comboBox_maker.SelectedItem.ToString();
-            m.camera_list[tmp - 1].device.device_model = "임시모델 "+tmp;
             m.camera_list[tmp - 1].device.device_firmware = "임시firmware "+tmp;
-            m.camera_list[tmp - 1].device.enable = false;
-
+       
+            m.checkBox_enabled.Checked = m.camera_list[tmp - 1].device.enable;
+            //m.Enabled = m.camera_list[tmp - 1].device.enable;
             m.textBox_name.Text = m.camera_list[tmp - 1].device.device_name;
             m.textBox_username.Text = m.camera_list[tmp - 1].device.device_username;
             m.textBox_password.Text = m.camera_list[tmp - 1].device.device_PW;
@@ -58,28 +60,32 @@ namespace Device_List_0._01
             m.label_dmanufacturer.Text = m.camera_list[tmp - 1].device.device_manufacturer;
             m.label_dfireware.Text = m.camera_list[tmp - 1].device.device_firmware;
 
-            //m.camera_list[tmp - 1].video.video_main_resolution.SelectedIndex = 0;
+            ///////////////////////////////Video Streaming///////////////////////
+            m.camera_list[tmp - 1].video.video_main_resolution = 0;
             m.camera_list[tmp - 1].video.video_main_framerate ="0"+tmp;
-            //m.camera_list[tmp - 1].video.video_main_codec.SelectedIndex = 0;
+            m.camera_list[tmp - 1].video.video_main_codec = 0;
             m.camera_list[tmp - 1].video.video_main_quality = "0" + tmp;
             m.camera_list[tmp - 1].video.video_main_bitrate = "100" + tmp;
-            //m.camera_list[tmp - 1].video.video_sub_resolution.SelectedIndex = 0;
+            m.camera_list[tmp - 1].video.video_sub_resolution = 0;
             m.camera_list[tmp - 1].video.video_sub_framerate = "0" + tmp;
-            //m.camera_list[tmp - 1].video.video_sub_codec.SelectedIndex = 0;
+            m.camera_list[tmp - 1].video.video_sub_codec = 0;
             m.camera_list[tmp - 1].video.video_sub_quality = "0" + tmp;
             m.camera_list[tmp - 1].video.video_sub_bitrate = "100" + tmp;
 
-            //m.comboBox_resolution_main.SelectedIndex = m.camera_list[tmp - 1].video.video_main_resolution.SelectedIndex;
+            m.comboBox_resolution_main.SelectedIndex = m.camera_list[tmp - 1].video.video_main_resolution;
             m.textBox_framerate_main.Text = m.camera_list[tmp - 1].video.video_main_framerate;
-            //m.comboBox_codec_main.SelectedIndex = m.camera_list[tmp - 1].video.video_main_codec.SelectedIndex;
+            m.comboBox_codec_main.SelectedIndex = m.camera_list[tmp - 1].video.video_main_codec;
             m.textBox_quality_main.Text = m.camera_list[tmp - 1].video.video_main_quality;
             m.textBox_bitrate_main.Text = m.camera_list[tmp - 1].video.video_main_bitrate;
-            //m.comboBox_resolution_sub.SelectedIndex = m.camera_list[tmp - 1].video.video_sub_resolution.SelectedIndex;
+            m.comboBox_resolution_sub.SelectedIndex = m.camera_list[tmp - 1].video.video_sub_resolution;
             m.textBox_framerate_sub.Text = m.camera_list[tmp - 1].video.video_sub_framerate;
-            //m.comboBox_codec_sub.SelectedIndex = m.camera_list[tmp - 1].video.video_sub_codec.SelectedIndex;
+            m.comboBox_codec_sub.SelectedIndex = m.camera_list[tmp - 1].video.video_sub_codec;
             m.textBox_quality_sub.Text = m.camera_list[tmp - 1].video.video_sub_quality;
             m.textBox_bitrate_sub.Text = m.camera_list[tmp - 1].video.video_sub_bitrate;
 
+            ///////////////////////////////Image Setting///////////////////////
+
+            ///////////////////////////////Network Setting///////////////////////
             m.camera_list[tmp - 1].network.network_IP = textBox_IP.Text;
             m.camera_list[tmp - 1].network.network_http = "1" + tmp;
             m.camera_list[tmp - 1].network.network_https = "2" + tmp;
@@ -90,8 +96,31 @@ namespace Device_List_0._01
             m.textBox_https_port.Text = m.camera_list[tmp - 1].network.network_https;
             m.textBox_rtsp_port.Text = m.camera_list[tmp - 1].network.network_rtsp;
 
-            
-           
+            ///////////////////////////////Archive Setting///////////////////////
+            m.camera_list[tmp - 1].archive.archive_set_storage = 0;
+            m.camera_list[tmp - 1].archive.archive_set_record_period = 0;
+            m.camera_list[tmp - 1].archive.archive_set_record_time = "0"+tmp;
+            m.camera_list[tmp - 1].archive.archive_framerate= "0" + tmp;
+            m.camera_list[tmp - 1].archive.archive_set_record_stream = 0;
+            m.camera_list[tmp - 1].archive.archive_info_name = "임시인포이름";
+            m.camera_list[tmp - 1].archive.archive_info_type= "임시이름타입" + tmp;
+            m.camera_list[tmp - 1].archive.archive_info_total= "0" + tmp;
+            m.camera_list[tmp - 1].archive.archive_info_free = "0" + tmp;
+
+            m.comboBox_storage.SelectedIndex = m.camera_list[tmp - 1].archive.archive_set_storage;
+            m.comboBox_record_period.SelectedIndex = m.camera_list[tmp - 1].archive.archive_set_record_period;
+            m.textBox_record_time.Text = m.camera_list[tmp - 1].archive.archive_set_record_time;
+            m.textBox_quality_main.Text = m.camera_list[tmp - 1].archive.archive_framerate;
+            m.textBox_framerate.Text = m.camera_list[tmp - 1].archive.archive_framerate;
+            m.comboBox_record_stream.SelectedIndex = m.camera_list[tmp - 1].archive.archive_set_record_stream;
+            m.label_archive_name.Text = m.camera_list[tmp - 1].archive.archive_info_name;
+            m.label_archive_type.Text = m.camera_list[tmp - 1].archive.archive_info_type;
+            m.label_archive_total.Text = m.camera_list[tmp - 1].archive.archive_info_total;
+            m.label_archive_free.Text = m.camera_list[tmp - 1].archive.archive_info_free;
+            ///////////////////////////////Event Setting///////////////////////
+
+            ///////////////////////////////Webpage///////////////////////
+
             ///m.탭메뉴 아이템들 할당이 add.cs에서 item add될때마다가 아닌 list_view의 아이템을 클릭할 때 마다 선택된 아이템의 설정이 tab메뉴에 보이도록 수정,,,? ? ?
             ///////////////////////////////////////////////////////////////////////////////////////////////////////
 

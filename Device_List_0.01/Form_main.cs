@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Device_List_0._01
 {
@@ -100,7 +101,8 @@ namespace Device_List_0._01
             if (listView_device.FocusedItem != null)
                 tmp = listView_device.FocusedItem.Index;
 
-
+            ////////Device Setting/////
+            checkBox_enabled.Checked = camera_list[tmp].device.enable;
             textBox_name.Text = camera_list[tmp].device.device_name;
             textBox_username.Text = camera_list[tmp].device.device_username;
             textBox_password.Text = camera_list[tmp].device.device_PW;
@@ -108,11 +110,40 @@ namespace Device_List_0._01
             label_dmanufacturer.Text = camera_list[tmp].device.device_manufacturer;
             label_dfireware.Text = camera_list[tmp].device.device_firmware;
 
+            ////////Video Setting/////
+            comboBox_resolution_main.SelectedIndex = camera_list[tmp].video.video_main_resolution;
+            textBox_framerate_main.Text = camera_list[tmp].video.video_main_framerate;
+            comboBox_codec_main.SelectedIndex = camera_list[tmp].video.video_main_codec;
+            textBox_quality_main.Text = camera_list[tmp].video.video_main_quality;
+            textBox_bitrate_main.Text = camera_list[tmp].video.video_main_bitrate;
+            comboBox_resolution_sub.SelectedIndex = camera_list[tmp].video.video_sub_resolution;
+            textBox_framerate_sub.Text = camera_list[tmp].video.video_sub_framerate;
+            comboBox_codec_sub.SelectedIndex = camera_list[tmp].video.video_sub_codec;
+            textBox_quality_sub.Text = camera_list[tmp].video.video_sub_quality;
+            textBox_bitrate_sub.Text = camera_list[tmp].video.video_sub_bitrate;
 
+            ////////Image Setting/////
+
+            ////////Network Setting/////
             textBox_ip_adress.Text = camera_list[tmp].network.network_IP;
             textBox_http_port.Text = camera_list[tmp].network.network_http;
             textBox_https_port.Text = camera_list[tmp].network.network_https;
             textBox_rtsp_port.Text = camera_list[tmp].network.network_rtsp;
+
+            ////////Archive Setting/////
+            comboBox_storage.SelectedIndex = camera_list[tmp].archive.archive_set_storage;
+            comboBox_record_period.SelectedIndex = camera_list[tmp].archive.archive_set_record_period;
+            textBox_record_time.Text = camera_list[tmp].archive.archive_set_record_time;
+            textBox_framerate.Text = camera_list[tmp].archive.archive_framerate;
+            comboBox_record_stream.SelectedIndex = camera_list[tmp].archive.archive_set_record_stream;
+            label_archive_name.Text = camera_list[tmp].archive.archive_info_name;
+            label_archive_type.Text = camera_list[tmp].archive.archive_info_type;
+            label_archive_total.Text = camera_list[tmp].archive.archive_info_total;
+            label_archive_free.Text = camera_list[tmp].archive.archive_info_free;
+
+            ////////Event Setting/////
+
+            ////////webpage/////
 
         }
         /// /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -127,6 +158,7 @@ namespace Device_List_0._01
                 pw = pw + "*";
 
 
+            camera_list[tmp].device.enable = checkBox_enabled.Checked;
             camera_list[tmp].device.device_name = textBox_name.Text;
             camera_list[tmp].device.device_username=textBox_username.Text;
             camera_list[tmp].device.device_PW=textBox_password.Text ;
@@ -141,6 +173,7 @@ namespace Device_List_0._01
             if (listView_device.FocusedItem != null)
                 tmp = listView_device.FocusedItem.Index;
 
+            checkBox_enabled.Checked = camera_list[tmp].device.enable;
             textBox_name.Text = camera_list[tmp].device.device_name;
             textBox_username.Text = camera_list[tmp].device.device_username;
             textBox_password.Text = camera_list[tmp].device.device_PW;
@@ -189,15 +222,15 @@ namespace Device_List_0._01
             int tmp=0;
             if (listView_device.FocusedItem != null)
                 tmp = listView_device.FocusedItem.Index;
-            camera_list[tmp].video.video_main_resolution.SelectedIndex = comboBox_resolution_main.SelectedIndex;
+            camera_list[tmp].video.video_main_resolution = comboBox_resolution_main.SelectedIndex;
             camera_list[tmp].video.video_main_framerate = textBox_framerate_main.Text;
-            camera_list[tmp].video.video_main_codec.SelectedIndex = comboBox_codec_main.SelectedIndex;
+            camera_list[tmp].video.video_main_codec = comboBox_codec_main.SelectedIndex;
             camera_list[tmp].video.video_main_quality = textBox_quality_main.Text;
             camera_list[tmp].video.video_main_bitrate = textBox_bitrate_main.Text;
 
-            camera_list[tmp].video.video_sub_resolution.SelectedIndex = comboBox_resolution_sub.SelectedIndex;
+            camera_list[tmp].video.video_sub_resolution = comboBox_resolution_sub.SelectedIndex;
             camera_list[tmp].video.video_sub_framerate = textBox_framerate_sub.Text;
-            camera_list[tmp].video.video_sub_codec.SelectedIndex = comboBox_codec_sub.SelectedIndex;
+            camera_list[tmp].video.video_sub_codec = comboBox_codec_sub.SelectedIndex;
             camera_list[tmp].video.video_sub_quality = textBox_quality_sub.Text;
             camera_list[tmp].video.video_sub_bitrate = textBox_bitrate_sub.Text;
         }
@@ -209,15 +242,15 @@ namespace Device_List_0._01
                 tmp = listView_device.FocusedItem.Index;
 
 
-            comboBox_resolution_main.SelectedIndex = camera_list[tmp].video.video_main_resolution.SelectedIndex;
+            comboBox_resolution_main.SelectedIndex = camera_list[tmp].video.video_main_resolution;
             textBox_framerate_main.Text= camera_list[tmp].video.video_main_framerate;
-            comboBox_codec_main.SelectedIndex = camera_list[tmp].video.video_main_codec.SelectedIndex;
+            comboBox_codec_main.SelectedIndex = camera_list[tmp].video.video_main_codec;
             textBox_quality_main.Text = camera_list[tmp].video.video_main_quality;
             textBox_bitrate_main.Text = camera_list[tmp].video.video_main_bitrate;
 
-            comboBox_resolution_sub.SelectedIndex = camera_list[tmp].video.video_sub_resolution.SelectedIndex;
+            comboBox_resolution_sub.SelectedIndex = camera_list[tmp].video.video_sub_resolution;
             textBox_framerate_sub.Text = camera_list[tmp].video.video_sub_framerate;
-            comboBox_codec_sub.SelectedIndex = camera_list[tmp].video.video_sub_codec.SelectedIndex;
+            comboBox_codec_sub.SelectedIndex = camera_list[tmp].video.video_sub_codec;
             textBox_quality_sub.Text = camera_list[tmp].video.video_sub_quality;
             textBox_bitrate_sub.Text = camera_list[tmp].video.video_sub_bitrate;
         }
@@ -306,12 +339,31 @@ namespace Device_List_0._01
         }
         private void button_archive_modify_Click(object sender, EventArgs e)
         {
+            int tmp = 0;
+            if (listView_device.FocusedItem != null)
+                tmp = listView_device.FocusedItem.Index;
+            //int tmp = listView_device.FocusedItem.Index== null ? 0:listView_device.FocusedItem.Index;
 
+            camera_list[tmp].archive.archive_set_storage = comboBox_storage.SelectedIndex;
+            camera_list[tmp].archive.archive_set_record_period = comboBox_record_period.SelectedIndex;
+            camera_list[tmp].archive.archive_set_record_time = textBox_record_time.Text;
+            camera_list[tmp].archive.archive_framerate = textBox_framerate.Text;
+            camera_list[tmp].archive.archive_set_record_stream = comboBox_record_stream.SelectedIndex;
+          
         }
 
         private void button_archive_cancel_Click(object sender, EventArgs e)
         {
+            int tmp = 0;
+            if (listView_device.FocusedItem != null)
+                tmp = listView_device.FocusedItem.Index;
 
+            comboBox_storage.SelectedIndex = camera_list[tmp].archive.archive_set_storage;
+            comboBox_record_period.SelectedIndex = camera_list[tmp].archive.archive_set_record_period;
+            textBox_record_time.Text = camera_list[tmp].archive.archive_set_record_time;
+            textBox_framerate.Text = camera_list[tmp].archive.archive_framerate;
+            comboBox_record_stream.SelectedIndex = camera_list[tmp].archive.archive_set_record_stream;
+          
         }
         /// /////////////////////////////////////////////////////////////////////////////////////////////////
         //////<Event Setting>////////
@@ -333,7 +385,10 @@ namespace Device_List_0._01
             r.rangeset(sender, e, textBox_maximum, 1, 100);
         }
 
-
+        private void groupBox_webpage_Enter(object sender, EventArgs e)         /////임시..
+        {
+            webBrowser.Navigate("www.naver.com");
+        }
 
         /// /////////////////////////////////////////////////////////////////////////////////////////////////
         //////<webpage>////////

@@ -16,9 +16,8 @@ namespace Device_List_0._01
             }
             
             int c = Convert.ToInt32((t.Text == string.Empty ? Convert.ToString(range_bottom) : t.Text));
-            int i=0;
             string botton_length = Convert.ToString(range_bottom);
-            for (; c > 0; i++)
+            for (int i=0; c > 0; i++)
             {
                 c = c / 10;
             }

@@ -9,7 +9,7 @@ namespace Device_List_0._01
     public class Device
    
     {
-        public bool enable = false;
+        public bool enable = true;
         public string device_name="";
         public string device_username="";
         public string device_PW="";
