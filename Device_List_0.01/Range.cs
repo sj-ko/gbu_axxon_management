@@ -17,31 +17,27 @@ namespace Device_List_0._01
             
             int c = Convert.ToInt32((t.Text == string.Empty ? Convert.ToString(range_bottom) : t.Text));
             int i=0;
+            string botton_length = Convert.ToString(range_bottom);
             for (; c > 0; i++)
             {
                 c = c / 10;
-                MessageBox.Show("c=" + c + "  i=" + i+"   text="+ t.TextLength);
             }
-            if (t.TextLength <i) { }
+            if (t.TextLength < botton_length.Length) { }        //만약 range_bottom의 자리수가 한자리수 이상일 경우
             else
             {
-                int tmp = Convert.ToInt32((t.Text == string.Empty ? Convert.ToString(range_bottom) : t.Text));
+                int tmp;
+                if (!(e.KeyChar == Convert.ToChar(Keys.Back)))      //만약 입력받은 키가 뒤로가기가 아니라면
+                    tmp = Convert.ToInt32((t.Text == string.Empty ? Convert.ToString(range_bottom) : t.Text + Convert.ToString(e.KeyChar)));
+                else
+                    tmp = Convert.ToInt32((t.Text == string.Empty ? Convert.ToString(range_bottom) : t.Text));  //뒤로가기였다면
 
                 if ((tmp < range_bottom || tmp > range_top) && !(e.KeyChar == Convert.ToChar(Keys.Back)))
                 {
                     MessageBox.Show(range_bottom + "~" + range_top + " 사이의 값을 입력해주세요.");
-
-                    //tmp = Convert.ToInt32((t.Text == string.Empty ? "0" : t.Text)) / 10;
                     e.Handled = true;
-                    //tmp = tmp / 10;
-                    t.Text = Convert.ToString(tmp);
-
-                    //e.Handled = true;
                 }
             }
         }
-
-
 
         public void ipset(object sender, KeyPressEventArgs e, TextBox t)
         { 
