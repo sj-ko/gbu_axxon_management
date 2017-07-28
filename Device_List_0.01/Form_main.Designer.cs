@@ -194,14 +194,14 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tabcontrol_menu);
-            this.splitContainer1.Size = new System.Drawing.Size(940, 576);
+            this.splitContainer1.Size = new System.Drawing.Size(949, 582);
             this.splitContainer1.SplitterDistance = 273;
             this.splitContainer1.TabIndex = 0;
             this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
             // 
             // button_remove
             // 
-            this.button_remove.Location = new System.Drawing.Point(151, 508);
+            this.button_remove.Location = new System.Drawing.Point(151, 529);
             this.button_remove.Name = "button_remove";
             this.button_remove.Size = new System.Drawing.Size(71, 23);
             this.button_remove.TabIndex = 8;
@@ -211,7 +211,7 @@
             // 
             // button_add
             // 
-            this.button_add.Location = new System.Drawing.Point(42, 508);
+            this.button_add.Location = new System.Drawing.Point(42, 529);
             this.button_add.Name = "button_add";
             this.button_add.Size = new System.Drawing.Size(71, 23);
             this.button_add.TabIndex = 6;
@@ -1403,7 +1403,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(940, 576);
+            this.ClientSize = new System.Drawing.Size(949, 582);
             this.Controls.Add(this.splitContainer1);
             this.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.Name = "Form_main";

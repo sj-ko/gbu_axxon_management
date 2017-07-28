@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO;
+using System.Xml;
+using System.Xml.Serialization;
+
 
 namespace Device_List_0._01
 {
@@ -10,6 +13,8 @@ namespace Device_List_0._01
     {
 
         public List<Camera> camera_list = new List<Camera>();
+        public Xmlclass x = new Xmlclass();
+
         //public KeyEventArgs p;
         /////for button_image/////
         private int brightness;

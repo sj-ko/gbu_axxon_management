@@ -8,11 +8,11 @@ namespace Device_List_0._01
 {
     public class Event
     {
-        public string enent_name="";
-        public string enent_type="";
-        public string enent_sensitivity="";
-        public string enent_min="";
-        public string enent_max="";
+        public string event_name="";
+        public string event_type="";
+        public string event_sensitivity="";
+        public string event_min="";
+        public string event_max="";
 
     }
 }

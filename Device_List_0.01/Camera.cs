@@ -3,9 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Xml;
+using System.Xml.Serialization;
+
 
 namespace Device_List_0._01
 {
+    
+    public class Xmlclass
+    {
+        //for Serialization
+        public List<Camera> item = new List<Camera>();
+    }
+   
+    
     public class Camera
     {
         public string camera_manufacturer = "";
@@ -21,4 +33,6 @@ namespace Device_List_0._01
         public Event eventsetting = new Event();
         public Webpage webpage = new Webpage();
     }
+    
+    
 }

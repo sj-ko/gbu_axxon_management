@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Xml;
+using System.Xml.Serialization;
+
 
 namespace Device_List_0._01
 {
@@ -17,7 +20,7 @@ namespace Device_List_0._01
         {
             InitializeComponent();
         }
-
+        
         private void Form_add_Load(object sender, EventArgs e)
         {
 
@@ -34,7 +37,6 @@ namespace Device_List_0._01
             lvi.SubItems.Add(textBox_IP.Text);
             lvi.SubItems.Add(textBox_ID.Text);
             lvi.SubItems.Add(pw);
-            //lvi.SubItems.Add(textBox_PW.Text);
             m.listView_device.Items.Add(lvi);
 
             m.camera_list.Add(new Camera() { camera_manufacturer = comboBox_maker.SelectedItem.ToString(), camera_IP = textBox_IP.Text, camera_ID = textBox_ID.ToString(), camera_PW = textBox_PW.ToString() });
@@ -121,13 +123,27 @@ namespace Device_List_0._01
 
             ///////////////////////////////Webpage///////////////////////
 
-            ///m.탭메뉴 아이템들 할당이 add.cs에서 item add될때마다가 아닌 list_view의 아이템을 클릭할 때 마다 선택된 아이템의 설정이 tab메뉴에 보이도록 수정,,,? ? ?
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////
+            /*
+            FileStream fs = new FileStream("Emp.xml", FileMode.Append);
+            XmlSerializer xs = new XmlSerializer(typeof(Camera));
 
+            xs.Serialize(fs, m.camera_list[tmp - 1]);
+            fs.Close();
+            */
+
+            /////xml 파일 저장///
+            m.x.item.Add(m.camera_list[tmp - 1]);
+            using (StreamWriter wr = new StreamWriter("Emp.xml"))
+            {
+                XmlSerializer xs = new XmlSerializer(typeof(Xmlclass));
+                
+                xs.Serialize(wr, m.x);
+                wr.Close();
+            }
 
             Form_Notification check = new Form_Notification();
             check.Owner = this;
-            check.Show();
+            check.Show(); 
         }
 
         private void button_cancel_Click(object sender, EventArgs e)
