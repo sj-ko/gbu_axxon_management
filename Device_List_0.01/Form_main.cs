@@ -5,16 +5,14 @@ using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 
-
 namespace Device_List_0._01
 {
-
     public partial class Form_main : Form
     {
-
         public List<Camera> camera_list = new List<Camera>();
         public Xmlclass x = new Xmlclass();
         public Xmlclass dexml = new Xmlclass();
+        public management M = new management();
         //public KeyEventArgs p;
         /////for button_image/////
         private int brightness;
@@ -27,7 +25,6 @@ namespace Device_List_0._01
 
             listView_device.View = View.Details;
             listView_device.BeginUpdate();
-
             listView_device.Columns.Add("제조사");
             listView_device.Columns.Add("IP");
             listView_device.Columns.Add("ID");
@@ -50,12 +47,11 @@ namespace Device_List_0._01
                 using (StreamReader rd = new StreamReader("Emp.xml"))
                 {
                     XmlSerializer xs = new XmlSerializer(typeof(Xmlclass));
-
                     dexml = (Xmlclass)xs.Deserialize(rd);
-                    
                     rd.Close();
                 }
                 camera_list.AddRange(dexml.item);
+
                 int tmp = camera_list.Count;
                 for(int i=0;i<tmp; i++)
                 {
@@ -68,9 +64,10 @@ namespace Device_List_0._01
                     lvi.SubItems.Add(camera_list[i].camera_ID);
                     lvi.SubItems.Add(pw);
                     listView_device.Items.Add(lvi);
+
                     ///////////////////////////////Device Setting///////////////////////
                     checkBox_enabled.Checked = camera_list[i].device.enable;
-                    Enabled = camera_list[i].device.enable;
+                    //Enabled = camera_list[i].device.enable;
                     textBox_name.Text = camera_list[i].device.device_name;
                     textBox_username.Text = camera_list[i].device.device_username;
                     textBox_password.Text = camera_list[i].device.device_PW;
@@ -97,6 +94,7 @@ namespace Device_List_0._01
                     textBox_http_port.Text = camera_list[i].network.network_http;
                     textBox_https_port.Text = camera_list[i].network.network_https;
                     textBox_rtsp_port.Text = camera_list[i].network.network_rtsp;
+
                     ///////////////////////////////Archive Setting///////////////////////
                     comboBox_storage.SelectedIndex = camera_list[i].archive.archive_set_storage;
                     comboBox_record_period.SelectedIndex = camera_list[i].archive.archive_set_record_period;
@@ -113,13 +111,7 @@ namespace Device_List_0._01
                     ///////////////////////////////Webpage///////////////////////
 
                     x.item.Add(camera_list[i]);
-                    using (StreamWriter wr = new StreamWriter("Emp.xml"))
-                    {
-                        XmlSerializer xs = new XmlSerializer(typeof(Xmlclass));
-
-                        xs.Serialize(wr, x);
-                        wr.Close();
-                    }
+                    M.serialize(x);
                 }
             }
             catch (ArgumentException ex)
@@ -141,28 +133,61 @@ namespace Device_List_0._01
 
         private void button_remove_Click(object sender, EventArgs e)
         {
-            //camera_list.RemoveAt(listView_device.SelectedItems[0].Index);    //리스트 삭제하면서 생성했던 클래스도 삭제하기.. 
-            camera_list.RemoveAt(listView_device.Items[listView_device.FocusedItem.Index].Index);
-            //listView_device.Items.Remove(listView_device.SelectedItems[0]);
-            listView_device.Items.Remove(listView_device.FocusedItem);
-
-            /*
-            if(listView_device.FocusedItem.Index < 0)                               //만약 모든 카메라 삭제시
+            if (listView_device.FocusedItem != null)
             {
-                textBox_name.Text = " ";
-                textBox_username.Text = " ";
-                textBox_password.Text = " ";
-                label_dmodel.Text = " ";
-                label_dmanufacturer.Text = " ";
-                label_dfireware.Text = " ";
+                camera_list.RemoveAt(listView_device.Items[listView_device.FocusedItem.Index].Index);
+                x.item.RemoveAt(listView_device.Items[listView_device.FocusedItem.Index].Index);
+                listView_device.Items.Remove(listView_device.FocusedItem);
 
-                textBox_ip_adress.Text = " ";
-                textBox_http_port.Text = " ";
-                textBox_https_port.Text = " ";
-                textBox_rtsp_port.Text = " ";
+                M.serialize(x);
             }
-            */
+            
+            if (listView_device.Items.Count == 0 && listView_device.FocusedItem == null)
+            {
+                ///////////////////////////////Device Setting///////////////////////
+                checkBox_enabled.Checked = false;
+                textBox_name.Text = "";
+                textBox_username.Text = "";
+                textBox_password.Text = "";
+                label_dmodel.Text = "";
+                label_dmanufacturer.Text = "";
+                label_dfireware.Text = "";
 
+                ///////////////////////////////Video Streaming///////////////////////
+                comboBox_resolution_main.SelectedIndex = 0;
+                textBox_framerate_main.Text = "";
+                comboBox_codec_main.SelectedIndex = 0;
+                textBox_quality_main.Text = "";
+                textBox_bitrate_main.Text = "";
+                comboBox_resolution_sub.SelectedIndex = 0;
+                textBox_framerate_sub.Text = "";
+                comboBox_codec_sub.SelectedIndex = 0;
+                textBox_quality_sub.Text = "";
+                textBox_bitrate_sub.Text = "";
+
+                ///////////////////////////////Image Setting///////////////////////
+
+                ///////////////////////////////Network Setting///////////////////////
+                textBox_ip_adress.Text = "";
+                textBox_http_port.Text = "";
+                textBox_https_port.Text = "";
+                textBox_rtsp_port.Text = "";
+                ///////////////////////////////Archive Setting///////////////////////
+                comboBox_storage.SelectedIndex = 0;
+                comboBox_record_period.SelectedIndex = 0;
+                textBox_record_time.Text = "";
+                textBox_quality_main.Text = "";
+                textBox_framerate.Text = "";
+                comboBox_record_stream.SelectedIndex = 0;
+                label_archive_name.Text = "";
+                label_archive_type.Text = "";
+                label_archive_total.Text = "";
+                label_archive_free.Text = "";
+                ///////////////////////////////Event Setting///////////////////////
+
+                ///////////////////////////////Webpage///////////////////////
+
+            }
         }
 
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
@@ -180,12 +205,9 @@ namespace Device_List_0._01
 
         }
 
-
         /// /////////////////////////////////////////////////////////////////////////////////////////////////
-        //////<>////////
         private void listView_device_Click(object sender, EventArgs e)      //리스트 아이템 클릭시 tab 속성들 변경
         {
-
             int tmp = 0;
             if (listView_device.FocusedItem != null)
                 tmp = listView_device.FocusedItem.Index;
@@ -245,15 +267,16 @@ namespace Device_List_0._01
             string pw = "";
             for (int i = 0; i < textBox_password.TextLength; i++)
                 pw = pw + "*";
-
-
+            camera_list[tmp].camera_PW= textBox_password.Text;
             camera_list[tmp].device.enable = checkBox_enabled.Checked;
             camera_list[tmp].device.device_name = textBox_name.Text;
             camera_list[tmp].device.device_username=textBox_username.Text;
-            camera_list[tmp].device.device_PW=textBox_password.Text ;
+            camera_list[tmp].device.device_PW=textBox_password.Text;
             listView_device.Items[tmp].SubItems[3].Text = pw;
 
-
+            x.item.RemoveAt(tmp);
+            x.item.Insert(tmp, camera_list[tmp]);
+            M.serialize(x);
         }
 
         private void button_device_cancel_Click(object sender, EventArgs e)
@@ -322,6 +345,10 @@ namespace Device_List_0._01
             camera_list[tmp].video.video_sub_codec = comboBox_codec_sub.SelectedIndex;
             camera_list[tmp].video.video_sub_quality = textBox_quality_sub.Text;
             camera_list[tmp].video.video_sub_bitrate = textBox_bitrate_sub.Text;
+
+            x.item.RemoveAt(tmp);
+            x.item.Insert(tmp, camera_list[tmp]);
+            M.serialize(x);
         }
 
         private void button_video_cancel_Click(object sender, EventArgs e)
@@ -391,14 +418,18 @@ namespace Device_List_0._01
             int tmp = 0;
             if (listView_device.FocusedItem!= null)
                 tmp = listView_device.FocusedItem.Index;
-            //int tmp = listView_device.FocusedItem.Index== null ? 0:listView_device.FocusedItem.Index;
 
+            camera_list[tmp].camera_IP = textBox_ip_adress.Text;
             camera_list[tmp].network.network_IP = textBox_ip_adress.Text;
             camera_list[tmp].network.network_http = textBox_http_port.Text;
             camera_list[tmp].network.network_https = textBox_https_port.Text;
             camera_list[tmp].network.network_rtsp = textBox_rtsp_port.Text;
 
             listView_device.Items[tmp].SubItems[1].Text = textBox_ip_adress.Text;
+
+            x.item.RemoveAt(tmp);
+            x.item.Insert(tmp, camera_list[tmp]);
+            M.serialize(x);
         }
 
         private void button7_network_cancel_Click(object sender, EventArgs e)
@@ -431,14 +462,16 @@ namespace Device_List_0._01
             int tmp = 0;
             if (listView_device.FocusedItem != null)
                 tmp = listView_device.FocusedItem.Index;
-            //int tmp = listView_device.FocusedItem.Index== null ? 0:listView_device.FocusedItem.Index;
 
             camera_list[tmp].archive.archive_set_storage = comboBox_storage.SelectedIndex;
             camera_list[tmp].archive.archive_set_record_period = comboBox_record_period.SelectedIndex;
             camera_list[tmp].archive.archive_set_record_time = textBox_record_time.Text;
             camera_list[tmp].archive.archive_framerate = textBox_framerate.Text;
             camera_list[tmp].archive.archive_set_record_stream = comboBox_record_stream.SelectedIndex;
-          
+
+            x.item.RemoveAt(tmp);
+            x.item.Insert(tmp, camera_list[tmp]);
+            M.serialize(x);
         }
 
         private void button_archive_cancel_Click(object sender, EventArgs e)
@@ -481,7 +514,6 @@ namespace Device_List_0._01
 
         /// /////////////////////////////////////////////////////////////////////////////////////////////////
         //////<webpage>////////
-
-
+        
     }
 }

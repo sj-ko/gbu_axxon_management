@@ -10,7 +10,19 @@ using System.Xml.Serialization;
 
 namespace Device_List_0._01
 {
-    
+    public class management
+    {
+        public void serialize(Xmlclass x)
+        {
+            using (StreamWriter wr = new StreamWriter("Emp.xml"))
+            {
+                XmlSerializer xs = new XmlSerializer(typeof(Xmlclass));
+
+                xs.Serialize(wr, x);
+                wr.Close();
+            }
+        }
+    }
     public class Xmlclass
     {
         //for Serialization
