@@ -39,7 +39,7 @@ namespace Device_List_0._01
             lvi.SubItems.Add(pw);
             m.listView_device.Items.Add(lvi);
 
-            m.camera_list.Add(new Camera() { camera_manufacturer = comboBox_maker.SelectedItem.ToString(), camera_IP = textBox_IP.Text, camera_ID = textBox_ID.ToString(), camera_PW = textBox_PW.ToString() });
+            m.camera_list.Add(new Camera() { camera_manufacturer = comboBox_maker.SelectedItem.ToString(), camera_IP = textBox_IP.Text, camera_ID = textBox_ID.Text, camera_PW = textBox_PW.Text });
 
             //................................................................................///이 아래부터 나중에수정할것들//
             /////////입력받은 maker, ip, id, pw 로 카메라 검색/ tab 메뉴의 항목에 값 저장&초기값으로 초기화..
@@ -136,14 +136,22 @@ namespace Device_List_0._01
             using (StreamWriter wr = new StreamWriter("Emp.xml"))
             {
                 XmlSerializer xs = new XmlSerializer(typeof(Xmlclass));
-                
+
                 xs.Serialize(wr, m.x);
                 wr.Close();
             }
+            /*
+            using (StreamWriter wr = new StreamWriter("Emp.xml"))
+            {
+                XmlSerializer xs = new XmlSerializer(typeof(Xmlclass));
 
+                xs.Serialize(wr, m.x);
+                wr.Close();
+            }*/
             Form_Notification check = new Form_Notification();
             check.Owner = this;
-            check.Show(); 
+            check.Show();
+
         }
 
         private void button_cancel_Click(object sender, EventArgs e)

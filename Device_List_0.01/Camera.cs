@@ -16,8 +16,7 @@ namespace Device_List_0._01
         //for Serialization
         public List<Camera> item = new List<Camera>();
     }
-   
-    
+
     public class Camera
     {
         public string camera_manufacturer = "";
