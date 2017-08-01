@@ -38,7 +38,6 @@ namespace Device_List_0._01
             contrast = trackBar_contrast.Value;
             sharpness = trackBar_sharpness.Value;
             //////////////////////////////
-
             try
             {
                 XmlDocument xdoc = new XmlDocument();
@@ -47,104 +46,73 @@ namespace Device_List_0._01
                 XmlElement root = xdoc.DocumentElement;
                 // 노드 요소들
                 XmlNodeList nodes = root.SelectNodes("/Xmlclass/item/Camera");
-                
-                
-               
-                MessageBox.Show(""+nodes.Count);
+                ///////////////deserialize////////////////////
+                using (StreamReader rd = new StreamReader("Emp.xml"))
+                {
+                    XmlSerializer xs = new XmlSerializer(typeof(Xmlclass));
 
-                foreach (XmlNode node in nodes)
+                    dexml = (Xmlclass)xs.Deserialize(rd);
+                    
+                    rd.Close();
+                }
+                camera_list.AddRange(dexml.item);
+                int tmp = camera_list.Count;
+                for(int i=0;i<tmp; i++)
                 {
                     string pw = "";
-                    for (int i = 0; i < node["camera_PW"].InnerText.Length; i++)
+                    for (int j = 0; j<camera_list[i].camera_PW.Length; j++)
                         pw = pw + "*";
-                    camera_list.Add(new Camera() { camera_manufacturer = node["camera_manufacturer"].InnerText, camera_IP = node["camera_IP"].InnerText, camera_ID = node["camera_ID"].InnerText, camera_PW = node["camera_PW"].InnerText });
 
-                    ListViewItem lvi = new ListViewItem(node["camera_manufacturer"].InnerText);
-                    lvi.SubItems.Add(node["camera_IP"].InnerText);
-                    lvi.SubItems.Add(node["camera_ID"].InnerText);
+                    ListViewItem lvi = new ListViewItem(camera_list[i].camera_manufacturer);
+                    lvi.SubItems.Add(camera_list[i].camera_IP);
+                    lvi.SubItems.Add(camera_list[i].camera_ID);
                     lvi.SubItems.Add(pw);
                     listView_device.Items.Add(lvi);
-                    
                     ///////////////////////////////Device Setting///////////////////////
-                    int tmp = camera_list.Count;
-                    camera_list[tmp - 1].device.enable = Convert.ToBoolean(node["device"]["enable"].InnerText);
-                    camera_list[tmp - 1].device.device_name = node["device"]["device_name"].InnerText;
-                    camera_list[tmp - 1].device.device_username = node["device"]["device_username"].InnerText;
-                    camera_list[tmp - 1].device.device_PW = node["device"]["device_PW"].InnerText;
-                    camera_list[tmp - 1].device.device_model = node["device"]["device_model"].InnerText;
-                    camera_list[tmp - 1].device.device_manufacturer = node["device"]["device_manufacturer"].InnerText;
-                    camera_list[tmp - 1].device.device_firmware = node["device"]["device_firmware"].InnerText;
-
-                    checkBox_enabled.Checked = camera_list[tmp - 1].device.enable;
-                    //m.Enabled = m.camera_list[tmp - 1].device.enable;
-                    textBox_name.Text = camera_list[tmp - 1].device.device_name;
-                    textBox_username.Text = camera_list[tmp - 1].device.device_username;
-                    textBox_password.Text = camera_list[tmp - 1].device.device_PW;
-                    label_dmodel.Text = camera_list[tmp - 1].device.device_model;
-                    label_dmanufacturer.Text = camera_list[tmp - 1].device.device_manufacturer;
-                    label_dfireware.Text = camera_list[tmp - 1].device.device_firmware;
+                    checkBox_enabled.Checked = camera_list[i].device.enable;
+                    Enabled = camera_list[i].device.enable;
+                    textBox_name.Text = camera_list[i].device.device_name;
+                    textBox_username.Text = camera_list[i].device.device_username;
+                    textBox_password.Text = camera_list[i].device.device_PW;
+                    label_dmodel.Text = camera_list[i].device.device_model;
+                    label_dmanufacturer.Text = camera_list[i].device.device_manufacturer;
+                    label_dfireware.Text = camera_list[i].device.device_firmware;
 
                     ///////////////////////////////Video Streaming///////////////////////
-                    camera_list[tmp - 1].video.video_main_resolution = Convert.ToInt32(node["video"]["video_main_resolution"].InnerText);
-                    camera_list[tmp - 1].video.video_main_framerate = node["video"]["video_main_framerate"].InnerText;
-                    camera_list[tmp - 1].video.video_main_codec = Convert.ToInt32(node["video"]["video_main_codec"].InnerText);
-                    camera_list[tmp - 1].video.video_main_quality = node["video"]["video_main_quality"].InnerText;
-                    camera_list[tmp - 1].video.video_main_bitrate = node["video"]["video_main_bitrate"].InnerText;
-                    camera_list[tmp - 1].video.video_sub_resolution = Convert.ToInt32(node["video"]["video_sub_resolution"].InnerText);
-                    camera_list[tmp - 1].video.video_sub_framerate = node["video"]["video_sub_framerate"].InnerText;
-                    camera_list[tmp - 1].video.video_sub_codec = Convert.ToInt32(node["video"]["video_sub_codec"].InnerText);
-                    camera_list[tmp - 1].video.video_sub_quality = node["video"]["video_sub_quality"].InnerText;
-                    camera_list[tmp - 1].video.video_sub_bitrate = node["video"]["video_sub_bitrate"].InnerText;
-
-                    comboBox_resolution_main.SelectedIndex = camera_list[tmp - 1].video.video_main_resolution;
-                    textBox_framerate_main.Text = camera_list[tmp - 1].video.video_main_framerate;
-                    comboBox_codec_main.SelectedIndex = camera_list[tmp - 1].video.video_main_codec;
-                    textBox_quality_main.Text = camera_list[tmp - 1].video.video_main_quality;
-                    textBox_bitrate_main.Text = camera_list[tmp - 1].video.video_main_bitrate;
-                    comboBox_resolution_sub.SelectedIndex = camera_list[tmp - 1].video.video_sub_resolution;
-                    textBox_framerate_sub.Text = camera_list[tmp - 1].video.video_sub_framerate;
-                    comboBox_codec_sub.SelectedIndex = camera_list[tmp - 1].video.video_sub_codec;
-                    textBox_quality_sub.Text = camera_list[tmp - 1].video.video_sub_quality;
-                    textBox_bitrate_sub.Text = camera_list[tmp - 1].video.video_sub_bitrate;
+                    comboBox_resolution_main.SelectedIndex = camera_list[i].video.video_main_resolution;
+                    textBox_framerate_main.Text = camera_list[i].video.video_main_framerate;
+                    comboBox_codec_main.SelectedIndex = camera_list[i].video.video_main_codec;
+                    textBox_quality_main.Text = camera_list[i].video.video_main_quality;
+                    textBox_bitrate_main.Text = camera_list[i].video.video_main_bitrate;
+                    comboBox_resolution_sub.SelectedIndex = camera_list[i].video.video_sub_resolution;
+                    textBox_framerate_sub.Text = camera_list[i].video.video_sub_framerate;
+                    comboBox_codec_sub.SelectedIndex = camera_list[i].video.video_sub_codec;
+                    textBox_quality_sub.Text = camera_list[i].video.video_sub_quality;
+                    textBox_bitrate_sub.Text = camera_list[i].video.video_sub_bitrate;
 
                     ///////////////////////////////Image Setting///////////////////////
 
                     ///////////////////////////////Network Setting///////////////////////
-                    camera_list[tmp - 1].network.network_IP = node["network"]["network_IP"].InnerText;
-                    camera_list[tmp - 1].network.network_http = node["network"]["network_http"].InnerText;
-                    camera_list[tmp - 1].network.network_https = node["network"]["network_https"].InnerText;
-                    camera_list[tmp - 1].network.network_rtsp = node["network"]["network_rtsp"].InnerText;
-
-                    textBox_ip_adress.Text = camera_list[tmp - 1].network.network_IP;
-                    textBox_http_port.Text = camera_list[tmp - 1].network.network_http;
-                    textBox_https_port.Text = camera_list[tmp - 1].network.network_https;
-                    textBox_rtsp_port.Text = camera_list[tmp - 1].network.network_rtsp;
+                    textBox_ip_adress.Text = camera_list[i].network.network_IP;
+                    textBox_http_port.Text = camera_list[i].network.network_http;
+                    textBox_https_port.Text = camera_list[i].network.network_https;
+                    textBox_rtsp_port.Text = camera_list[i].network.network_rtsp;
                     ///////////////////////////////Archive Setting///////////////////////
-                    camera_list[tmp - 1].archive.archive_set_storage = Convert.ToInt32(node["archive"]["archive_set_storage"].InnerText);
-                    camera_list[tmp - 1].archive.archive_set_record_period = Convert.ToInt32(node["archive"]["archive_set_record_period"].InnerText);
-                    camera_list[tmp - 1].archive.archive_set_record_time = node["archive"]["archive_set_record_time"].InnerText;
-                    camera_list[tmp - 1].archive.archive_framerate = node["archive"]["archive_framerate"].InnerText;
-                    camera_list[tmp - 1].archive.archive_set_record_stream = Convert.ToInt32(node["archive"]["archive_set_record_stream"].InnerText);
-                    camera_list[tmp - 1].archive.archive_info_name = node["archive"]["archive_info_name"].InnerText;
-                    camera_list[tmp - 1].archive.archive_info_type = node["archive"]["archive_info_type"].InnerText;
-                    camera_list[tmp - 1].archive.archive_info_total = node["archive"]["archive_info_total"].InnerText;
-                    camera_list[tmp - 1].archive.archive_info_free = node["archive"]["archive_info_free"].InnerText;
-
-                    comboBox_storage.SelectedIndex = camera_list[tmp - 1].archive.archive_set_storage;
-                    comboBox_record_period.SelectedIndex = camera_list[tmp - 1].archive.archive_set_record_period;
-                    textBox_record_time.Text = camera_list[tmp - 1].archive.archive_set_record_time;
-                    textBox_quality_main.Text = camera_list[tmp - 1].archive.archive_framerate;
-                    textBox_framerate.Text = camera_list[tmp - 1].archive.archive_framerate;
-                    comboBox_record_stream.SelectedIndex = camera_list[tmp - 1].archive.archive_set_record_stream;
-                    label_archive_name.Text = camera_list[tmp - 1].archive.archive_info_name;
-                    label_archive_type.Text = camera_list[tmp - 1].archive.archive_info_type;
-                    label_archive_total.Text = camera_list[tmp - 1].archive.archive_info_total;
-                    label_archive_free.Text = camera_list[tmp - 1].archive.archive_info_free;
+                    comboBox_storage.SelectedIndex = camera_list[i].archive.archive_set_storage;
+                    comboBox_record_period.SelectedIndex = camera_list[i].archive.archive_set_record_period;
+                    textBox_record_time.Text = camera_list[i].archive.archive_set_record_time;
+                    textBox_quality_main.Text = camera_list[i].archive.archive_framerate;
+                    textBox_framerate.Text = camera_list[i].archive.archive_framerate;
+                    comboBox_record_stream.SelectedIndex = camera_list[i].archive.archive_set_record_stream;
+                    label_archive_name.Text = camera_list[i].archive.archive_info_name;
+                    label_archive_type.Text = camera_list[i].archive.archive_info_type;
+                    label_archive_total.Text = camera_list[i].archive.archive_info_total;
+                    label_archive_free.Text = camera_list[i].archive.archive_info_free;
                     ///////////////////////////////Event Setting///////////////////////
 
                     ///////////////////////////////Webpage///////////////////////
 
-                    x.item.Add(camera_list[tmp - 1]);
+                    x.item.Add(camera_list[i]);
                     using (StreamWriter wr = new StreamWriter("Emp.xml"))
                     {
                         XmlSerializer xs = new XmlSerializer(typeof(Xmlclass));
@@ -152,25 +120,7 @@ namespace Device_List_0._01
                         xs.Serialize(wr, x);
                         wr.Close();
                     }
-
-
-
                 }
-                /////xml 파일 저장///
-                /*
-                m.x.item.Add(m.camera_list[tmp - 1]);
-                using (StreamWriter wr = new StreamWriter("Emp.xml"))
-                {
-                    XmlSerializer xs = new XmlSerializer(typeof(Xmlclass));
-
-                    xs.Serialize(wr, m.x);
-                    wr.Close();
-                }
-
-                Form_Notification check = new Form_Notification();
-                check.Owner = this;
-                check.Show();
-                */
             }
             catch (ArgumentException ex)
             {
@@ -180,9 +130,7 @@ namespace Device_List_0._01
         }
         private void Form_main_Load(object sender, EventArgs e)
         {
-            
-            
-            
+
         }
         private void button_add_Click(object sender, EventArgs e)
         {
@@ -207,7 +155,6 @@ namespace Device_List_0._01
                 label_dmodel.Text = " ";
                 label_dmanufacturer.Text = " ";
                 label_dfireware.Text = " ";
-
 
                 textBox_ip_adress.Text = " ";
                 textBox_http_port.Text = " ";
@@ -234,7 +181,6 @@ namespace Device_List_0._01
         }
 
 
-       
         /// /////////////////////////////////////////////////////////////////////////////////////////////////
         //////<>////////
         private void listView_device_Click(object sender, EventArgs e)      //리스트 아이템 클릭시 tab 속성들 변경
