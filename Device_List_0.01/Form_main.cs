@@ -15,9 +15,7 @@ namespace Device_List_0._01
         public management M = new management();
         //public KeyEventArgs p;
         /////for button_image/////
-        private int brightness;
-        private int contrast;
-        private int sharpness;
+        
         //////////////////////////////
         public Form_main()
         {
@@ -29,11 +27,7 @@ namespace Device_List_0._01
             listView_device.Columns.Add("IP");
             listView_device.Columns.Add("ID");
             listView_device.Columns.Add("PW");
-
-            /////for button_image/////
-            brightness = trackBar_brightness.Value;
-            contrast = trackBar_contrast.Value;
-            sharpness = trackBar_sharpness.Value;
+            
             //////////////////////////////
             try
             {
@@ -51,7 +45,7 @@ namespace Device_List_0._01
                     rd.Close();
                 }
                 camera_list.AddRange(dexml.item);
-
+                
                 int tmp = camera_list.Count;
                 for(int i=0;i<tmp; i++)
                 {
@@ -64,7 +58,7 @@ namespace Device_List_0._01
                     lvi.SubItems.Add(camera_list[i].camera_ID);
                     lvi.SubItems.Add(pw);
                     listView_device.Items.Add(lvi);
-
+                    
                     ///////////////////////////////Device Setting///////////////////////
                     checkBox_enabled.Checked = camera_list[i].device.enable;
                     //Enabled = camera_list[i].device.enable;
@@ -74,7 +68,7 @@ namespace Device_List_0._01
                     label_dmodel.Text = camera_list[i].device.device_model;
                     label_dmanufacturer.Text = camera_list[i].device.device_manufacturer;
                     label_dfireware.Text = camera_list[i].device.device_firmware;
-
+                    
                     ///////////////////////////////Video Streaming///////////////////////
                     comboBox_resolution_main.SelectedIndex = camera_list[i].video.video_main_resolution;
                     textBox_framerate_main.Text = camera_list[i].video.video_main_framerate;
@@ -88,6 +82,9 @@ namespace Device_List_0._01
                     textBox_bitrate_sub.Text = camera_list[i].video.video_sub_bitrate;
 
                     ///////////////////////////////Image Setting///////////////////////
+                    trackBar_brightness.Value = camera_list[i].image.image_brightness;
+                    trackBar_contrast.Value = camera_list[i].image.image_contrast;
+                    trackBar_sharpness.Value = camera_list[i].image.image_sharpness;
 
                     ///////////////////////////////Network Setting///////////////////////
                     textBox_ip_adress.Text = camera_list[i].network.network_IP;
@@ -109,16 +106,18 @@ namespace Device_List_0._01
                     ///////////////////////////////Event Setting///////////////////////
 
                     ///////////////////////////////Webpage///////////////////////
-
+                    webBrowser.Navigate(textBox_ip_adress.Text);
                     x.item.Add(camera_list[i]);
                     M.serialize(x);
+                    
                 }
             }
             catch (ArgumentException ex)
             {
                 MessageBox.Show("XML 문제 발생\r\n" + ex);
             }
-
+            
+            
         }
         private void Form_main_Load(object sender, EventArgs e)
         {
@@ -130,7 +129,10 @@ namespace Device_List_0._01
             add.Owner = this;
             add.Show();
         }
+        private void button_refresh_Click(object sender, EventArgs e)
+        {
 
+        }
         private void button_remove_Click(object sender, EventArgs e)
         {
             if (listView_device.FocusedItem != null)
@@ -154,31 +156,33 @@ namespace Device_List_0._01
                 label_dfireware.Text = "";
 
                 ///////////////////////////////Video Streaming///////////////////////
-                comboBox_resolution_main.SelectedIndex = 0;
+                comboBox_resolution_main.SelectedIndex = -1;
                 textBox_framerate_main.Text = "";
-                comboBox_codec_main.SelectedIndex = 0;
+                comboBox_codec_main.SelectedIndex = -1;
                 textBox_quality_main.Text = "";
                 textBox_bitrate_main.Text = "";
-                comboBox_resolution_sub.SelectedIndex = 0;
+                comboBox_resolution_sub.SelectedIndex = -1;
                 textBox_framerate_sub.Text = "";
-                comboBox_codec_sub.SelectedIndex = 0;
+                comboBox_codec_sub.SelectedIndex = -1;
                 textBox_quality_sub.Text = "";
                 textBox_bitrate_sub.Text = "";
 
                 ///////////////////////////////Image Setting///////////////////////
-
+                trackBar_brightness.Value = 50;
+                trackBar_contrast.Value = 50;
+                trackBar_sharpness.Value = 50;
                 ///////////////////////////////Network Setting///////////////////////
                 textBox_ip_adress.Text = "";
                 textBox_http_port.Text = "";
                 textBox_https_port.Text = "";
                 textBox_rtsp_port.Text = "";
                 ///////////////////////////////Archive Setting///////////////////////
-                comboBox_storage.SelectedIndex = 0;
-                comboBox_record_period.SelectedIndex = 0;
+                comboBox_storage.SelectedIndex = -1;
+                comboBox_record_period.SelectedIndex = -1;
                 textBox_record_time.Text = "";
                 textBox_quality_main.Text = "";
                 textBox_framerate.Text = "";
-                comboBox_record_stream.SelectedIndex = 0;
+                comboBox_record_stream.SelectedIndex = -1;
                 label_archive_name.Text = "";
                 label_archive_type.Text = "";
                 label_archive_total.Text = "";
@@ -186,7 +190,7 @@ namespace Device_List_0._01
                 ///////////////////////////////Event Setting///////////////////////
 
                 ///////////////////////////////Webpage///////////////////////
-
+                webBrowser.Navigate("https://www.gbudatalinks.com/");
             }
         }
 
@@ -234,6 +238,9 @@ namespace Device_List_0._01
             textBox_bitrate_sub.Text = camera_list[tmp].video.video_sub_bitrate;
 
             ////////Image Setting/////
+            trackBar_brightness.Value = camera_list[tmp].image.image_brightness;
+            trackBar_contrast.Value = camera_list[tmp].image.image_contrast;
+            trackBar_sharpness.Value = camera_list[tmp].image.image_sharpness;
 
             ////////Network Setting/////
             textBox_ip_adress.Text = camera_list[tmp].network.network_IP;
@@ -255,7 +262,7 @@ namespace Device_List_0._01
             ////////Event Setting/////
 
             ////////webpage/////
-
+            webBrowser.Navigate(textBox_ip_adress.Text);
         }
         /// /////////////////////////////////////////////////////////////////////////////////////////////////
         //////<Device Setting>//////////
@@ -374,16 +381,25 @@ namespace Device_List_0._01
         //////<Image Setting>///////////
         private void button_image_modify_Click(object sender, EventArgs e)
         {
-            brightness = trackBar_brightness.Value;
-            contrast = trackBar_contrast.Value;
-            sharpness = trackBar_sharpness.Value;
+            int tmp = 0;
+            if (listView_device.FocusedItem != null)
+                tmp = listView_device.FocusedItem.Index;
+
+            camera_list[tmp].image.image_brightness = trackBar_brightness.Value;
+            camera_list[tmp].image.image_contrast = trackBar_contrast.Value;
+            camera_list[tmp].image.image_sharpness = trackBar_sharpness.Value;
+            M.serialize(x);
         }
 
         private void button_image_cancel_Click(object sender, EventArgs e)
         {
-            trackBar_brightness.Value = brightness;
-            trackBar_contrast.Value = contrast;
-            trackBar_sharpness.Value = sharpness;
+            int tmp = 0;
+            if (listView_device.FocusedItem != null)
+                tmp = listView_device.FocusedItem.Index;
+
+            trackBar_brightness.Value = camera_list[tmp].image.image_brightness;
+            trackBar_contrast.Value = camera_list[tmp].image.image_contrast;
+            trackBar_sharpness.Value = camera_list[tmp].image.image_sharpness;
         }
 
         /// /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -507,13 +523,17 @@ namespace Device_List_0._01
             r.rangeset(sender, e, textBox_maximum, 1, 100);
         }
 
-        private void groupBox_webpage_Enter(object sender, EventArgs e)         /////임시..
-        {
-            webBrowser.Navigate("www.naver.com");
-        }
-
         /// /////////////////////////////////////////////////////////////////////////////////////////////////
         //////<webpage>////////
-        
+        private void groupBox_webpage_VisibleChanged(object sender, EventArgs e)
+        {
+            int tmp = 0;
+            if (listView_device.FocusedItem != null)
+                tmp = listView_device.FocusedItem.Index;
+            
+            webBrowser.Navigate(textBox_ip_adress.Text);
+        }
+
+
     }
 }

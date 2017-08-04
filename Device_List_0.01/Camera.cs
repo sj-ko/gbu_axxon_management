@@ -42,8 +42,5 @@ namespace Device_List_0._01
         public Network network = new Network();
         public Archive archive = new Archive();
         public Event eventsetting = new Event();
-        public Webpage webpage = new Webpage();
     }
-    
-    
 }

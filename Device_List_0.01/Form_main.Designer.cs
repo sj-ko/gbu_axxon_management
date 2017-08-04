@@ -149,6 +149,7 @@
             this.groupBox_webpage = new System.Windows.Forms.GroupBox();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.toolTip_http = new System.Windows.Forms.ToolTip(this.components);
+            this.button_refresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -185,6 +186,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.button_refresh);
             this.splitContainer1.Panel1.Controls.Add(this.button_remove);
             this.splitContainer1.Panel1.Controls.Add(this.button_add);
             this.splitContainer1.Panel1.Controls.Add(this.listView_device);
@@ -201,7 +203,7 @@
             // 
             // button_remove
             // 
-            this.button_remove.Location = new System.Drawing.Point(151, 529);
+            this.button_remove.Location = new System.Drawing.Point(190, 529);
             this.button_remove.Name = "button_remove";
             this.button_remove.Size = new System.Drawing.Size(71, 23);
             this.button_remove.TabIndex = 8;
@@ -211,7 +213,7 @@
             // 
             // button_add
             // 
-            this.button_add.Location = new System.Drawing.Point(42, 529);
+            this.button_add.Location = new System.Drawing.Point(12, 529);
             this.button_add.Name = "button_add";
             this.button_add.Size = new System.Drawing.Size(71, 23);
             this.button_add.TabIndex = 6;
@@ -766,6 +768,7 @@
             // 
             this.trackBar_sharpness.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.trackBar_sharpness.Location = new System.Drawing.Point(125, 125);
+            this.trackBar_sharpness.Maximum = 100;
             this.trackBar_sharpness.Name = "trackBar_sharpness";
             this.trackBar_sharpness.Size = new System.Drawing.Size(119, 45);
             this.trackBar_sharpness.TabIndex = 6;
@@ -775,6 +778,7 @@
             // 
             this.trackBar_contrast.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.trackBar_contrast.Location = new System.Drawing.Point(125, 75);
+            this.trackBar_contrast.Maximum = 100;
             this.trackBar_contrast.Name = "trackBar_contrast";
             this.trackBar_contrast.Size = new System.Drawing.Size(119, 45);
             this.trackBar_contrast.TabIndex = 5;
@@ -784,6 +788,7 @@
             // 
             this.trackBar_brightness.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.trackBar_brightness.Location = new System.Drawing.Point(125, 20);
+            this.trackBar_brightness.Maximum = 100;
             this.trackBar_brightness.Name = "trackBar_brightness";
             this.trackBar_brightness.Size = new System.Drawing.Size(119, 45);
             this.trackBar_brightness.TabIndex = 4;
@@ -1388,7 +1393,7 @@
             this.groupBox_webpage.Size = new System.Drawing.Size(621, 435);
             this.groupBox_webpage.TabIndex = 1;
             this.groupBox_webpage.TabStop = false;
-            this.groupBox_webpage.Enter += new System.EventHandler(this.groupBox_webpage_Enter);
+            this.groupBox_webpage.VisibleChanged += new System.EventHandler(this.groupBox_webpage_VisibleChanged);
             // 
             // webBrowser
             // 
@@ -1398,6 +1403,16 @@
             this.webBrowser.Name = "webBrowser";
             this.webBrowser.Size = new System.Drawing.Size(615, 415);
             this.webBrowser.TabIndex = 0;
+            // 
+            // button_refresh
+            // 
+            this.button_refresh.Location = new System.Drawing.Point(101, 529);
+            this.button_refresh.Name = "button_refresh";
+            this.button_refresh.Size = new System.Drawing.Size(71, 23);
+            this.button_refresh.TabIndex = 9;
+            this.button_refresh.Text = "Refresh";
+            this.button_refresh.UseVisualStyleBackColor = true;
+            this.button_refresh.Click += new System.EventHandler(this.button_refresh_Click);
             // 
             // Form_main
             // 
@@ -1501,7 +1516,6 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.GroupBox groupBox_list;
         private System.Windows.Forms.ListView listView_event_list;
-        private System.Windows.Forms.GroupBox groupBox_webpage;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Button button_eventlist_remove;
         private System.Windows.Forms.Button button_eventlist_modify;
@@ -1570,6 +1584,8 @@
         public System.Windows.Forms.Label label_archive_total;
         public System.Windows.Forms.Label label_archive_type;
         public System.Windows.Forms.Label label_archive_name;
+        public System.Windows.Forms.GroupBox groupBox_webpage;
+        private System.Windows.Forms.Button button_refresh;
     }
 }
 

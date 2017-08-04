@@ -92,6 +92,9 @@ namespace Device_List_0._01
                 m.textBox_bitrate_sub.Text = m.camera_list[tmp - 1].video.video_sub_bitrate;
 
                 ///////////////////////////////Image Setting///////////////////////
+                m.trackBar_brightness.Value = m.camera_list[tmp - 1].image.image_brightness;
+                m.trackBar_contrast.Value = m.camera_list[tmp - 1].image.image_contrast;
+                m.trackBar_sharpness.Value = m.camera_list[tmp - 1].image.image_sharpness;
 
                 ///////////////////////////////Network Setting///////////////////////
                 m.camera_list[tmp - 1].network.network_IP = textBox_IP.Text;
@@ -128,6 +131,7 @@ namespace Device_List_0._01
                 ///////////////////////////////Event Setting///////////////////////
 
                 ///////////////////////////////Webpage///////////////////////
+                m.webBrowser.Navigate(m.textBox_ip_adress.Text);
 
                 /////xml 파일 저장///
                 m.x.item.Add(m.camera_list[tmp - 1]);

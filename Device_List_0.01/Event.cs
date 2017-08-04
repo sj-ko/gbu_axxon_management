@@ -13,6 +13,5 @@ namespace Device_List_0._01
         public string event_sensitivity="";
         public string event_min="";
         public string event_max="";
-
     }
 }
