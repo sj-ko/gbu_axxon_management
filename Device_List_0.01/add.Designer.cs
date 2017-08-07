@@ -152,9 +152,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.comboBox_maker);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximizeBox = false;
             this.Name = "Form_add";
             this.Text = "Device Add";
-            this.Load += new System.EventHandler(this.Form_add_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

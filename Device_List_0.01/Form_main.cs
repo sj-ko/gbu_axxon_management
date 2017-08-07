@@ -23,10 +23,10 @@ namespace Device_List_0._01
 
             listView_device.View = View.Details;
             listView_device.BeginUpdate();
+            listView_device.Columns.Add("서버");
             listView_device.Columns.Add("제조사");
             listView_device.Columns.Add("IP");
-            listView_device.Columns.Add("ID");
-            listView_device.Columns.Add("PW");
+            listView_device.Columns.Add("연결상태");
             
             //////////////////////////////
             if(System.IO.File.Exists("Emp.xml"))
@@ -54,10 +54,10 @@ namespace Device_List_0._01
                     for (int j = 0; j<camera_list[i].camera_PW.Length; j++)
                         pw = pw + "*";
 
-                    ListViewItem lvi = new ListViewItem(camera_list[i].camera_manufacturer);
+                    ListViewItem lvi = new ListViewItem("임시서버");
+                    lvi.SubItems.Add(camera_list[i].camera_manufacturer);
                     lvi.SubItems.Add(camera_list[i].camera_IP);
-                    lvi.SubItems.Add(camera_list[i].camera_ID);
-                    lvi.SubItems.Add(pw);
+                    lvi.SubItems.Add("connected");
                     listView_device.Items.Add(lvi);
                     
                     x.item.Add(camera_list[i]);
@@ -567,6 +567,11 @@ namespace Device_List_0._01
             if(didyouclicklist==true)
                webBrowser.Navigate(camera_list[tmp].network.network_IP);
             
+        }
+
+        private void Form_main_Resize(object sender, EventArgs e)
+        {
+
         }
     }
 }

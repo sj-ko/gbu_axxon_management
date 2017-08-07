@@ -179,7 +179,9 @@
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
@@ -203,6 +205,7 @@
             // 
             // button_refresh
             // 
+            this.button_refresh.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.button_refresh.Location = new System.Drawing.Point(101, 529);
             this.button_refresh.Name = "button_refresh";
             this.button_refresh.Size = new System.Drawing.Size(71, 23);
@@ -213,6 +216,7 @@
             // 
             // button_remove
             // 
+            this.button_remove.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.button_remove.Location = new System.Drawing.Point(190, 529);
             this.button_remove.Name = "button_remove";
             this.button_remove.Size = new System.Drawing.Size(71, 23);
@@ -223,6 +227,7 @@
             // 
             // button_add
             // 
+            this.button_add.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.button_add.Location = new System.Drawing.Point(12, 529);
             this.button_add.Name = "button_add";
             this.button_add.Size = new System.Drawing.Size(71, 23);
@@ -234,6 +239,9 @@
             // listView_device
             // 
             this.listView_device.Activation = System.Windows.Forms.ItemActivation.OneClick;
+            this.listView_device.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listView_device.FullRowSelect = true;
             this.listView_device.GridLines = true;
             this.listView_device.HideSelection = false;
@@ -247,6 +255,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("굴림", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.Location = new System.Drawing.Point(69, 29);
@@ -257,6 +266,9 @@
             // 
             // tabcontrol_menu
             // 
+            this.tabcontrol_menu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabcontrol_menu.Controls.Add(this.tabPage_device);
             this.tabcontrol_menu.Controls.Add(this.tabPage_video);
             this.tabcontrol_menu.Controls.Add(this.tabPage_image);
@@ -285,6 +297,7 @@
             // 
             // button_device_cancel
             // 
+            this.button_device_cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button_device_cancel.Location = new System.Drawing.Point(538, 400);
             this.button_device_cancel.Name = "button_device_cancel";
             this.button_device_cancel.Size = new System.Drawing.Size(75, 23);
@@ -295,6 +308,7 @@
             // 
             // button_device_modify
             // 
+            this.button_device_modify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button_device_modify.Location = new System.Drawing.Point(457, 400);
             this.button_device_modify.Name = "button_device_modify";
             this.button_device_modify.Size = new System.Drawing.Size(75, 23);
@@ -480,6 +494,7 @@
             // 
             // button_video_cancel
             // 
+            this.button_video_cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button_video_cancel.Location = new System.Drawing.Point(538, 400);
             this.button_video_cancel.Name = "button_video_cancel";
             this.button_video_cancel.Size = new System.Drawing.Size(75, 23);
@@ -490,6 +505,7 @@
             // 
             // button_video_modify
             // 
+            this.button_video_modify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button_video_modify.Location = new System.Drawing.Point(457, 400);
             this.button_video_modify.Name = "button_video_modify";
             this.button_video_modify.Size = new System.Drawing.Size(75, 23);
@@ -740,6 +756,7 @@
             // 
             // button_image_cancel
             // 
+            this.button_image_cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button_image_cancel.Location = new System.Drawing.Point(538, 400);
             this.button_image_cancel.Name = "button_image_cancel";
             this.button_image_cancel.Size = new System.Drawing.Size(75, 23);
@@ -750,6 +767,7 @@
             // 
             // button_image_modify
             // 
+            this.button_image_modify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button_image_modify.Location = new System.Drawing.Point(457, 400);
             this.button_image_modify.Name = "button_image_modify";
             this.button_image_modify.Size = new System.Drawing.Size(75, 23);
@@ -845,6 +863,7 @@
             // 
             // button7_network_cancel
             // 
+            this.button7_network_cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button7_network_cancel.Location = new System.Drawing.Point(538, 400);
             this.button7_network_cancel.Name = "button7_network_cancel";
             this.button7_network_cancel.Size = new System.Drawing.Size(75, 23);
@@ -855,6 +874,7 @@
             // 
             // button_network_modify
             // 
+            this.button_network_modify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button_network_modify.Location = new System.Drawing.Point(457, 400);
             this.button_network_modify.Name = "button_network_modify";
             this.button_network_modify.Size = new System.Drawing.Size(75, 23);
@@ -965,6 +985,7 @@
             // 
             // button_archive_cancel
             // 
+            this.button_archive_cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button_archive_cancel.Location = new System.Drawing.Point(538, 400);
             this.button_archive_cancel.Name = "button_archive_cancel";
             this.button_archive_cancel.Size = new System.Drawing.Size(75, 23);
@@ -975,6 +996,7 @@
             // 
             // button_archive_modify
             // 
+            this.button_archive_modify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button_archive_modify.Location = new System.Drawing.Point(457, 400);
             this.button_archive_modify.Name = "button_archive_modify";
             this.button_archive_modify.Size = new System.Drawing.Size(75, 23);
@@ -1202,6 +1224,7 @@
             // 
             // button_event_cancel
             // 
+            this.button_event_cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button_event_cancel.Location = new System.Drawing.Point(538, 400);
             this.button_event_cancel.Name = "button_event_cancel";
             this.button_event_cancel.Size = new System.Drawing.Size(75, 23);
@@ -1211,6 +1234,7 @@
             // 
             // button_event_modify
             // 
+            this.button_event_modify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button_event_modify.Location = new System.Drawing.Point(457, 400);
             this.button_event_modify.Name = "button_event_modify";
             this.button_event_modify.Size = new System.Drawing.Size(75, 23);
@@ -1396,6 +1420,9 @@
             // 
             // groupBox_webpage
             // 
+            this.groupBox_webpage.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox_webpage.Controls.Add(this.webBrowser);
             this.groupBox_webpage.Location = new System.Drawing.Point(6, 6);
             this.groupBox_webpage.Name = "groupBox_webpage";
@@ -1423,6 +1450,7 @@
             this.Name = "Form_main";
             this.Text = "Device_List";
             this.Load += new System.EventHandler(this.Form_main_Load);
+            this.Resize += new System.EventHandler(this.Form_main_Resize);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);

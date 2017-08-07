@@ -70,6 +70,8 @@
             this.Controls.Add(this.button_no);
             this.Controls.Add(this.button_yes);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.MaximizeBox = false;
             this.Name = "Form_Notification";
             this.Text = "Notification";
             this.ResumeLayout(false);
