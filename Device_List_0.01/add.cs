@@ -129,10 +129,9 @@ namespace Device_List_0._01
                 m.label_archive_total.Text = m.camera_list[tmp - 1].archive.archive_info_total;
                 m.label_archive_free.Text = m.camera_list[tmp - 1].archive.archive_info_free;
                 ///////////////////////////////Event Setting///////////////////////
-
+                m.tabcontrol_menu.SelectedTab = m.tabPage_device;
                 ///////////////////////////////Webpage///////////////////////
-                m.webBrowser.Navigate(m.textBox_ip_adress.Text);
-
+                //m.webBrowser.Navigate(m.textBox_ip_adress.Text);
                 /////xml 파일 저장///
                 m.x.item.Add(m.camera_list[tmp - 1]);
                 m.M.serialize(m.x);

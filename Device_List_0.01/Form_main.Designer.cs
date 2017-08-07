@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.button_refresh = new System.Windows.Forms.Button();
             this.button_remove = new System.Windows.Forms.Button();
             this.button_add = new System.Windows.Forms.Button();
             this.listView_device = new System.Windows.Forms.ListView();
@@ -149,7 +150,6 @@
             this.groupBox_webpage = new System.Windows.Forms.GroupBox();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.toolTip_http = new System.Windows.Forms.ToolTip(this.components);
-            this.button_refresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -201,6 +201,16 @@
             this.splitContainer1.TabIndex = 0;
             this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
             // 
+            // button_refresh
+            // 
+            this.button_refresh.Location = new System.Drawing.Point(101, 529);
+            this.button_refresh.Name = "button_refresh";
+            this.button_refresh.Size = new System.Drawing.Size(71, 23);
+            this.button_refresh.TabIndex = 9;
+            this.button_refresh.Text = "Refresh";
+            this.button_refresh.UseVisualStyleBackColor = true;
+            this.button_refresh.Click += new System.EventHandler(this.button_refresh_Click);
+            // 
             // button_remove
             // 
             this.button_remove.Location = new System.Drawing.Point(190, 529);
@@ -227,12 +237,11 @@
             this.listView_device.FullRowSelect = true;
             this.listView_device.GridLines = true;
             this.listView_device.HideSelection = false;
-            this.listView_device.HoverSelection = true;
             this.listView_device.Location = new System.Drawing.Point(12, 57);
             this.listView_device.MultiSelect = false;
             this.listView_device.Name = "listView_device";
             this.listView_device.Size = new System.Drawing.Size(249, 449);
-            this.listView_device.TabIndex = 7;
+            this.listView_device.TabIndex = 0;
             this.listView_device.UseCompatibleStateImageBehavior = false;
             this.listView_device.Click += new System.EventHandler(this.listView_device_Click);
             // 
@@ -258,7 +267,7 @@
             this.tabcontrol_menu.Location = new System.Drawing.Point(10, 29);
             this.tabcontrol_menu.Name = "tabcontrol_menu";
             this.tabcontrol_menu.SelectedIndex = 0;
-            this.tabcontrol_menu.Size = new System.Drawing.Size(641, 473);
+            this.tabcontrol_menu.Size = new System.Drawing.Size(641, 477);
             this.tabcontrol_menu.TabIndex = 0;
             // 
             // tabPage_device
@@ -269,7 +278,7 @@
             this.tabPage_device.Location = new System.Drawing.Point(4, 22);
             this.tabPage_device.Name = "tabPage_device";
             this.tabPage_device.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_device.Size = new System.Drawing.Size(633, 447);
+            this.tabPage_device.Size = new System.Drawing.Size(633, 451);
             this.tabPage_device.TabIndex = 0;
             this.tabPage_device.Text = "Device Setting";
             this.tabPage_device.UseVisualStyleBackColor = true;
@@ -464,7 +473,7 @@
             this.tabPage_video.Location = new System.Drawing.Point(4, 22);
             this.tabPage_video.Name = "tabPage_video";
             this.tabPage_video.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_video.Size = new System.Drawing.Size(633, 447);
+            this.tabPage_video.Size = new System.Drawing.Size(633, 451);
             this.tabPage_video.TabIndex = 1;
             this.tabPage_video.Text = "Video Streaming";
             this.tabPage_video.UseVisualStyleBackColor = true;
@@ -724,7 +733,7 @@
             this.tabPage_image.Location = new System.Drawing.Point(4, 22);
             this.tabPage_image.Name = "tabPage_image";
             this.tabPage_image.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_image.Size = new System.Drawing.Size(633, 447);
+            this.tabPage_image.Size = new System.Drawing.Size(633, 451);
             this.tabPage_image.TabIndex = 2;
             this.tabPage_image.Text = "Image Setting";
             this.tabPage_image.UseVisualStyleBackColor = true;
@@ -830,7 +839,7 @@
             this.tabPage_network.Location = new System.Drawing.Point(4, 22);
             this.tabPage_network.Name = "tabPage_network";
             this.tabPage_network.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_network.Size = new System.Drawing.Size(633, 447);
+            this.tabPage_network.Size = new System.Drawing.Size(633, 451);
             this.tabPage_network.TabIndex = 3;
             this.tabPage_network.Text = "Network Setting";
             // 
@@ -949,7 +958,7 @@
             this.tabPage_archive.Location = new System.Drawing.Point(4, 22);
             this.tabPage_archive.Name = "tabPage_archive";
             this.tabPage_archive.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_archive.Size = new System.Drawing.Size(633, 447);
+            this.tabPage_archive.Size = new System.Drawing.Size(633, 451);
             this.tabPage_archive.TabIndex = 4;
             this.tabPage_archive.Text = "Archive Setting";
             this.tabPage_archive.UseVisualStyleBackColor = true;
@@ -1186,7 +1195,7 @@
             this.tabPage_event.Location = new System.Drawing.Point(4, 22);
             this.tabPage_event.Name = "tabPage_event";
             this.tabPage_event.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_event.Size = new System.Drawing.Size(633, 447);
+            this.tabPage_event.Size = new System.Drawing.Size(633, 451);
             this.tabPage_event.TabIndex = 5;
             this.tabPage_event.Text = "Event Setting";
             this.tabPage_event.UseVisualStyleBackColor = true;
@@ -1380,7 +1389,7 @@
             this.tabPage_webpage.Location = new System.Drawing.Point(4, 22);
             this.tabPage_webpage.Name = "tabPage_webpage";
             this.tabPage_webpage.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_webpage.Size = new System.Drawing.Size(633, 447);
+            this.tabPage_webpage.Size = new System.Drawing.Size(633, 451);
             this.tabPage_webpage.TabIndex = 6;
             this.tabPage_webpage.Text = "Webpage";
             this.tabPage_webpage.UseVisualStyleBackColor = true;
@@ -1402,17 +1411,7 @@
             this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser.Name = "webBrowser";
             this.webBrowser.Size = new System.Drawing.Size(615, 415);
-            this.webBrowser.TabIndex = 0;
-            // 
-            // button_refresh
-            // 
-            this.button_refresh.Location = new System.Drawing.Point(101, 529);
-            this.button_refresh.Name = "button_refresh";
-            this.button_refresh.Size = new System.Drawing.Size(71, 23);
-            this.button_refresh.TabIndex = 9;
-            this.button_refresh.Text = "Refresh";
-            this.button_refresh.UseVisualStyleBackColor = true;
-            this.button_refresh.Click += new System.EventHandler(this.button_refresh_Click);
+            this.webBrowser.TabIndex = 7;
             // 
             // Form_main
             // 
@@ -1475,7 +1474,6 @@
         private System.Windows.Forms.TabPage tabPage_network;
         private System.Windows.Forms.TabPage tabPage_archive;
         private System.Windows.Forms.TabPage tabPage_event;
-        private System.Windows.Forms.TabPage tabPage_webpage;
         private System.Windows.Forms.Label Username;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label6;
@@ -1586,6 +1584,7 @@
         public System.Windows.Forms.Label label_archive_name;
         public System.Windows.Forms.GroupBox groupBox_webpage;
         private System.Windows.Forms.Button button_refresh;
+        public System.Windows.Forms.TabPage tabPage_webpage;
     }
 }
 
