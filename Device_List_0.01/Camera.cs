@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 
 
 namespace Device_List_0._01
-{
+{/*
     public class management
     {
         public void serialize(Xmlclass x)
@@ -22,7 +22,20 @@ namespace Device_List_0._01
                 wr.Close();
             }
         }
+        }*/
+
+    public class management
+    {
+        public void serialize(Xmlclass x)
+        {
+            XmlSerializer xs = new XmlSerializer(typeof(Xmlclass));
+            FileStream fs = new FileStream("Emp.xml",FileMode.Create,FileAccess.Write);
+            xs.Serialize(fs, x);
+            fs.Close();
+        }
     }
+    
+
     public class Xmlclass
     {
         //for Serialization

@@ -133,9 +133,30 @@ namespace Device_List_0._01
                 ///////////////////////////////Webpage///////////////////////
                 //m.webBrowser.Navigate(m.textBox_ip_adress.Text);
                 /////xml 파일 저장///
+                
                 m.x.item.Add(m.camera_list[tmp - 1]);
                 m.M.serialize(m.x);
 
+
+                /*
+                FileStream FStream = new FileStream("Emp.xml", FileMode.Open);
+
+                byte[] ReadAByte = new byte[1];
+                int FilePointerOffset = 0;
+
+                while (FilePointerOffset < FStream.Length - 32)
+                {
+                    FStream.Read(ReadAByte, 0, 1);
+                    FilePointerOffset++;
+                }
+                Xmlclass adtmp = new Xmlclass();
+                adtmp.item.Add(m.camera_list[tmp - 1]);
+                byte[] WriteSomeBytes = new byte[200];
+                WriteSomeBytes = Encoding.ASCII.GetBytes(Convert.ToChar(m.M.serialize(m.x)));
+                FStream.Write(WriteSomeBytes, 0, WriteSomeBytes.Length);
+                FStream.Close();
+                */
+                m.didyouclicklist = false;
                 Form_Notification check = new Form_Notification();
                 check.Owner = this;
                 check.Show();

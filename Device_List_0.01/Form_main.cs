@@ -29,6 +29,7 @@ namespace Device_List_0._01
             listView_device.Columns.Add("PW");
             
             //////////////////////////////
+            if(System.IO.File.Exists("Emp.xml"))
             try
             {
                 XmlDocument xdoc = new XmlDocument();
@@ -59,54 +60,6 @@ namespace Device_List_0._01
                     lvi.SubItems.Add(pw);
                     listView_device.Items.Add(lvi);
                     
-                    ///////////////////////////////Device Setting///////////////////////
-                    checkBox_enabled.Checked = camera_list[i].device.enable;
-                    //Enabled = camera_list[i].device.enable;
-                    textBox_name.Text = camera_list[i].device.device_name;
-                    textBox_username.Text = camera_list[i].device.device_username;
-                    textBox_password.Text = camera_list[i].device.device_PW;
-                    label_dmodel.Text = camera_list[i].device.device_model;
-                    label_dmanufacturer.Text = camera_list[i].device.device_manufacturer;
-                    label_dfireware.Text = camera_list[i].device.device_firmware;
-                    
-                    ///////////////////////////////Video Streaming///////////////////////
-                    comboBox_resolution_main.SelectedIndex = camera_list[i].video.video_main_resolution;
-                    textBox_framerate_main.Text = camera_list[i].video.video_main_framerate;
-                    comboBox_codec_main.SelectedIndex = camera_list[i].video.video_main_codec;
-                    textBox_quality_main.Text = camera_list[i].video.video_main_quality;
-                    textBox_bitrate_main.Text = camera_list[i].video.video_main_bitrate;
-                    comboBox_resolution_sub.SelectedIndex = camera_list[i].video.video_sub_resolution;
-                    textBox_framerate_sub.Text = camera_list[i].video.video_sub_framerate;
-                    comboBox_codec_sub.SelectedIndex = camera_list[i].video.video_sub_codec;
-                    textBox_quality_sub.Text = camera_list[i].video.video_sub_quality;
-                    textBox_bitrate_sub.Text = camera_list[i].video.video_sub_bitrate;
-
-                    ///////////////////////////////Image Setting///////////////////////
-                    trackBar_brightness.Value = camera_list[i].image.image_brightness;
-                    trackBar_contrast.Value = camera_list[i].image.image_contrast;
-                    trackBar_sharpness.Value = camera_list[i].image.image_sharpness;
-
-                    ///////////////////////////////Network Setting///////////////////////
-                    textBox_ip_adress.Text = camera_list[i].network.network_IP;
-                    textBox_http_port.Text = camera_list[i].network.network_http;
-                    textBox_https_port.Text = camera_list[i].network.network_https;
-                    textBox_rtsp_port.Text = camera_list[i].network.network_rtsp;
-
-                    ///////////////////////////////Archive Setting///////////////////////
-                    comboBox_storage.SelectedIndex = camera_list[i].archive.archive_set_storage;
-                    comboBox_record_period.SelectedIndex = camera_list[i].archive.archive_set_record_period;
-                    textBox_record_time.Text = camera_list[i].archive.archive_set_record_time;
-                    textBox_quality_main.Text = camera_list[i].archive.archive_framerate;
-                    textBox_framerate.Text = camera_list[i].archive.archive_framerate;
-                    comboBox_record_stream.SelectedIndex = camera_list[i].archive.archive_set_record_stream;
-                    label_archive_name.Text = camera_list[i].archive.archive_info_name;
-                    label_archive_type.Text = camera_list[i].archive.archive_info_type;
-                    label_archive_total.Text = camera_list[i].archive.archive_info_total;
-                    label_archive_free.Text = camera_list[i].archive.archive_info_free;
-                    ///////////////////////////////Event Setting///////////////////////
-
-                    ///////////////////////////////Webpage///////////////////////
-
                     x.item.Add(camera_list[i]);
                     M.serialize(x);
                     
@@ -146,55 +99,52 @@ namespace Device_List_0._01
 
                     M.serialize(x);
                 }
+                ///////////////////////////////Device Setting///////////////////////
+                checkBox_enabled.Checked = false;
+                textBox_name.Text = "";
+                textBox_username.Text = "";
+                textBox_password.Text = "";
+                label_dmodel.Text = "";
+                label_dmanufacturer.Text = "";
+                label_dfireware.Text = "";
 
-                if (listView_device.Items.Count == 0 && listView_device.FocusedItem == null)
-                {
-                    ///////////////////////////////Device Setting///////////////////////
-                    checkBox_enabled.Checked = false;
-                    textBox_name.Text = "";
-                    textBox_username.Text = "";
-                    textBox_password.Text = "";
-                    label_dmodel.Text = "";
-                    label_dmanufacturer.Text = "";
-                    label_dfireware.Text = "";
+                ///////////////////////////////Video Streaming///////////////////////
+                comboBox_resolution_main.SelectedIndex = -1;
+                textBox_framerate_main.Text = "";
+                comboBox_codec_main.SelectedIndex = -1;
+                textBox_quality_main.Text = "";
+                textBox_bitrate_main.Text = "";
+                comboBox_resolution_sub.SelectedIndex = -1;
+                textBox_framerate_sub.Text = "";
+                comboBox_codec_sub.SelectedIndex = -1;
+                textBox_quality_sub.Text = "";
+                textBox_bitrate_sub.Text = "";
 
-                    ///////////////////////////////Video Streaming///////////////////////
-                    comboBox_resolution_main.SelectedIndex = -1;
-                    textBox_framerate_main.Text = "";
-                    comboBox_codec_main.SelectedIndex = -1;
-                    textBox_quality_main.Text = "";
-                    textBox_bitrate_main.Text = "";
-                    comboBox_resolution_sub.SelectedIndex = -1;
-                    textBox_framerate_sub.Text = "";
-                    comboBox_codec_sub.SelectedIndex = -1;
-                    textBox_quality_sub.Text = "";
-                    textBox_bitrate_sub.Text = "";
+                ///////////////////////////////Image Setting///////////////////////
+                trackBar_brightness.Value = 50;
+                trackBar_contrast.Value = 50;
+                trackBar_sharpness.Value = 50;
+                ///////////////////////////////Network Setting///////////////////////
+                textBox_ip_adress.Text = "";
+                textBox_http_port.Text = "";
+                textBox_https_port.Text = "";
+                textBox_rtsp_port.Text = "";
+                ///////////////////////////////Archive Setting///////////////////////
+                comboBox_storage.SelectedIndex = -1;
+                comboBox_record_period.SelectedIndex = -1;
+                textBox_record_time.Text = "";
+                textBox_quality_main.Text = "";
+                textBox_framerate.Text = "";
+                comboBox_record_stream.SelectedIndex = -1;
+                label_archive_name.Text = "";
+                label_archive_type.Text = "";
+                label_archive_total.Text = "";
+                label_archive_free.Text = "";
+                ///////////////////////////////Event Setting///////////////////////
 
-                    ///////////////////////////////Image Setting///////////////////////
-                    trackBar_brightness.Value = 50;
-                    trackBar_contrast.Value = 50;
-                    trackBar_sharpness.Value = 50;
-                    ///////////////////////////////Network Setting///////////////////////
-                    textBox_ip_adress.Text = "";
-                    textBox_http_port.Text = "";
-                    textBox_https_port.Text = "";
-                    textBox_rtsp_port.Text = "";
-                    ///////////////////////////////Archive Setting///////////////////////
-                    comboBox_storage.SelectedIndex = -1;
-                    comboBox_record_period.SelectedIndex = -1;
-                    textBox_record_time.Text = "";
-                    textBox_quality_main.Text = "";
-                    textBox_framerate.Text = "";
-                    comboBox_record_stream.SelectedIndex = -1;
-                    label_archive_name.Text = "";
-                    label_archive_type.Text = "";
-                    label_archive_total.Text = "";
-                    label_archive_free.Text = "";
-                    ///////////////////////////////Event Setting///////////////////////
+                ///////////////////////////////Webpage///////////////////////
 
-                    ///////////////////////////////Webpage///////////////////////
-                    webBrowser.Navigate("https://www.gbudatalinks.com/");
-                }
+                didyouclicklist=false;
             }
         }
 
@@ -306,14 +256,19 @@ namespace Device_List_0._01
 
         private void button_device_cancel_Click(object sender, EventArgs e)
         {
-            int tmp = 0;
-            if (listView_device.FocusedItem != null)
-                tmp = listView_device.FocusedItem.Index;
+            if (didyouclicklist == false)
+                MessageBox.Show("우선 카메라를 선택해주세요");
+            else
+            {
+                int tmp = 0;
+                if (listView_device.FocusedItem != null)
+                    tmp = listView_device.FocusedItem.Index;
 
-            checkBox_enabled.Checked = camera_list[tmp].device.enable;
-            textBox_name.Text = camera_list[tmp].device.device_name;
-            textBox_username.Text = camera_list[tmp].device.device_username;
-            textBox_password.Text = camera_list[tmp].device.device_PW;
+                checkBox_enabled.Checked = camera_list[tmp].device.enable;
+                textBox_name.Text = camera_list[tmp].device.device_name;
+                textBox_username.Text = camera_list[tmp].device.device_username;
+                textBox_password.Text = camera_list[tmp].device.device_PW;
+            }
         }
 
         /// /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -391,22 +346,27 @@ namespace Device_List_0._01
 
         private void button_video_cancel_Click(object sender, EventArgs e)
         {
-            int tmp = 0;
-            if (listView_device.FocusedItem != null)
-                tmp = listView_device.FocusedItem.Index;
+            if (didyouclicklist == false)
+                MessageBox.Show("우선 카메라를 선택해주세요");
+            else
+            {
+                int tmp = 0;
+                if (listView_device.FocusedItem != null)
+                    tmp = listView_device.FocusedItem.Index;
 
 
-            comboBox_resolution_main.SelectedIndex = camera_list[tmp].video.video_main_resolution;
-            textBox_framerate_main.Text= camera_list[tmp].video.video_main_framerate;
-            comboBox_codec_main.SelectedIndex = camera_list[tmp].video.video_main_codec;
-            textBox_quality_main.Text = camera_list[tmp].video.video_main_quality;
-            textBox_bitrate_main.Text = camera_list[tmp].video.video_main_bitrate;
+                comboBox_resolution_main.SelectedIndex = camera_list[tmp].video.video_main_resolution;
+                textBox_framerate_main.Text = camera_list[tmp].video.video_main_framerate;
+                comboBox_codec_main.SelectedIndex = camera_list[tmp].video.video_main_codec;
+                textBox_quality_main.Text = camera_list[tmp].video.video_main_quality;
+                textBox_bitrate_main.Text = camera_list[tmp].video.video_main_bitrate;
 
-            comboBox_resolution_sub.SelectedIndex = camera_list[tmp].video.video_sub_resolution;
-            textBox_framerate_sub.Text = camera_list[tmp].video.video_sub_framerate;
-            comboBox_codec_sub.SelectedIndex = camera_list[tmp].video.video_sub_codec;
-            textBox_quality_sub.Text = camera_list[tmp].video.video_sub_quality;
-            textBox_bitrate_sub.Text = camera_list[tmp].video.video_sub_bitrate;
+                comboBox_resolution_sub.SelectedIndex = camera_list[tmp].video.video_sub_resolution;
+                textBox_framerate_sub.Text = camera_list[tmp].video.video_sub_framerate;
+                comboBox_codec_sub.SelectedIndex = camera_list[tmp].video.video_sub_codec;
+                textBox_quality_sub.Text = camera_list[tmp].video.video_sub_quality;
+                textBox_bitrate_sub.Text = camera_list[tmp].video.video_sub_bitrate;
+            }
         }
         /// /////////////////////////////////////////////////////////////////////////////////////////////////
         //////<Image Setting>///////////
@@ -429,13 +389,18 @@ namespace Device_List_0._01
 
         private void button_image_cancel_Click(object sender, EventArgs e)
         {
-            int tmp = 0;
-            if (listView_device.FocusedItem != null)
-                tmp = listView_device.FocusedItem.Index;
+            if (didyouclicklist == false)
+                MessageBox.Show("우선 카메라를 선택해주세요");
+            else
+            {
+                int tmp = 0;
+                if (listView_device.FocusedItem != null)
+                    tmp = listView_device.FocusedItem.Index;
 
-            trackBar_brightness.Value = camera_list[tmp].image.image_brightness;
-            trackBar_contrast.Value = camera_list[tmp].image.image_contrast;
-            trackBar_sharpness.Value = camera_list[tmp].image.image_sharpness;
+                trackBar_brightness.Value = camera_list[tmp].image.image_brightness;
+                trackBar_contrast.Value = camera_list[tmp].image.image_contrast;
+                trackBar_sharpness.Value = camera_list[tmp].image.image_sharpness;
+            }
         }
 
         /// /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -498,14 +463,19 @@ namespace Device_List_0._01
 
         private void button7_network_cancel_Click(object sender, EventArgs e)
         {
-            int tmp = 0;
-            if (listView_device.FocusedItem != null)
-                tmp = listView_device.FocusedItem.Index;
+            if (didyouclicklist == false)
+                MessageBox.Show("우선 카메라를 선택해주세요");
+            else
+            {
+                int tmp = 0;
+                if (listView_device.FocusedItem != null)
+                    tmp = listView_device.FocusedItem.Index;
 
-            textBox_ip_adress.Text = camera_list[tmp].network.network_IP;
-            textBox_http_port.Text = camera_list[tmp].network.network_http;
-            textBox_https_port.Text = camera_list[tmp].network.network_https;
-            textBox_rtsp_port.Text = camera_list[tmp].network.network_rtsp;
+                textBox_ip_adress.Text = camera_list[tmp].network.network_IP;
+                textBox_http_port.Text = camera_list[tmp].network.network_http;
+                textBox_https_port.Text = camera_list[tmp].network.network_https;
+                textBox_rtsp_port.Text = camera_list[tmp].network.network_rtsp;
+            }
         }
 
         /// /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -552,16 +522,20 @@ namespace Device_List_0._01
 
         private void button_archive_cancel_Click(object sender, EventArgs e)
         {
-            int tmp = 0;
-            if (listView_device.FocusedItem != null)
-                tmp = listView_device.FocusedItem.Index;
+            if (didyouclicklist == false)
+                MessageBox.Show("우선 카메라를 선택해주세요");
+            else
+            {
+                int tmp = 0;
+                if (listView_device.FocusedItem != null)
+                    tmp = listView_device.FocusedItem.Index;
 
-            comboBox_storage.SelectedIndex = camera_list[tmp].archive.archive_set_storage;
-            comboBox_record_period.SelectedIndex = camera_list[tmp].archive.archive_set_record_period;
-            textBox_record_time.Text = camera_list[tmp].archive.archive_set_record_time;
-            textBox_framerate.Text = camera_list[tmp].archive.archive_framerate;
-            comboBox_record_stream.SelectedIndex = camera_list[tmp].archive.archive_set_record_stream;
-          
+                comboBox_storage.SelectedIndex = camera_list[tmp].archive.archive_set_storage;
+                comboBox_record_period.SelectedIndex = camera_list[tmp].archive.archive_set_record_period;
+                textBox_record_time.Text = camera_list[tmp].archive.archive_set_record_time;
+                textBox_framerate.Text = camera_list[tmp].archive.archive_framerate;
+                comboBox_record_stream.SelectedIndex = camera_list[tmp].archive.archive_set_record_stream;
+            }
         }
         /// /////////////////////////////////////////////////////////////////////////////////////////////////
         //////<Event Setting>////////
@@ -590,10 +564,9 @@ namespace Device_List_0._01
             int tmp = 0;
             if (listView_device.FocusedItem != null)
                 tmp = listView_device.FocusedItem.Index;
+            if(didyouclicklist==true)
+               webBrowser.Navigate(camera_list[tmp].network.network_IP);
             
-            webBrowser.Navigate(textBox_ip_adress.Text);
         }
-
-
     }
 }
