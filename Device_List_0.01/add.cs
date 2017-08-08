@@ -50,8 +50,11 @@ namespace Device_List_0._01
 
                 //................................................................................///이 아래부터 나중에수정할것들//
                 /////////입력받은 maker, ip, id, pw 로 카메라 검색/ tab 메뉴의 항목에 값 저장&초기값으로 초기화..
-                ///////////////////////////////Device Setting///////////////////////
+
                 int tmp = m.camera_list.Count;
+                m.camera_list[tmp - 1].camera_server = "임시서버";
+                m.camera_list[tmp - 1].camera_connect = true;
+                ///////////////////////////////Device Setting///////////////////////
                 m.camera_list[tmp - 1].device.enable = true;
                 m.camera_list[tmp - 1].device.device_name = "임시이름 " + tmp;
                 m.camera_list[tmp - 1].device.device_username = "임시유저 " + tmp;
@@ -179,6 +182,11 @@ namespace Device_List_0._01
         {
             Range r = new Range();
             r.ipset(sender, e, textBox_IP);
+        }
+
+        private void Form_add_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

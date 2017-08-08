@@ -55,6 +55,12 @@
     <Compile Include="Camera.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="Image.cs" />
+    <Compile Include="List.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="List.Designer.cs">
+      <DependentUpon>List.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modify.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +87,9 @@
     <Compile Include="Video.cs" />
     <EmbeddedResource Include="add.resx">
       <DependentUpon>add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="List.resx">
+      <DependentUpon>List.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modify.resx">
       <DependentUpon>Modify.cs</DependentUpon>

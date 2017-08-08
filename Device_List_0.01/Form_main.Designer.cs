@@ -35,6 +35,7 @@
             this.button_add = new System.Windows.Forms.Button();
             this.listView_device = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
+            this.button_listview_collection = new System.Windows.Forms.Button();
             this.tabcontrol_menu = new System.Windows.Forms.TabControl();
             this.tabPage_device = new System.Windows.Forms.TabPage();
             this.button_device_cancel = new System.Windows.Forms.Button();
@@ -197,6 +198,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.button_listview_collection);
             this.splitContainer1.Panel2.Controls.Add(this.tabcontrol_menu);
             this.splitContainer1.Size = new System.Drawing.Size(949, 582);
             this.splitContainer1.SplitterDistance = 273;
@@ -263,6 +265,17 @@
             this.label1.Size = new System.Drawing.Size(117, 21);
             this.label1.TabIndex = 1;
             this.label1.Text = "Device List";
+            // 
+            // button_listview_collection
+            // 
+            this.button_listview_collection.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_listview_collection.Location = new System.Drawing.Point(552, 529);
+            this.button_listview_collection.Name = "button_listview_collection";
+            this.button_listview_collection.Size = new System.Drawing.Size(75, 23);
+            this.button_listview_collection.TabIndex = 3;
+            this.button_listview_collection.Text = "Listview";
+            this.button_listview_collection.UseVisualStyleBackColor = true;
+            this.button_listview_collection.Click += new System.EventHandler(this.button_listview_collection_Click);
             // 
             // tabcontrol_menu
             // 
@@ -1447,6 +1460,7 @@
             this.ClientSize = new System.Drawing.Size(949, 582);
             this.Controls.Add(this.splitContainer1);
             this.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.MinimumSize = new System.Drawing.Size(965, 621);
             this.Name = "Form_main";
             this.Text = "Device_List";
             this.Load += new System.EventHandler(this.Form_main_Load);
@@ -1613,6 +1627,7 @@
         public System.Windows.Forms.GroupBox groupBox_webpage;
         private System.Windows.Forms.Button button_refresh;
         public System.Windows.Forms.TabPage tabPage_webpage;
+        public System.Windows.Forms.Button button_listview_collection;
     }
 }
 

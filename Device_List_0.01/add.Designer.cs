@@ -156,6 +156,7 @@
             this.MaximizeBox = false;
             this.Name = "Form_add";
             this.Text = "Device Add";
+            this.Load += new System.EventHandler(this.Form_add_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -35,7 +35,6 @@ namespace Device_List_0._01
         }
     }
     
-
     public class Xmlclass
     {
         //for Serialization
@@ -44,10 +43,12 @@ namespace Device_List_0._01
 
     public class Camera
     {
+        public string camera_server = "";
         public string camera_manufacturer = "";
         public string camera_IP="";
         public string camera_ID = "";
         public string camera_PW = "";
+        public bool camera_connect = true;
 
         public Device device = new Device();
         public Video video = new Video();

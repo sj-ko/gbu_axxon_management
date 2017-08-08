@@ -76,6 +76,15 @@ namespace Device_List_0._01
         {
 
         }
+        private void button_listview_collection_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("" + camera_list.Count);
+            Form_list li = new Form_list();
+            MessageBox.Show("???" + camera_list.Count);
+            li.Owner = this;
+            MessageBox.Show("어디서" + camera_list.Count);
+            li.Show();
+        }
         private void button_add_Click(object sender, EventArgs e)
         {
             Form_add add = new Form_add();
@@ -167,11 +176,17 @@ namespace Device_List_0._01
         private void listView_device_Click(object sender, EventArgs e)      //리스트 아이템 클릭시 tab 속성들 변경
         {
             didyouclicklist = true;
-            
+           
             int tmp = 0;
             if (listView_device.FocusedItem != null)
                 tmp = listView_device.FocusedItem.Index;
             tabcontrol_menu.SelectedTab = tabPage_device;
+
+            if (camera_list[tmp].camera_connect == false)
+                tabcontrol_menu.Enabled = false;
+            else
+                tabcontrol_menu.Enabled = true;
+
             ////////Device Setting/////
             checkBox_enabled.Checked = camera_list[tmp].device.enable;
             textBox_name.Text = camera_list[tmp].device.device_name;
@@ -573,5 +588,7 @@ namespace Device_List_0._01
         {
 
         }
+
+        
     }
 }
