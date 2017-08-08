@@ -78,11 +78,8 @@ namespace Device_List_0._01
         }
         private void button_listview_collection_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("" + camera_list.Count);
             Form_list li = new Form_list();
-            MessageBox.Show("???" + camera_list.Count);
             li.Owner = this;
-            MessageBox.Show("어디서" + camera_list.Count);
             li.Show();
         }
         private void button_add_Click(object sender, EventArgs e)
