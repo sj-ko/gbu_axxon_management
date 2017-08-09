@@ -67,6 +67,8 @@ namespace Device_List_0._01
             {
                 MessageBox.Show("XML 문제 발생\r\n" + ex);
             }
+            tabcontrol_menu.Enabled = false; // this disables the controls on it
+            tabcontrol_menu.Visible = false; // this hides the controls on it.
         }
         private void button_listview_collection_Click(object sender, EventArgs e)
         {
@@ -97,59 +99,18 @@ namespace Device_List_0._01
 
                     M.serialize(x);
                 }
-                ///////////////////////////////Device Setting///////////////////////
-                checkBox_enabled.Checked = false;
-                textBox_name.Text = "";
-                textBox_username.Text = "";
-                textBox_password.Text = "";
-                label_dmodel.Text = "";
-                label_dmanufacturer.Text = "";
-                label_dfireware.Text = "";
-
-                ///////////////////////////////Video Streaming///////////////////////
-                comboBox_resolution_main.SelectedIndex = -1;
-                textBox_framerate_main.Text = "";
-                comboBox_codec_main.SelectedIndex = -1;
-                textBox_quality_main.Text = "";
-                textBox_bitrate_main.Text = "";
-                comboBox_resolution_sub.SelectedIndex = -1;
-                textBox_framerate_sub.Text = "";
-                comboBox_codec_sub.SelectedIndex = -1;
-                textBox_quality_sub.Text = "";
-                textBox_bitrate_sub.Text = "";
-
-                ///////////////////////////////Image Setting///////////////////////
-                trackBar_brightness.Value = 50;
-                trackBar_contrast.Value = 50;
-                trackBar_sharpness.Value = 50;
-                ///////////////////////////////Network Setting///////////////////////
-                textBox_ip_adress.Text = "";
-                textBox_http_port.Text = "";
-                textBox_https_port.Text = "";
-                textBox_rtsp_port.Text = "";
-                ///////////////////////////////Archive Setting///////////////////////
-                comboBox_storage.SelectedIndex = -1;
-                comboBox_record_period.SelectedIndex = -1;
-                textBox_record_time.Text = "";
-                textBox_quality_main.Text = "";
-                textBox_framerate.Text = "";
-                comboBox_record_stream.SelectedIndex = -1;
-                label_archive_name.Text = "";
-                label_archive_type.Text = "";
-                label_archive_total.Text = "";
-                label_archive_free.Text = "";
-                ///////////////////////////////Event Setting///////////////////////
-
-                ///////////////////////////////Webpage///////////////////////
-
-                didyouclicklist=false;
+                tabcontrol_menu.Enabled = false; // this disables the controls on it
+                tabcontrol_menu.Visible = false; // this hides the controls on it.
+                didyouclicklist =false;
             }
         }
         /// /////////////////////////////////////////////////////////////////////////////////////////////////
         private void listView_device_Click(object sender, EventArgs e)      //리스트 아이템 클릭시 tab 속성들 변경
         {
             didyouclicklist = true;
-           
+            tabcontrol_menu.Enabled = true; // this disables the controls on it
+            tabcontrol_menu.Visible = true; // this hides the controls on it.
+
             int tmp = 0;
             if (listView_device.FocusedItem != null)
                 tmp = listView_device.FocusedItem.Index;
