@@ -173,51 +173,41 @@ namespace Device_List_0._01
         //////<Device Setting>//////////
         private void button_device_modify_Click(object sender, EventArgs e)
         {
-            if (didyouclicklist == false)
-                MessageBox.Show("우선 카메라를 선택해주세요");
-            else
+            if (textBox_password.Text.Length < 1 || textBox_name.Text.Length < 1 || textBox_username.Text.Length < 1)
             {
-                if (textBox_password.Text.Length < 1 || textBox_name.Text.Length < 1 || textBox_username.Text.Length < 1)
-                {
-                    MessageBox.Show("모든 항목을 입력해주세요.");
-                }
-                else
-                {
-                    int tmp = 0;
-                    if (listView_device.FocusedItem != null)
-                        tmp = listView_device.FocusedItem.Index;
-                    string pw = "";
-                    for (int i = 0; i < textBox_password.TextLength; i++)
-                        pw = pw + "*";
-                    camera_list[tmp].camera_PW = textBox_password.Text;
-                    camera_list[tmp].device.enable = checkBox_enabled.Checked;
-                    camera_list[tmp].device.device_name = textBox_name.Text;
-                    camera_list[tmp].device.device_username = textBox_username.Text;
-                    camera_list[tmp].device.device_PW = textBox_password.Text;
-                    listView_device.Items[tmp].SubItems[3].Text = pw;
-
-                    x.item.RemoveAt(tmp);
-                    x.item.Insert(tmp, camera_list[tmp]);
-                    M.serialize(x);
-                }
+                MessageBox.Show("모든 항목을 입력해주세요.");
             }
-        }
-
-        private void button_device_cancel_Click(object sender, EventArgs e)
-        {
-            if (didyouclicklist == false)
-                MessageBox.Show("우선 카메라를 선택해주세요");
             else
             {
                 int tmp = 0;
                 if (listView_device.FocusedItem != null)
                     tmp = listView_device.FocusedItem.Index;
+                string pw = "";
+                for (int i = 0; i < textBox_password.TextLength; i++)
+                    pw = pw + "*";
+                camera_list[tmp].camera_PW = textBox_password.Text;
+                camera_list[tmp].device.enable = checkBox_enabled.Checked;
+                camera_list[tmp].device.device_name = textBox_name.Text;
+                camera_list[tmp].device.device_username = textBox_username.Text;
+                camera_list[tmp].device.device_PW = textBox_password.Text;
+                listView_device.Items[tmp].SubItems[3].Text = pw;
 
-                checkBox_enabled.Checked = camera_list[tmp].device.enable;
-                textBox_name.Text = camera_list[tmp].device.device_name;
-                textBox_username.Text = camera_list[tmp].device.device_username;
-                textBox_password.Text = camera_list[tmp].device.device_PW;
+                x.item.RemoveAt(tmp);
+                x.item.Insert(tmp, camera_list[tmp]);
+                M.serialize(x);
             }
+        }
+
+        private void button_device_cancel_Click(object sender, EventArgs e)
+        {
+            int tmp = 0;
+            if (listView_device.FocusedItem != null)
+                tmp = listView_device.FocusedItem.Index;
+
+            checkBox_enabled.Checked = camera_list[tmp].device.enable;
+            textBox_name.Text = camera_list[tmp].device.device_name;
+            textBox_username.Text = camera_list[tmp].device.device_username;
+            textBox_password.Text = camera_list[tmp].device.device_PW;
         }
 
         /// /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -260,95 +250,75 @@ namespace Device_List_0._01
 
         private void button_video_modify_Click(object sender, EventArgs e)
         {
-            if (didyouclicklist == false)
-                MessageBox.Show("우선 카메라를 선택해주세요");
+            if (textBox_framerate_main.Text.Length < 1 || textBox_quality_main.Text.Length < 1 || textBox_bitrate_main.Text.Length < 1 ||
+                    textBox_framerate_sub.Text.Length < 1 || textBox_quality_sub.Text.Length < 1 || textBox_bitrate_sub.Text.Length < 1)
+            {
+                MessageBox.Show("모든 항목을 입력해주세요.");
+            }
             else
             {
-                if (textBox_framerate_main.Text.Length < 1 || textBox_quality_main.Text.Length < 1 || textBox_bitrate_main.Text.Length < 1 ||
-                    textBox_framerate_sub.Text.Length < 1 || textBox_quality_sub.Text.Length < 1 || textBox_bitrate_sub.Text.Length < 1)
-                {
-                    MessageBox.Show("모든 항목을 입력해주세요.");
-                }
-                else
-                {
-                    int tmp = 0;
-                    if (listView_device.FocusedItem != null)
-                        tmp = listView_device.FocusedItem.Index;
-                    camera_list[tmp].video.video_main_resolution = comboBox_resolution_main.SelectedIndex;
-                    camera_list[tmp].video.video_main_framerate = textBox_framerate_main.Text;
-                    camera_list[tmp].video.video_main_codec = comboBox_codec_main.SelectedIndex;
-                    camera_list[tmp].video.video_main_quality = textBox_quality_main.Text;
-                    camera_list[tmp].video.video_main_bitrate = textBox_bitrate_main.Text;
+                int tmp = 0;
+                if (listView_device.FocusedItem != null)
+                    tmp = listView_device.FocusedItem.Index;
+                camera_list[tmp].video.video_main_resolution = comboBox_resolution_main.SelectedIndex;
+                camera_list[tmp].video.video_main_framerate = textBox_framerate_main.Text;
+                camera_list[tmp].video.video_main_codec = comboBox_codec_main.SelectedIndex;
+                camera_list[tmp].video.video_main_quality = textBox_quality_main.Text;
+                camera_list[tmp].video.video_main_bitrate = textBox_bitrate_main.Text;
 
-                    camera_list[tmp].video.video_sub_resolution = comboBox_resolution_sub.SelectedIndex;
-                    camera_list[tmp].video.video_sub_framerate = textBox_framerate_sub.Text;
-                    camera_list[tmp].video.video_sub_codec = comboBox_codec_sub.SelectedIndex;
-                    camera_list[tmp].video.video_sub_quality = textBox_quality_sub.Text;
-                    camera_list[tmp].video.video_sub_bitrate = textBox_bitrate_sub.Text;
+                camera_list[tmp].video.video_sub_resolution = comboBox_resolution_sub.SelectedIndex;
+                camera_list[tmp].video.video_sub_framerate = textBox_framerate_sub.Text;
+                camera_list[tmp].video.video_sub_codec = comboBox_codec_sub.SelectedIndex;
+                camera_list[tmp].video.video_sub_quality = textBox_quality_sub.Text;
+                camera_list[tmp].video.video_sub_bitrate = textBox_bitrate_sub.Text;
 
-                    x.item.RemoveAt(tmp);
-                    x.item.Insert(tmp, camera_list[tmp]);
-                    M.serialize(x);
-                }
+                x.item.RemoveAt(tmp);
+                x.item.Insert(tmp, camera_list[tmp]);
+                M.serialize(x);
             }
         }
 
         private void button_video_cancel_Click(object sender, EventArgs e)
         {
-            if (didyouclicklist == false)
-                MessageBox.Show("우선 카메라를 선택해주세요");
-            else
-            {
-                int tmp = 0;
-                if (listView_device.FocusedItem != null)
-                    tmp = listView_device.FocusedItem.Index;
-                
-                comboBox_resolution_main.SelectedIndex = camera_list[tmp].video.video_main_resolution;
-                textBox_framerate_main.Text = camera_list[tmp].video.video_main_framerate;
-                comboBox_codec_main.SelectedIndex = camera_list[tmp].video.video_main_codec;
-                textBox_quality_main.Text = camera_list[tmp].video.video_main_quality;
-                textBox_bitrate_main.Text = camera_list[tmp].video.video_main_bitrate;
+            int tmp = 0;
+            if (listView_device.FocusedItem != null)
+                tmp = listView_device.FocusedItem.Index;
 
-                comboBox_resolution_sub.SelectedIndex = camera_list[tmp].video.video_sub_resolution;
-                textBox_framerate_sub.Text = camera_list[tmp].video.video_sub_framerate;
-                comboBox_codec_sub.SelectedIndex = camera_list[tmp].video.video_sub_codec;
-                textBox_quality_sub.Text = camera_list[tmp].video.video_sub_quality;
-                textBox_bitrate_sub.Text = camera_list[tmp].video.video_sub_bitrate;
-            }
+            comboBox_resolution_main.SelectedIndex = camera_list[tmp].video.video_main_resolution;
+            textBox_framerate_main.Text = camera_list[tmp].video.video_main_framerate;
+            comboBox_codec_main.SelectedIndex = camera_list[tmp].video.video_main_codec;
+            textBox_quality_main.Text = camera_list[tmp].video.video_main_quality;
+            textBox_bitrate_main.Text = camera_list[tmp].video.video_main_bitrate;
+
+            comboBox_resolution_sub.SelectedIndex = camera_list[tmp].video.video_sub_resolution;
+            textBox_framerate_sub.Text = camera_list[tmp].video.video_sub_framerate;
+            comboBox_codec_sub.SelectedIndex = camera_list[tmp].video.video_sub_codec;
+            textBox_quality_sub.Text = camera_list[tmp].video.video_sub_quality;
+            textBox_bitrate_sub.Text = camera_list[tmp].video.video_sub_bitrate;
         }
         /// /////////////////////////////////////////////////////////////////////////////////////////////////
         //////<Image Setting>///////////
         private void button_image_modify_Click(object sender, EventArgs e)
         {
-            if (didyouclicklist == false)
-                MessageBox.Show("우선 카메라를 선택해주세요");
-            else
-            {
-                int tmp = 0;
-                if (listView_device.FocusedItem != null)
-                    tmp = listView_device.FocusedItem.Index;
+            int tmp = 0;
+            if (listView_device.FocusedItem != null)
+                tmp = listView_device.FocusedItem.Index;
 
-                camera_list[tmp].image.image_brightness = trackBar_brightness.Value;
-                camera_list[tmp].image.image_contrast = trackBar_contrast.Value;
-                camera_list[tmp].image.image_sharpness = trackBar_sharpness.Value;
-                M.serialize(x);
-            }
+            camera_list[tmp].image.image_brightness = trackBar_brightness.Value;
+            camera_list[tmp].image.image_contrast = trackBar_contrast.Value;
+            camera_list[tmp].image.image_sharpness = trackBar_sharpness.Value;
+            M.serialize(x);
         }
 
         private void button_image_cancel_Click(object sender, EventArgs e)
         {
-            if (didyouclicklist == false)
-                MessageBox.Show("우선 카메라를 선택해주세요");
-            else
-            {
-                int tmp = 0;
-                if (listView_device.FocusedItem != null)
-                    tmp = listView_device.FocusedItem.Index;
+            int tmp = 0;
+            if (listView_device.FocusedItem != null)
+                tmp = listView_device.FocusedItem.Index;
 
-                trackBar_brightness.Value = camera_list[tmp].image.image_brightness;
-                trackBar_contrast.Value = camera_list[tmp].image.image_contrast;
-                trackBar_sharpness.Value = camera_list[tmp].image.image_sharpness;
-            }
+            trackBar_brightness.Value = camera_list[tmp].image.image_brightness;
+            trackBar_contrast.Value = camera_list[tmp].image.image_contrast;
+            trackBar_sharpness.Value = camera_list[tmp].image.image_sharpness;
         }
 
         /// /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -384,46 +354,34 @@ namespace Device_List_0._01
                 MessageBox.Show("우선 카메라를 선택해주세요");
             else
             {
-                if (textBox_ip_adress.Text.Length < 1 || textBox_http_port.Text.Length < 1 || textBox_https_port.Text.Length < 1 || textBox_rtsp_port.Text.Length < 1)
-                {
-                    MessageBox.Show("모든 항목을 입력해주세요.");
-                }
-                else
-                {
-                    int tmp = 0;
-                    if (listView_device.FocusedItem != null)
-                        tmp = listView_device.FocusedItem.Index;
+                int tmp = 0;
+                if (listView_device.FocusedItem != null)
+                    tmp = listView_device.FocusedItem.Index;
 
-                    camera_list[tmp].camera_IP = textBox_ip_adress.Text;
-                    camera_list[tmp].network.network_IP = textBox_ip_adress.Text;
-                    camera_list[tmp].network.network_http = textBox_http_port.Text;
-                    camera_list[tmp].network.network_https = textBox_https_port.Text;
-                    camera_list[tmp].network.network_rtsp = textBox_rtsp_port.Text;
+                camera_list[tmp].camera_IP = textBox_ip_adress.Text;
+                camera_list[tmp].network.network_IP = textBox_ip_adress.Text;
+                camera_list[tmp].network.network_http = textBox_http_port.Text;
+                camera_list[tmp].network.network_https = textBox_https_port.Text;
+                camera_list[tmp].network.network_rtsp = textBox_rtsp_port.Text;
 
-                    listView_device.Items[tmp].SubItems[1].Text = textBox_ip_adress.Text;
+                listView_device.Items[tmp].SubItems[1].Text = textBox_ip_adress.Text;
 
-                    x.item.RemoveAt(tmp);
-                    x.item.Insert(tmp, camera_list[tmp]);
-                    M.serialize(x);
-                }
+                x.item.RemoveAt(tmp);
+                x.item.Insert(tmp, camera_list[tmp]);
+                M.serialize(x);
             }
         }
 
         private void button7_network_cancel_Click(object sender, EventArgs e)
         {
-            if (didyouclicklist == false)
-                MessageBox.Show("우선 카메라를 선택해주세요");
-            else
-            {
-                int tmp = 0;
-                if (listView_device.FocusedItem != null)
-                    tmp = listView_device.FocusedItem.Index;
+            int tmp = 0;
+            if (listView_device.FocusedItem != null)
+                tmp = listView_device.FocusedItem.Index;
 
-                textBox_ip_adress.Text = camera_list[tmp].network.network_IP;
-                textBox_http_port.Text = camera_list[tmp].network.network_http;
-                textBox_https_port.Text = camera_list[tmp].network.network_https;
-                textBox_rtsp_port.Text = camera_list[tmp].network.network_rtsp;
-            }
+            textBox_ip_adress.Text = camera_list[tmp].network.network_IP;
+            textBox_http_port.Text = camera_list[tmp].network.network_http;
+            textBox_https_port.Text = camera_list[tmp].network.network_https;
+            textBox_rtsp_port.Text = camera_list[tmp].network.network_rtsp;
         }
 
         /// /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -441,49 +399,39 @@ namespace Device_List_0._01
         }
         private void button_archive_modify_Click(object sender, EventArgs e)
         {
-            if (didyouclicklist == false)
-                MessageBox.Show("우선 카메라를 선택해주세요");
-            else
+            if (textBox_record_time.Text.Length < 1 || textBox_framerate.Text.Length < 1)
             {
-                if (textBox_record_time.Text.Length < 1 || textBox_framerate.Text.Length < 1)
-                {
-                    MessageBox.Show("모든 항목을 입력해주세요.");
-                }
-                else
-                {
-                    int tmp = 0;
-                    if (listView_device.FocusedItem != null)
-                        tmp = listView_device.FocusedItem.Index;
-
-                    camera_list[tmp].archive.archive_set_storage = comboBox_storage.SelectedIndex;
-                    camera_list[tmp].archive.archive_set_record_period = comboBox_record_period.SelectedIndex;
-                    camera_list[tmp].archive.archive_set_record_time = textBox_record_time.Text;
-                    camera_list[tmp].archive.archive_framerate = textBox_framerate.Text;
-                    camera_list[tmp].archive.archive_set_record_stream = comboBox_record_stream.SelectedIndex;
-
-                    x.item.RemoveAt(tmp);
-                    x.item.Insert(tmp, camera_list[tmp]);
-                    M.serialize(x);
-                }
+                MessageBox.Show("모든 항목을 입력해주세요.");
             }
-        }
-
-        private void button_archive_cancel_Click(object sender, EventArgs e)
-        {
-            if (didyouclicklist == false)
-                MessageBox.Show("우선 카메라를 선택해주세요");
             else
             {
                 int tmp = 0;
                 if (listView_device.FocusedItem != null)
                     tmp = listView_device.FocusedItem.Index;
 
-                comboBox_storage.SelectedIndex = camera_list[tmp].archive.archive_set_storage;
-                comboBox_record_period.SelectedIndex = camera_list[tmp].archive.archive_set_record_period;
-                textBox_record_time.Text = camera_list[tmp].archive.archive_set_record_time;
-                textBox_framerate.Text = camera_list[tmp].archive.archive_framerate;
-                comboBox_record_stream.SelectedIndex = camera_list[tmp].archive.archive_set_record_stream;
+                camera_list[tmp].archive.archive_set_storage = comboBox_storage.SelectedIndex;
+                camera_list[tmp].archive.archive_set_record_period = comboBox_record_period.SelectedIndex;
+                camera_list[tmp].archive.archive_set_record_time = textBox_record_time.Text;
+                camera_list[tmp].archive.archive_framerate = textBox_framerate.Text;
+                camera_list[tmp].archive.archive_set_record_stream = comboBox_record_stream.SelectedIndex;
+
+                x.item.RemoveAt(tmp);
+                x.item.Insert(tmp, camera_list[tmp]);
+                M.serialize(x);
             }
+        }
+
+        private void button_archive_cancel_Click(object sender, EventArgs e)
+        {
+            int tmp = 0;
+            if (listView_device.FocusedItem != null)
+                tmp = listView_device.FocusedItem.Index;
+
+            comboBox_storage.SelectedIndex = camera_list[tmp].archive.archive_set_storage;
+            comboBox_record_period.SelectedIndex = camera_list[tmp].archive.archive_set_record_period;
+            textBox_record_time.Text = camera_list[tmp].archive.archive_set_record_time;
+            textBox_framerate.Text = camera_list[tmp].archive.archive_framerate;
+            comboBox_record_stream.SelectedIndex = camera_list[tmp].archive.archive_set_record_stream;
         }
         /// /////////////////////////////////////////////////////////////////////////////////////////////////
         //////<Event Setting>////////
