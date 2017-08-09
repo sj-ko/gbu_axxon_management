@@ -44,6 +44,9 @@
             // 
             // listView_excel
             // 
+            this.listView_excel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.listView_excel.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
@@ -54,6 +57,7 @@
             this.columnHeader7,
             this.columnHeader8,
             this.columnHeader9});
+            this.listView_excel.FullRowSelect = true;
             this.listView_excel.GridLines = true;
             this.listView_excel.Location = new System.Drawing.Point(12, 44);
             this.listView_excel.Name = "listView_excel";
@@ -103,6 +107,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("굴림", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.Location = new System.Drawing.Point(260, 9);
@@ -113,12 +118,14 @@
             // 
             // button_save
             // 
+            this.button_save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button_save.Location = new System.Drawing.Point(647, 730);
             this.button_save.Name = "button_save";
             this.button_save.Size = new System.Drawing.Size(75, 23);
             this.button_save.TabIndex = 2;
             this.button_save.Text = "Save";
             this.button_save.UseVisualStyleBackColor = true;
+            this.button_save.Click += new System.EventHandler(this.button_save_Click);
             // 
             // Form_list
             // 
@@ -128,6 +135,7 @@
             this.Controls.Add(this.button_save);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listView_excel);
+            this.MinimumSize = new System.Drawing.Size(761, 830);
             this.Name = "Form_list";
             this.Text = "List";
             this.Load += new System.EventHandler(this.Form_list_Load);
