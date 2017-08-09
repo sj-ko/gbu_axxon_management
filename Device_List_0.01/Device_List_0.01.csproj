@@ -61,12 +61,6 @@
     <Compile Include="List.Designer.cs">
       <DependentUpon>List.cs</DependentUpon>
     </Compile>
-    <Compile Include="Modify.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Modify.Designer.cs">
-      <DependentUpon>Modify.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form_main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,9 +84,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="List.resx">
       <DependentUpon>List.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Modify.resx">
-      <DependentUpon>Modify.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_main.resx">
       <DependentUpon>Form_main.cs</DependentUpon>

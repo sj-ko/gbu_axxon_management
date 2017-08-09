@@ -194,7 +194,6 @@
             this.splitContainer1.Panel1.Controls.Add(this.button_add);
             this.splitContainer1.Panel1.Controls.Add(this.listView_device);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
-            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
             // 
             // splitContainer1.Panel2
             // 
@@ -203,7 +202,6 @@
             this.splitContainer1.Size = new System.Drawing.Size(949, 582);
             this.splitContainer1.SplitterDistance = 273;
             this.splitContainer1.TabIndex = 0;
-            this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
             // 
             // button_refresh
             // 
@@ -752,7 +750,6 @@
             this.comboBox_resolution_main.Name = "comboBox_resolution_main";
             this.comboBox_resolution_main.Size = new System.Drawing.Size(121, 20);
             this.comboBox_resolution_main.TabIndex = 1;
-            this.comboBox_resolution_main.SelectedIndexChanged += new System.EventHandler(this.comboBox_resolution_main_SelectedIndexChanged);
             // 
             // tabPage_image
             // 
@@ -1463,8 +1460,6 @@
             this.MinimumSize = new System.Drawing.Size(965, 621);
             this.Name = "Form_main";
             this.Text = "Device_List";
-            this.Load += new System.EventHandler(this.Form_main_Load);
-            this.Resize += new System.EventHandler(this.Form_main_Resize);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);

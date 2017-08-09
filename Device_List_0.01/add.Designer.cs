@@ -113,7 +113,6 @@
             this.textBox_PW.Name = "textBox_PW";
             this.textBox_PW.Size = new System.Drawing.Size(145, 21);
             this.textBox_PW.TabIndex = 16;
-            this.textBox_PW.TextChanged += new System.EventHandler(this.textBox_PW_TextChanged);
             // 
             // button_ok
             // 
@@ -156,7 +155,6 @@
             this.MaximizeBox = false;
             this.Name = "Form_add";
             this.Text = "Device Add";
-            this.Load += new System.EventHandler(this.Form_add_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

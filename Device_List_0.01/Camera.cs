@@ -1,29 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Xml;
 using System.Xml.Serialization;
 
-
 namespace Device_List_0._01
-{/*
-    public class management
-    {
-        public void serialize(Xmlclass x)
-        {
-            using (StreamWriter wr = new StreamWriter("Emp.xml"))
-            {
-                XmlSerializer xs = new XmlSerializer(typeof(Xmlclass));
-
-                xs.Serialize(wr, x);
-                wr.Close();
-            }
-        }
-        }*/
-
+{
     public class management
     {
         public void serialize(Xmlclass x)
@@ -34,7 +14,6 @@ namespace Device_List_0._01
             fs.Close();
         }
     }
-    
     public class Xmlclass
     {
         //for Serialization

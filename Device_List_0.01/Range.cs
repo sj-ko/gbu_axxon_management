@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace Device_List_0._01
 {
@@ -128,8 +124,6 @@ namespace Device_List_0._01
                     }
                 }
             }
-
-
         }
     }
 }

@@ -44,6 +44,8 @@
             // 
             // listView_excel
             // 
+            this.listView_excel.AllowColumnReorder = true;
+            this.listView_excel.AllowDrop = true;
             this.listView_excel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -64,6 +66,7 @@
             this.listView_excel.Size = new System.Drawing.Size(609, 735);
             this.listView_excel.TabIndex = 0;
             this.listView_excel.UseCompatibleStateImageBehavior = false;
+            this.listView_excel.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView_excel_ColumnClick);
             // 
             // columnHeader1
             // 

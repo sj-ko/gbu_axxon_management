@@ -1,16 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
-using System.Xml;
-using System.Xml.Serialization;
-
 
 namespace Device_List_0._01
 {
@@ -39,13 +28,6 @@ namespace Device_List_0._01
                 lvi.SubItems.Add(textBox_IP.Text);
                 lvi.SubItems.Add("connected");
                 m.listView_device.Items.Add(lvi);
-                /*
-                ListViewItem lvi = new ListViewItem(comboBox_maker.SelectedItem.ToString());
-                lvi.SubItems.Add(textBox_IP.Text);
-                lvi.SubItems.Add(textBox_ID.Text);
-                lvi.SubItems.Add(pw);
-                m.listView_device.Items.Add(lvi);
-                */
                 m.camera_list.Add(new Camera() { camera_manufacturer = comboBox_maker.SelectedItem.ToString(), camera_IP = textBox_IP.Text, camera_ID = textBox_ID.Text, camera_PW = textBox_PW.Text });
 
                 //................................................................................///이 아래부터 나중에수정할것들//
@@ -140,32 +122,11 @@ namespace Device_List_0._01
                 
                 m.x.item.Add(m.camera_list[tmp - 1]);
                 m.M.serialize(m.x);
-
-
-                /*
-                FileStream FStream = new FileStream("Emp.xml", FileMode.Open);
-
-                byte[] ReadAByte = new byte[1];
-                int FilePointerOffset = 0;
-
-                while (FilePointerOffset < FStream.Length - 32)
-                {
-                    FStream.Read(ReadAByte, 0, 1);
-                    FilePointerOffset++;
-                }
-                Xmlclass adtmp = new Xmlclass();
-                adtmp.item.Add(m.camera_list[tmp - 1]);
-                byte[] WriteSomeBytes = new byte[200];
-                WriteSomeBytes = Encoding.ASCII.GetBytes(Convert.ToChar(m.M.serialize(m.x)));
-                FStream.Write(WriteSomeBytes, 0, WriteSomeBytes.Length);
-                FStream.Close();
-                */
                 m.didyouclicklist = false;
                 Form_Notification check = new Form_Notification();
                 check.Owner = this;
                 check.Show();
             }
-
         }
 
         private void button_cancel_Click(object sender, EventArgs e)
@@ -173,20 +134,10 @@ namespace Device_List_0._01
             this.Close();
         }
 
-        private void textBox_PW_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void textBox_IP_KeyPress(object sender, KeyPressEventArgs e)
         {
             Range r = new Range();
             r.ipset(sender, e, textBox_IP);
-        }
-
-        private void Form_add_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

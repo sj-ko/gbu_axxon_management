@@ -1,18 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections;
 using System.Windows.Forms;
-using System.Runtime.InteropServices;
-using System.Reflection;
-using Microsoft.Office;
-using Microsoft.Office.Interop;
-using Microsoft.Office.Interop.Excel;
-using System.Diagnostics;
 
 namespace Device_List_0._01
 {
@@ -58,8 +46,7 @@ namespace Device_List_0._01
                 Microsoft.Office.Interop.Excel.Workbook excelBook = excelApp.Workbooks.Add(missingType);
                 Microsoft.Office.Interop.Excel.Worksheet excelWorksheet = (Microsoft.Office.Interop.Excel.Worksheet)excelBook.Worksheets.Add(missingType, missingType, missingType, missingType);
                 excelApp.Visible = false;
-
-                
+      
                 for (int i = 0; i < listView_excel.Columns.Count; i++)
                 {
                     excelWorksheet.Cells[1, i + 1] = this.listView_excel.Columns[i].Text;
@@ -69,7 +56,6 @@ namespace Device_List_0._01
                     for (int j = 0; j < listView_excel.Columns.Count; j++)
                     {
                         excelWorksheet.Cells[i + 2, j + 1] = this.listView_excel.Items[i].SubItems[j].Text;
-
                     }
                 }
 
@@ -83,7 +69,53 @@ namespace Device_List_0._01
             {
                 MessageBox.Show("Excel 파일 저장중 에러가 발생했습니다.");
             }
+        }
+        class ListViewItemComparer : IComparer
+        {
+            private int col;
+            public string sort = "asc";
+            public ListViewItemComparer()
+            {
+                col = 0;
+            }
 
+            public ListViewItemComparer(int column, string sort)
+            {
+                col = column;
+                this.sort = sort;       //정렬방식 asc/desc
+            }
+
+            public int Compare(object x, object y)
+            {
+                if (sort == "asc")
+                    return String.Compare(((ListViewItem)x).SubItems[col].Text, ((ListViewItem)y).SubItems[col].Text);
+                else
+                    return String.Compare(((ListViewItem)y).SubItems[col].Text, ((ListViewItem)x).SubItems[col].Text);
+            }
+        }
+        private void listView_excel_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            for (int i = 0; i < listView_excel.Columns.Count; i++)
+            {
+                listView_excel.Columns[i].Text = listView_excel.Columns[i].Text.Replace(" △", "");  //없을시 △▽△▽...
+                listView_excel.Columns[i].Text = listView_excel.Columns[i].Text.Replace(" ▽", "");
+            }
+
+            // DESC
+            if (this.listView_excel.Sorting == SortOrder.Ascending)
+            {
+                this.listView_excel.ListViewItemSorter = new ListViewItemComparer(e.Column, "desc");
+                listView_excel.Sorting = SortOrder.Descending;
+                listView_excel.Columns[e.Column].Text = listView_excel.Columns[e.Column].Text + " ▽";
+            }
+            // ASC
+            else
+            {
+                this.listView_excel.ListViewItemSorter = new ListViewItemComparer(e.Column, "asc");
+                listView_excel.Sorting = SortOrder.Ascending;
+                listView_excel.Columns[e.Column].Text = listView_excel.Columns[e.Column].Text + " △";
+            }
+            listView_excel.Sort();
         }
     }
 }

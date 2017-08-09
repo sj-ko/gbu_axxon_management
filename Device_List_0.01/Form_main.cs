@@ -14,8 +14,7 @@ namespace Device_List_0._01
         public Xmlclass dexml = new Xmlclass();
         public management M = new management();
         public bool didyouclicklist = false;
-        //public KeyEventArgs p;
-        /////for button_image/////
+
         //////////////////////////////
         public Form_main()
         {
@@ -62,19 +61,12 @@ namespace Device_List_0._01
                     
                     x.item.Add(camera_list[i]);
                     M.serialize(x);
-                    
                 }
             }
             catch (ArgumentException ex)
             {
                 MessageBox.Show("XML 문제 발생\r\n" + ex);
             }
-            
-            
-        }
-        private void Form_main_Load(object sender, EventArgs e)
-        {
-
         }
         private void button_listview_collection_Click(object sender, EventArgs e)
         {
@@ -153,22 +145,6 @@ namespace Device_List_0._01
                 didyouclicklist=false;
             }
         }
-
-        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void comboBox_resolution_main_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
-        {
-
-        }
-
         /// /////////////////////////////////////////////////////////////////////////////////////////////////
         private void listView_device_Click(object sender, EventArgs e)      //리스트 아이템 클릭시 tab 속성들 변경
         {
@@ -365,8 +341,7 @@ namespace Device_List_0._01
                 int tmp = 0;
                 if (listView_device.FocusedItem != null)
                     tmp = listView_device.FocusedItem.Index;
-
-
+                
                 comboBox_resolution_main.SelectedIndex = camera_list[tmp].video.video_main_resolution;
                 textBox_framerate_main.Text = camera_list[tmp].video.video_main_framerate;
                 comboBox_codec_main.SelectedIndex = camera_list[tmp].video.video_main_codec;
@@ -580,12 +555,5 @@ namespace Device_List_0._01
                webBrowser.Navigate(camera_list[tmp].network.network_IP);
             
         }
-
-        private void Form_main_Resize(object sender, EventArgs e)
-        {
-
-        }
-
-        
     }
 }
