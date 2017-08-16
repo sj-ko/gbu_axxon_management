@@ -41,6 +41,10 @@
             this.button_device_cancel = new System.Windows.Forms.Button();
             this.button_device_modify = new System.Windows.Forms.Button();
             this.groupBox_device = new System.Windows.Forms.GroupBox();
+            this.textBox_longitude = new System.Windows.Forms.TextBox();
+            this.textBox_latitude = new System.Windows.Forms.TextBox();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
             this.label_dfireware = new System.Windows.Forms.Label();
             this.label_dmanufacturer = new System.Windows.Forms.Label();
             this.label_dmodel = new System.Windows.Forms.Label();
@@ -330,6 +334,10 @@
             // 
             // groupBox_device
             // 
+            this.groupBox_device.Controls.Add(this.textBox_longitude);
+            this.groupBox_device.Controls.Add(this.textBox_latitude);
+            this.groupBox_device.Controls.Add(this.label40);
+            this.groupBox_device.Controls.Add(this.label33);
             this.groupBox_device.Controls.Add(this.label_dfireware);
             this.groupBox_device.Controls.Add(this.label_dmanufacturer);
             this.groupBox_device.Controls.Add(this.label_dmodel);
@@ -348,10 +356,44 @@
             this.groupBox_device.Controls.Add(this.checkBox_enabled);
             this.groupBox_device.Location = new System.Drawing.Point(6, 6);
             this.groupBox_device.Name = "groupBox_device";
-            this.groupBox_device.Size = new System.Drawing.Size(264, 204);
+            this.groupBox_device.Size = new System.Drawing.Size(264, 261);
             this.groupBox_device.TabIndex = 0;
             this.groupBox_device.TabStop = false;
             this.groupBox_device.Text = "Device";
+            // 
+            // textBox_longitude
+            // 
+            this.textBox_longitude.Location = new System.Drawing.Point(121, 223);
+            this.textBox_longitude.Name = "textBox_longitude";
+            this.textBox_longitude.Size = new System.Drawing.Size(121, 21);
+            this.textBox_longitude.TabIndex = 18;
+            this.textBox_longitude.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_longitude_KeyPress);
+            // 
+            // textBox_latitude
+            // 
+            this.textBox_latitude.Location = new System.Drawing.Point(121, 198);
+            this.textBox_latitude.Name = "textBox_latitude";
+            this.textBox_latitude.Size = new System.Drawing.Size(121, 21);
+            this.textBox_latitude.TabIndex = 17;
+            this.textBox_latitude.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_latitude_KeyPress);
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(56, 226);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(60, 12);
+            this.label40.TabIndex = 16;
+            this.label40.Text = "Longitude";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(66, 201);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(49, 12);
+            this.label33.TabIndex = 15;
+            this.label33.Text = "Latitude";
             // 
             // label_dfireware
             // 
@@ -1623,6 +1665,10 @@
         private System.Windows.Forms.Button button_refresh;
         public System.Windows.Forms.TabPage tabPage_webpage;
         public System.Windows.Forms.Button button_listview_collection;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label label33;
+        public System.Windows.Forms.TextBox textBox_longitude;
+        public System.Windows.Forms.TextBox textBox_latitude;
     }
 }
 

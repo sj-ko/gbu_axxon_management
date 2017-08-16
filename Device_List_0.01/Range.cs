@@ -33,7 +33,29 @@ namespace Device_List_0._01
                 }
             }
         }
+        public void check_effectiveness(object sender, KeyPressEventArgs e, TextBox t)
+        {
+            if (!(char.IsDigit(e.KeyChar) || e.KeyChar == Convert.ToChar(Keys.Back) || (e.KeyChar == Convert.ToChar('.'))
+                || (e.KeyChar == Convert.ToChar('-'))))
+            {
+                e.Handled = true;
+            }
+        }
+        public void rangeset_ver2(TextBox text,double range_bottom, double range_top)
+        {
+            string name;
+            double tmp = Convert.ToDouble(text.Text);
+            if ((tmp < range_bottom || tmp > range_top) )
+            {
+                if (range_top == 180)
+                    name = "longitude";
+                else
+                    name = "latitude";
 
+                MessageBox.Show(name + " error : " + range_bottom + "~" + range_top + " 사이의 " +name+ " 값을 입력해주세요.");
+                text.Text = "";
+            }
+        }
         public void ipset(object sender, KeyPressEventArgs e, TextBox t)
         { 
             int iPos = 0;               // IP 구역의 현재 위치

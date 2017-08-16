@@ -4,6 +4,8 @@ using System.Windows.Forms;
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Device_List_0._01
 {
@@ -27,6 +29,7 @@ namespace Device_List_0._01
             listView_device.Columns.Add("IP");
             listView_device.Columns.Add("연결상태");
             
+
             //////////////////////////////
             if(System.IO.File.Exists("Emp.xml"))
             try
@@ -129,6 +132,8 @@ namespace Device_List_0._01
             label_dmodel.Text = camera_list[tmp].device.device_model;
             label_dmanufacturer.Text = camera_list[tmp].device.device_manufacturer;
             label_dfireware.Text = camera_list[tmp].device.device_firmware;
+            textBox_latitude.Text = camera_list[tmp].device.latitude.ToString();
+            textBox_longitude.Text = camera_list[tmp].device.longitude.ToString();
 
             ////////Video Setting/////
             comboBox_resolution_main.SelectedIndex = camera_list[tmp].video.video_main_resolution;
@@ -171,9 +176,22 @@ namespace Device_List_0._01
         }
         /// /////////////////////////////////////////////////////////////////////////////////////////////////
         //////<Device Setting>//////////
+        private void textBox_latitude_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Range r = new Range();
+            r.check_effectiveness(sender, e, textBox_latitude);
+        }
+
+        private void textBox_longitude_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Range r = new Range();
+            r.check_effectiveness(sender, e, textBox_longitude);
+        }
+
         private void button_device_modify_Click(object sender, EventArgs e)
         {
-            if (textBox_password.Text.Length < 1 || textBox_name.Text.Length < 1 || textBox_username.Text.Length < 1)
+            if (textBox_password.Text.Length < 1 || textBox_name.Text.Length < 1 || textBox_username.Text.Length < 1 ||
+                textBox_latitude.Text.Length < 1 || textBox_longitude.Text.Length < 1)
             {
                 MessageBox.Show("모든 항목을 입력해주세요.");
             }
@@ -182,19 +200,24 @@ namespace Device_List_0._01
                 int tmp = 0;
                 if (listView_device.FocusedItem != null)
                     tmp = listView_device.FocusedItem.Index;
-                string pw = "";
-                for (int i = 0; i < textBox_password.TextLength; i++)
-                    pw = pw + "*";
-                camera_list[tmp].camera_PW = textBox_password.Text;
-                camera_list[tmp].device.enable = checkBox_enabled.Checked;
-                camera_list[tmp].device.device_name = textBox_name.Text;
-                camera_list[tmp].device.device_username = textBox_username.Text;
-                camera_list[tmp].device.device_PW = textBox_password.Text;
-                listView_device.Items[tmp].SubItems[3].Text = pw;
 
-                x.item.RemoveAt(tmp);
-                x.item.Insert(tmp, camera_list[tmp]);
-                M.serialize(x);
+                Range r = new Range();
+                r.rangeset_ver2(textBox_latitude, -90, 90);
+                r.rangeset_ver2(textBox_longitude, -180, 180);
+                if (!(textBox_latitude.Text == "") && !(textBox_longitude.Text == ""))
+                {
+                    camera_list[tmp].camera_PW = textBox_password.Text;
+                    camera_list[tmp].device.enable = checkBox_enabled.Checked;
+                    camera_list[tmp].device.device_name = textBox_name.Text;
+                    camera_list[tmp].device.device_username = textBox_username.Text;
+                    camera_list[tmp].device.device_PW = textBox_password.Text;
+                    camera_list[tmp].device.latitude = Convert.ToDouble(textBox_latitude.Text);
+                    camera_list[tmp].device.longitude = Convert.ToDouble(textBox_longitude.Text);
+
+                    x.item.RemoveAt(tmp);
+                    x.item.Insert(tmp, camera_list[tmp]);
+                    M.serialize(x);
+                }
             }
         }
 
@@ -208,6 +231,8 @@ namespace Device_List_0._01
             textBox_name.Text = camera_list[tmp].device.device_name;
             textBox_username.Text = camera_list[tmp].device.device_username;
             textBox_password.Text = camera_list[tmp].device.device_PW;
+            textBox_latitude.Text = camera_list[tmp].device.latitude.ToString();
+            textBox_longitude.Text = camera_list[tmp].device.longitude.ToString();
         }
 
         /// /////////////////////////////////////////////////////////////////////////////////////////////////

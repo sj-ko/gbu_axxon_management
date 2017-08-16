@@ -8,6 +8,8 @@
         public string device_PW="";
         public string device_model = "";
         public string device_manufacturer="";
-        public string device_firmware = "";     
+        public string device_firmware = "";
+        public double latitude = 0.0;
+        public double longitude = 0.0;
     }
 }

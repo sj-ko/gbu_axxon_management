@@ -38,12 +38,16 @@
             this.textBox_PW = new System.Windows.Forms.TextBox();
             this.button_ok = new System.Windows.Forms.Button();
             this.button_cancel = new System.Windows.Forms.Button();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.textBox_add_latitude = new System.Windows.Forms.TextBox();
+            this.textBox_add_longgitude = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(36, 23);
+            this.label1.Location = new System.Drawing.Point(36, 25);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 1;
@@ -68,7 +72,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(61, 56);
+            this.label2.Location = new System.Drawing.Point(61, 55);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(16, 12);
             this.label2.TabIndex = 11;
@@ -85,7 +89,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(61, 90);
+            this.label3.Location = new System.Drawing.Point(61, 85);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(16, 12);
             this.label3.TabIndex = 13;
@@ -93,7 +97,7 @@
             // 
             // textBox_ID
             // 
-            this.textBox_ID.Location = new System.Drawing.Point(96, 81);
+            this.textBox_ID.Location = new System.Drawing.Point(96, 82);
             this.textBox_ID.Name = "textBox_ID";
             this.textBox_ID.Size = new System.Drawing.Size(145, 21);
             this.textBox_ID.TabIndex = 14;
@@ -101,7 +105,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 122);
+            this.label4.Location = new System.Drawing.Point(15, 115);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(62, 12);
             this.label4.TabIndex = 15;
@@ -117,7 +121,7 @@
             // button_ok
             // 
             this.button_ok.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.button_ok.Location = new System.Drawing.Point(63, 153);
+            this.button_ok.Location = new System.Drawing.Point(63, 210);
             this.button_ok.Name = "button_ok";
             this.button_ok.Size = new System.Drawing.Size(75, 23);
             this.button_ok.TabIndex = 17;
@@ -128,7 +132,7 @@
             // button_cancel
             // 
             this.button_cancel.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.button_cancel.Location = new System.Drawing.Point(166, 153);
+            this.button_cancel.Location = new System.Drawing.Point(166, 210);
             this.button_cancel.Name = "button_cancel";
             this.button_cancel.Size = new System.Drawing.Size(75, 23);
             this.button_cancel.TabIndex = 18;
@@ -136,11 +140,49 @@
             this.button_cancel.UseVisualStyleBackColor = false;
             this.button_cancel.Click += new System.EventHandler(this.button_cancel_Click);
             // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(28, 145);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(49, 12);
+            this.label33.TabIndex = 19;
+            this.label33.Text = "Latitude";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(17, 175);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(60, 12);
+            this.label40.TabIndex = 20;
+            this.label40.Text = "Longitude";
+            // 
+            // textBox_add_latitude
+            // 
+            this.textBox_add_latitude.Location = new System.Drawing.Point(96, 142);
+            this.textBox_add_latitude.Name = "textBox_add_latitude";
+            this.textBox_add_latitude.Size = new System.Drawing.Size(145, 21);
+            this.textBox_add_latitude.TabIndex = 21;
+            this.textBox_add_latitude.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_add_latitude_KeyPress);
+            // 
+            // textBox_add_longgitude
+            // 
+            this.textBox_add_longgitude.Location = new System.Drawing.Point(96, 172);
+            this.textBox_add_longgitude.Name = "textBox_add_longgitude";
+            this.textBox_add_longgitude.Size = new System.Drawing.Size(145, 21);
+            this.textBox_add_longgitude.TabIndex = 22;
+            this.textBox_add_longgitude.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_add_longgitude_KeyPress);
+            // 
             // Form_add
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(283, 195);
+            this.ClientSize = new System.Drawing.Size(283, 247);
+            this.Controls.Add(this.textBox_add_longgitude);
+            this.Controls.Add(this.textBox_add_latitude);
+            this.Controls.Add(this.label40);
+            this.Controls.Add(this.label33);
             this.Controls.Add(this.button_cancel);
             this.Controls.Add(this.button_ok);
             this.Controls.Add(this.textBox_PW);
@@ -172,5 +214,9 @@
         private System.Windows.Forms.TextBox textBox_PW;
         private System.Windows.Forms.Button button_ok;
         private System.Windows.Forms.Button button_cancel;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label label40;
+        public System.Windows.Forms.TextBox textBox_add_latitude;
+        public System.Windows.Forms.TextBox textBox_add_longgitude;
     }
 }
