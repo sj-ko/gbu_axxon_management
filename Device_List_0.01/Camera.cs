@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Xml.Serialization;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.Net;
+﻿using Newtonsoft.Json.Linq;
 using System;
-using System.Text;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Text;
+using System.Xml.Serialization;
 
 namespace Device_List_0._01
 {
@@ -26,7 +25,7 @@ namespace Device_List_0._01
         }
         //string json = this.Request_Json();
         //this.ParseJson(json);
-        private string Request_Json()       //Refresh 버튼을 누르면 http로 json을 가져온다
+        public string Request_Json()       //Refresh 버튼을 누르면 http로 json을 가져온다
         {
             string result = null;
             string url = "http://192.168.0.109/video-origins/DESKTOP-U8VKICK";
@@ -58,9 +57,9 @@ namespace Device_List_0._01
 
             return result;
         }
-        private void ParseJson(String json)             //JSON Parse 받아온 json 문자열 파싱
+        public List<json_camera> ParseJson(String json)             //JSON Parse 받아온 json 문자열 파싱
         {
-            List<json_camera> issues = new List<json_camera>();     //issues 리스트 생성
+            List<json_camera> Server_camera = new List<json_camera>();     //issues 리스트 생성
 
             JObject obj = JObject.Parse(json);          //JObject 클래스, JSON 문자열 구하기
             List<JToken> array = obj.Children().ToList();//JArray 클래스
@@ -69,8 +68,9 @@ namespace Device_List_0._01
                 json_camera issue = new json_camera();                      //리스트에 Parse한 문자열 집어넣기
                 issue.FriendlyNameLong = itemObj.First.SelectToken("friendlyNameLong").ToString();
                 issue.State = itemObj.First.SelectToken("state").ToString();
-                issues.Add(issue);              //리스트 추가
+                Server_camera.Add(issue);              //리스트 추가
             }
+            return Server_camera;
         }
     }
     public class Xmlclass

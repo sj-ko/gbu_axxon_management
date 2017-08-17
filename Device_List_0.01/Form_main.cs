@@ -28,7 +28,7 @@ namespace Device_List_0._01
             listView_device.Columns.Add("제조사");
             listView_device.Columns.Add("IP");
             listView_device.Columns.Add("연결상태");
-            
+
 
             //////////////////////////////
             if(System.IO.File.Exists("Emp.xml"))
@@ -52,14 +52,13 @@ namespace Device_List_0._01
                 int tmp = camera_list.Count;
                 for (int i=0;i<tmp; i++)
                 {
-                    string pw = "";
-                    for (int j = 0; j<camera_list[i].camera_PW.Length; j++)
-                        pw = pw + "*";
-
                     ListViewItem lvi = new ListViewItem("임시서버");
                     lvi.SubItems.Add(camera_list[i].camera_manufacturer);
                     lvi.SubItems.Add(camera_list[i].camera_IP);
-                    lvi.SubItems.Add("connected");
+                    if(camera_list[i].camera_connect==true)
+                        lvi.SubItems.Add("connected");
+                    else
+                            lvi.SubItems.Add("unconnected");
                     listView_device.Items.Add(lvi);
                     
                     x.item.Add(camera_list[i]);
@@ -87,7 +86,36 @@ namespace Device_List_0._01
         }
         private void button_refresh_Click(object sender, EventArgs e)
         {
+            ///////////////////////////////////카라메 받아오는 코드 테스트/////////////
+            management server = new management();
+            List<json_camera> J = new List<json_camera>();
+            string json = server.Request_Json();
+            J = server.ParseJson(json);
+            int len = camera_list.Count;
+            for (int i = 0; i < J.Count; i++)
+            {
+                camera_list.Add(new Camera() { camera_ID = J[i].FriendlyNameLong });
+                if (J[i].State == "connected" || J[i].State == "signal_restored")
+                    camera_list[len + i].camera_connect = true;
+                else
+                    camera_list[len + i].camera_connect = false;
+            }
 
+            int tmp = camera_list.Count;
+            for (int i = len; i < tmp; i++)
+            {
+                ListViewItem lvi = new ListViewItem("임시서버"+i);
+                lvi.SubItems.Add(camera_list[i].camera_manufacturer);
+                lvi.SubItems.Add(camera_list[i].camera_IP);
+                if (camera_list[i].camera_connect == true)
+                    lvi.SubItems.Add("connected");
+                else
+                    lvi.SubItems.Add("unconnected");
+                listView_device.Items.Add(lvi);
+
+                //x.item.Add(camera_list[i]);
+                //M.serialize(x);
+            }
         }
         private void button_remove_Click(object sender, EventArgs e)
         {
@@ -126,7 +154,7 @@ namespace Device_List_0._01
 
             ////////Device Setting/////
             checkBox_enabled.Checked = camera_list[tmp].device.enable;
-            textBox_name.Text = camera_list[tmp].device.device_name;
+            textBox_name.Text = camera_list[tmp].camera_ID;
             textBox_username.Text = camera_list[tmp].device.device_username;
             textBox_password.Text = camera_list[tmp].device.device_PW;
             label_dmodel.Text = camera_list[tmp].device.device_model;
@@ -208,7 +236,7 @@ namespace Device_List_0._01
                 {
                     camera_list[tmp].camera_PW = textBox_password.Text;
                     camera_list[tmp].device.enable = checkBox_enabled.Checked;
-                    camera_list[tmp].device.device_name = textBox_name.Text;
+                    camera_list[tmp].camera_ID = textBox_name.Text;
                     camera_list[tmp].device.device_username = textBox_username.Text;
                     camera_list[tmp].device.device_PW = textBox_password.Text;
                     camera_list[tmp].device.latitude = Convert.ToDouble(textBox_latitude.Text);
@@ -228,7 +256,7 @@ namespace Device_List_0._01
                 tmp = listView_device.FocusedItem.Index;
 
             checkBox_enabled.Checked = camera_list[tmp].device.enable;
-            textBox_name.Text = camera_list[tmp].device.device_name;
+            textBox_name.Text = camera_list[tmp].camera_ID;
             textBox_username.Text = camera_list[tmp].device.device_username;
             textBox_password.Text = camera_list[tmp].device.device_PW;
             textBox_latitude.Text = camera_list[tmp].device.latitude.ToString();

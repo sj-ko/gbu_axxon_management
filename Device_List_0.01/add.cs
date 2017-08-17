@@ -25,26 +25,27 @@ namespace Device_List_0._01
                 if (!(textBox_add_latitude.Text == "") && !(textBox_add_longgitude.Text == ""))
                 {
                     Form_main m = (Form_main)this.Owner;
-                    string pw = "";
-                    for (int i = 0; i < textBox_PW.TextLength; i++)
-                        pw = pw + "*";
 
                     ListViewItem lvi = new ListViewItem("임시서버");
                     lvi.SubItems.Add(comboBox_maker.SelectedItem.ToString());
                     lvi.SubItems.Add(textBox_IP.Text);
-                    lvi.SubItems.Add("connected");
-                    m.listView_device.Items.Add(lvi);
+                    
                     m.camera_list.Add(new Camera() { camera_manufacturer = comboBox_maker.SelectedItem.ToString(), camera_IP = textBox_IP.Text, camera_ID = textBox_ID.Text, camera_PW = textBox_PW.Text });
 
                     //................................................................................///이 아래부터 나중에수정할것들//
                     /////////입력받은 maker, ip, id, pw 로 카메라 검색/ tab 메뉴의 항목에 값 저장&초기값으로 초기화..
-
                     int tmp = m.camera_list.Count;
                     m.camera_list[tmp - 1].camera_server = "임시서버";
                     m.camera_list[tmp - 1].camera_connect = true;
+
+                    if (m.camera_list[tmp - 1].camera_connect == true)
+                        lvi.SubItems.Add("connected");
+                    else
+                        lvi.SubItems.Add("unconnected");
+                    m.listView_device.Items.Add(lvi);           ///리스트 추가
                     ///////////////////////////////Device Setting///////////////////////
                     m.camera_list[tmp - 1].device.enable = true;
-                    m.camera_list[tmp - 1].device.device_name = "임시이름 " + tmp;
+                    //m.camera_list[tmp - 1].device.device_name = "임시이름 " + tmp;
                     m.camera_list[tmp - 1].device.device_username = "임시유저 " + tmp;
                     m.camera_list[tmp - 1].device.device_PW = textBox_PW.Text;
                     m.camera_list[tmp - 1].device.device_model = "임시모델 " + tmp;
@@ -55,7 +56,7 @@ namespace Device_List_0._01
 
                     m.checkBox_enabled.Checked = m.camera_list[tmp - 1].device.enable;
                     //m.Enabled = m.camera_list[tmp - 1].device.enable;
-                    m.textBox_name.Text = m.camera_list[tmp - 1].device.device_name;
+                    m.textBox_name.Text = m.camera_list[tmp - 1].camera_ID;
                     m.textBox_username.Text = m.camera_list[tmp - 1].device.device_username;
                     m.textBox_password.Text = m.camera_list[tmp - 1].device.device_PW;
                     m.label_dmodel.Text = m.camera_list[tmp - 1].device.device_model;

@@ -3,7 +3,7 @@
     public class Device
     {
         public bool enable = true;
-        public string device_name="";
+        //public string device_name="";
         public string device_username="";
         public string device_PW="";
         public string device_model = "";

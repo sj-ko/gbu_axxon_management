@@ -24,7 +24,7 @@ namespace Device_List_0._01
                 lvi.SubItems.Add(r.camera_list[i].camera_IP);
                 lvi.SubItems.Add(r.camera_list[i].device.device_manufacturer);
                 lvi.SubItems.Add(r.camera_list[i].device.device_model);
-                lvi.SubItems.Add(r.camera_list[i].device.device_name);
+                lvi.SubItems.Add(r.camera_list[i].camera_ID);
                 lvi.SubItems.Add(r.camera_list[i].device.device_username);
                 lvi.SubItems.Add(r.camera_list[i].device.device_PW);
                 r.comboBox_resolution_main.SelectedIndex = r.camera_list[i].video.video_main_resolution;
