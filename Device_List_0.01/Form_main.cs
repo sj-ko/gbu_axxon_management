@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using System.IO;
+using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace Device_List_0._01
 {
@@ -28,8 +26,7 @@ namespace Device_List_0._01
             listView_device.Columns.Add("제조사");
             listView_device.Columns.Add("IP");
             listView_device.Columns.Add("연결상태");
-
-
+            
             //////////////////////////////
             if(System.IO.File.Exists("Emp.xml"))
             try
@@ -55,14 +52,13 @@ namespace Device_List_0._01
                     ListViewItem lvi = new ListViewItem("임시서버");
                     lvi.SubItems.Add(camera_list[i].camera_manufacturer);
                     lvi.SubItems.Add(camera_list[i].camera_IP);
-                    if(camera_list[i].camera_connect==true)
-                        lvi.SubItems.Add("connected");
+                    if (camera_list[tmp - 1].camera_connect == "connected" ||camera_list[tmp - 1].camera_connect == "signal_restored")
+                            lvi.SubItems.Add("connected");
                     else
                             lvi.SubItems.Add("unconnected");
                     listView_device.Items.Add(lvi);
                     
                     x.item.Add(camera_list[i]);
-                    M.serialize(x);
                 }
             }
             catch (ArgumentException ex)
@@ -86,36 +82,39 @@ namespace Device_List_0._01
         }
         private void button_refresh_Click(object sender, EventArgs e)
         {
-            ///////////////////////////////////카라메 받아오는 코드 테스트/////////////
+            camera_list.Clear();
+            listView_device.Items.Clear();
+            ///////////////////////////////////카메라 받아오는 코드 테스트/////////////
             management server = new management();
             List<json_camera> J = new List<json_camera>();
             string json = server.Request_Json();
             J = server.ParseJson(json);
-            int len = camera_list.Count;
+            
             for (int i = 0; i < J.Count; i++)
             {
-                camera_list.Add(new Camera() { camera_ID = J[i].FriendlyNameLong });
-                if (J[i].State == "connected" || J[i].State == "signal_restored")
-                    camera_list[len + i].camera_connect = true;
-                else
-                    camera_list[len + i].camera_connect = false;
+                camera_list.Add(new Camera() { camera_ID = J[i].FriendlyNameLong, camera_connect= J[i].State });
             }
 
             int tmp = camera_list.Count;
-            for (int i = len; i < tmp; i++)
+            Xmlclass re = new Xmlclass();               //
+            for (int i = 0; i < tmp; i++)
             {
-                ListViewItem lvi = new ListViewItem("임시서버"+i);
+                ListViewItem lvi = new ListViewItem("임시서버");
                 lvi.SubItems.Add(camera_list[i].camera_manufacturer);
                 lvi.SubItems.Add(camera_list[i].camera_IP);
-                if (camera_list[i].camera_connect == true)
+                if (camera_list[i].camera_connect == "connected" || camera_list[i].camera_connect == "signal_restored")
                     lvi.SubItems.Add("connected");
                 else
                     lvi.SubItems.Add("unconnected");
                 listView_device.Items.Add(lvi);
 
-                //x.item.Add(camera_list[i]);
-                //M.serialize(x);
+                re.item.Add(camera_list[i]);
             }
+            M.serialize(re);
+            x = re;
+            tabcontrol_menu.Enabled = false; // this disables the controls on it
+            tabcontrol_menu.Visible = false; // this hides the controls on it.
+            didyouclicklist = false;
         }
         private void button_remove_Click(object sender, EventArgs e)
         {
@@ -147,10 +146,10 @@ namespace Device_List_0._01
                 tmp = listView_device.FocusedItem.Index;
             tabcontrol_menu.SelectedTab = tabPage_device;
 
-            if (camera_list[tmp].camera_connect == false)
-                tabcontrol_menu.Enabled = false;
-            else
+            if (camera_list[tmp].camera_connect == "connected" || camera_list[tmp].camera_connect == "signal_restored")
                 tabcontrol_menu.Enabled = true;
+            else
+                tabcontrol_menu.Enabled = false;
 
             ////////Device Setting/////
             checkBox_enabled.Checked = camera_list[tmp].device.enable;
@@ -382,7 +381,6 @@ namespace Device_List_0._01
             r.ipset(sender, e, textBox_ip_adress);
         }
 
-
         private void textBox_http_port_KeyPress(object sender, KeyPressEventArgs e)
         {
             Range r = new Range();
@@ -505,7 +503,6 @@ namespace Device_List_0._01
             Range r = new Range();
             r.rangeset(sender, e, textBox_maximum, 1, 100);
         }
-
         /// /////////////////////////////////////////////////////////////////////////////////////////////////
         //////<webpage>////////
         private void groupBox_webpage_VisibleChanged(object sender, EventArgs e)
@@ -515,7 +512,6 @@ namespace Device_List_0._01
                 tmp = listView_device.FocusedItem.Index;
             if(didyouclicklist==true)
                webBrowser.Navigate(camera_list[tmp].network.network_IP);
-            
         }
     }
 }

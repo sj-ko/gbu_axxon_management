@@ -23,8 +23,7 @@ namespace Device_List_0._01
             xs.Serialize(fs, x);
             fs.Close();
         }
-        //string json = this.Request_Json();
-        //this.ParseJson(json);
+
         public string Request_Json()       //Refresh 버튼을 누르면 http로 json을 가져온다
         {
             string result = null;
@@ -32,8 +31,7 @@ namespace Device_List_0._01
             Console.WriteLine("url : " + url);
 
             StringBuilder postParams = new StringBuilder();
-
-
+            
             byte[] byteDataParams = UTF8Encoding.UTF8.GetBytes(postParams.ToString());
 
             try
@@ -41,8 +39,7 @@ namespace Device_List_0._01
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);            //요청 만들기
 
                 request.Credentials = new NetworkCredential("root", "root");
-
-
+                
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();          //요청 받기..?
                 Stream stream = response.GetResponseStream();
                 StreamReader reader = new StreamReader(stream);
@@ -54,7 +51,6 @@ namespace Device_List_0._01
             {
                 Console.WriteLine(e.Message);
             }
-
             return result;
         }
         public List<json_camera> ParseJson(String json)             //JSON Parse 받아온 json 문자열 파싱
@@ -86,7 +82,7 @@ namespace Device_List_0._01
         public string camera_IP="";
         public string camera_ID = "";
         public string camera_PW = "";
-        public bool camera_connect = true;
+        public string camera_connect = "";
         
         public Device device = new Device();
         public Video video = new Video();

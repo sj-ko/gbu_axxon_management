@@ -33,7 +33,7 @@ namespace Device_List_0._01
                 }
             }
         }
-        public void check_effectiveness(object sender, KeyPressEventArgs e, TextBox t)
+        public void check_effectiveness(object sender, KeyPressEventArgs e, TextBox t)          //for longitude latitude
         {
             if (!(char.IsDigit(e.KeyChar) || e.KeyChar == Convert.ToChar(Keys.Back) || (e.KeyChar == Convert.ToChar('.'))
                 || (e.KeyChar == Convert.ToChar('-'))))
@@ -41,7 +41,7 @@ namespace Device_List_0._01
                 e.Handled = true;
             }
         }
-        public void rangeset_ver2(TextBox text,double range_bottom, double range_top)
+        public void rangeset_ver2(TextBox text,double range_bottom, double range_top)           //for longitude latitude
         {
             string name;
             double tmp = Convert.ToDouble(text.Text);

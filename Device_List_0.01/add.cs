@@ -36,9 +36,9 @@ namespace Device_List_0._01
                     /////////입력받은 maker, ip, id, pw 로 카메라 검색/ tab 메뉴의 항목에 값 저장&초기값으로 초기화..
                     int tmp = m.camera_list.Count;
                     m.camera_list[tmp - 1].camera_server = "임시서버";
-                    m.camera_list[tmp - 1].camera_connect = true;
+                    m.camera_list[tmp - 1].camera_connect = "connected";
 
-                    if (m.camera_list[tmp - 1].camera_connect == true)
+                    if (m.camera_list[tmp - 1].camera_connect == "connected" || m.camera_list[tmp - 1].camera_connect == "signal_restored")
                         lvi.SubItems.Add("connected");
                     else
                         lvi.SubItems.Add("unconnected");
@@ -133,6 +133,8 @@ namespace Device_List_0._01
 
                     m.x.item.Add(m.camera_list[tmp - 1]);
                     m.M.serialize(m.x);
+                    m.tabcontrol_menu.Enabled = false; // this disables the controls on it
+                    m.tabcontrol_menu.Visible = false; // this hides the controls on it.
                     m.didyouclicklist = false;
                     Form_Notification check = new Form_Notification();
                     check.Owner = this;
