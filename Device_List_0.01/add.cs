@@ -12,6 +12,8 @@ namespace Device_List_0._01
 
         private void button_ok_Click(object sender, EventArgs e)
         {
+            Form_main m = (Form_main)this.Owner;
+
             if (comboBox_maker.SelectedItem == null || textBox_IP.Text.Length < 1 || textBox_port.Text.Length < 1 ||
                 textBox_username.Text.Length < 1 || textBox_PW.Text.Length < 1 || 
                 textBox_model.Text.Length < 1 || textBox_cameraID.Text.Length < 1 || textBox_cameraNAME.Text.Length < 1 ||
@@ -26,8 +28,6 @@ namespace Device_List_0._01
                 r.rangeset_ver2(textBox_add_longgitude, -180, 180);
                 if (!(textBox_add_latitude.Text == "") && !(textBox_add_longgitude.Text == ""))
                 {
-                    Form_main m = (Form_main)this.Owner;
-
                     ListViewItem lvi = new ListViewItem("임시서버");
                     lvi.SubItems.Add(textBox_cameraID.Text);
                     lvi.SubItems.Add(textBox_cameraNAME.Text);

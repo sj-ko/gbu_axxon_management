@@ -38,8 +38,6 @@ namespace Device_List_0._01
 
         private void button_save_Click(object sender, EventArgs e)
         {
-            Form_main r = (Form_main)this.Owner;
-
             try
             {
                 object missingType = Type.Missing;
@@ -123,6 +121,13 @@ namespace Device_List_0._01
                 listView_excel.Columns[e.Column].Text = listView_excel.Columns[e.Column].Text + " △";
             }
             listView_excel.Sort();
+        }
+
+        private void button_search_Click(object sender, EventArgs e)
+        {
+            Form_Search search = new Form_Search();
+            search.Owner = this;
+            search.Show();
         }
     }
 }
