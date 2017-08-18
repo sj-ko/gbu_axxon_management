@@ -34,7 +34,7 @@ namespace Device_List_0._01
                 {
                     XmlDocument xdoc = new XmlDocument();
                     // XML 데이타를 파일에서 로드
-                    xdoc.Load(@"C:\Users\qwer\Documents\Visual Studio 2017\Projects\Device_List_0.01\Device_List_0.01\bin\Debug/Emp.xml");
+                    xdoc.Load("Emp.xml");
                     XmlElement root = xdoc.DocumentElement;
                     // 노드 요소들
                     XmlNodeList nodes = root.SelectNodes("/Xmlclass/item/Camera");
