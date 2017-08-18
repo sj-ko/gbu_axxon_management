@@ -16,6 +16,7 @@ namespace Device_List_0._01
         public string Server { get; set; }
         public string JCamera_id { get; set; }
     }
+
     public class management
     {
         public void serialize(Xmlclass x)
@@ -55,6 +56,7 @@ namespace Device_List_0._01
             }
             return result;
         }
+
         public List<json_camera> ParseJson(String json)             //JSON Parse 받아온 json 문자열 파싱
         {
             List<json_camera> Server_camera = new List<json_camera>();     //issues 리스트 생성
@@ -77,6 +79,7 @@ namespace Device_List_0._01
             return Server_camera;
         }
     }
+
     public class Xmlclass
     {
         //for Serialization

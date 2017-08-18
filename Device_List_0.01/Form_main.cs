@@ -54,9 +54,13 @@ namespace Device_List_0._01
                         lvi.SubItems.Add(camera_list[i].camera_ID);
                         lvi.SubItems.Add(camera_list[i].camera_name);
                         if (camera_list[tmp - 1].camera_connect == "connected" || camera_list[tmp - 1].camera_connect == "signal_restored")
+                        {
                             lvi.SubItems.Add("connected");
+                        }
                         else
+                        {
                             lvi.SubItems.Add("unconnected");
+                        }
                         listView_device.Items.Add(lvi);
 
                         x.item.Add(camera_list[i]);
@@ -125,6 +129,7 @@ namespace Device_List_0._01
             tabcontrol_menu.Visible = false; // this hides the controls on it.
             didyouclicklist = false;
         }
+
         private void button_remove_Click(object sender, EventArgs e)
         {
             if (didyouclicklist == true)
@@ -143,6 +148,7 @@ namespace Device_List_0._01
                 didyouclicklist =false;
             }
         }
+
         /// /////////////////////////////////////////////////////////////////////////////////////////////////
         private void listView_device_Click(object sender, EventArgs e)      //리스트 아이템 클릭시 tab 속성들 변경
         {
@@ -152,13 +158,19 @@ namespace Device_List_0._01
 
             int tmp = 0;
             if (listView_device.FocusedItem != null)
+            {
                 tmp = listView_device.FocusedItem.Index;
+            }
             tabcontrol_menu.SelectedTab = tabPage_device;
 
             if (camera_list[tmp].camera_connect == "connected" || camera_list[tmp].camera_connect == "signal_restored")
+            {
                 tabcontrol_menu.Enabled = true;
+            }
             else
+            {
                 tabcontrol_menu.Enabled = false;
+            }
 
             ////////Device Setting/////
             checkBox_enabled.Checked = camera_list[tmp].device.enable;
@@ -210,6 +222,7 @@ namespace Device_List_0._01
             ////////webpage/////
             //webBrowser.Navigate(textBox_ip_adress.Text);
         }
+
         /// /////////////////////////////////////////////////////////////////////////////////////////////////
         //////<Device Setting>//////////
         private void textBox_latitude_KeyPress(object sender, KeyPressEventArgs e)
@@ -262,7 +275,9 @@ namespace Device_List_0._01
         {
             int tmp = 0;
             if (listView_device.FocusedItem != null)
+            {
                 tmp = listView_device.FocusedItem.Index;
+            }
 
             checkBox_enabled.Checked = camera_list[tmp].device.enable;
             textBox_name.Text = camera_list[tmp].camera_ID;
@@ -344,7 +359,9 @@ namespace Device_List_0._01
         {
             int tmp = 0;
             if (listView_device.FocusedItem != null)
+            {
                 tmp = listView_device.FocusedItem.Index;
+            }
 
             comboBox_resolution_main.SelectedIndex = camera_list[tmp].video.video_main_resolution;
             textBox_framerate_main.Text = camera_list[tmp].video.video_main_framerate;
@@ -358,13 +375,16 @@ namespace Device_List_0._01
             textBox_quality_sub.Text = camera_list[tmp].video.video_sub_quality;
             textBox_bitrate_sub.Text = camera_list[tmp].video.video_sub_bitrate;
         }
+
         /// /////////////////////////////////////////////////////////////////////////////////////////////////
         //////<Image Setting>///////////
         private void button_image_modify_Click(object sender, EventArgs e)
         {
             int tmp = 0;
             if (listView_device.FocusedItem != null)
+            {
                 tmp = listView_device.FocusedItem.Index;
+            }
 
             camera_list[tmp].image.image_brightness = trackBar_brightness.Value;
             camera_list[tmp].image.image_contrast = trackBar_contrast.Value;
@@ -376,7 +396,9 @@ namespace Device_List_0._01
         {
             int tmp = 0;
             if (listView_device.FocusedItem != null)
+            {
                 tmp = listView_device.FocusedItem.Index;
+            }
 
             trackBar_brightness.Value = camera_list[tmp].image.image_brightness;
             trackBar_contrast.Value = camera_list[tmp].image.image_contrast;
@@ -438,7 +460,9 @@ namespace Device_List_0._01
         {
             int tmp = 0;
             if (listView_device.FocusedItem != null)
+            {
                 tmp = listView_device.FocusedItem.Index;
+            }
 
             textBox_ip_address.Text = camera_list[tmp].network.network_IP;
             textBox_http_port.Text = camera_list[tmp].network.network_http;
@@ -459,6 +483,7 @@ namespace Device_List_0._01
             Range r = new Range();
             r.rangeset(sender, e, textBox_framerate, 1, 60);
         }
+
         private void button_archive_modify_Click(object sender, EventArgs e)
         {
             if (textBox_record_time.Text.Length < 1 || textBox_framerate.Text.Length < 1)
@@ -487,7 +512,9 @@ namespace Device_List_0._01
         {
             int tmp = 0;
             if (listView_device.FocusedItem != null)
+            {
                 tmp = listView_device.FocusedItem.Index;
+            }
 
             comboBox_storage.SelectedIndex = camera_list[tmp].archive.archive_set_storage;
             comboBox_record_period.SelectedIndex = camera_list[tmp].archive.archive_set_record_period;
@@ -495,6 +522,7 @@ namespace Device_List_0._01
             textBox_framerate.Text = camera_list[tmp].archive.archive_framerate;
             comboBox_record_stream.SelectedIndex = camera_list[tmp].archive.archive_set_record_stream;
         }
+
         /// /////////////////////////////////////////////////////////////////////////////////////////////////
         //////<Event Setting>////////
         private void textBox_sensitivity_KeyPress(object sender, KeyPressEventArgs e)
@@ -514,15 +542,20 @@ namespace Device_List_0._01
             Range r = new Range();
             r.rangeset(sender, e, textBox_maximum, 1, 100);
         }
+
         /// /////////////////////////////////////////////////////////////////////////////////////////////////
         //////<webpage>////////
         private void groupBox_webpage_VisibleChanged(object sender, EventArgs e)
         {
             int tmp = 0;
             if (listView_device.FocusedItem != null)
+            {
                 tmp = listView_device.FocusedItem.Index;
-            if(didyouclicklist==true)
-               webBrowser.Navigate(camera_list[tmp].network.network_IP);
+            }
+            if (didyouclicklist == true)
+            {
+                webBrowser.Navigate(camera_list[tmp].network.network_IP);
+            }
         }
     }
 }

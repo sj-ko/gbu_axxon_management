@@ -90,9 +90,13 @@ namespace Device_List_0._01
             public int Compare(object x, object y)
             {
                 if (sort == "asc")
+                {
                     return String.Compare(((ListViewItem)x).SubItems[col].Text, ((ListViewItem)y).SubItems[col].Text);
+                }
                 else
+                {
                     return String.Compare(((ListViewItem)y).SubItems[col].Text, ((ListViewItem)x).SubItems[col].Text);
+                }
             }
         }
 

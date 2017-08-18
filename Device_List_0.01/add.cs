@@ -41,9 +41,13 @@ namespace Device_List_0._01
                     m.camera_list[tmp - 1].camera_ID = textBox_cameraID.Text;
                     m.camera_list[tmp - 1].camera_name = textBox_cameraNAME.Text;
                     if (m.camera_list[tmp - 1].camera_connect == "connected" || m.camera_list[tmp - 1].camera_connect == "signal_restored")
+                    {
                         lvi.SubItems.Add("connected");
+                    }
                     else
+                    {
                         lvi.SubItems.Add("unconnected");
+                    }
                     m.listView_device.Items.Add(lvi);           ///리스트 추가
 
                     m.camera_list[tmp - 1].username = textBox_username.Text;

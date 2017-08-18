@@ -17,14 +17,19 @@ namespace Device_List_0._01
             {
                 c = c / 10;
             }
+
             if (t.TextLength < botton_length.Length) { }        //만약 range_bottom의 자리수가 한자리수 이상일 경우
             else
             {
                 int tmp;
                 if (!(e.KeyChar == Convert.ToChar(Keys.Back)))      //만약 입력받은 키가 뒤로가기가 아니라면
+                {
                     tmp = Convert.ToInt32((t.Text == string.Empty ? Convert.ToString(range_bottom) : t.Text + Convert.ToString(e.KeyChar)));
+                }
                 else
+                {
                     tmp = Convert.ToInt32((t.Text == string.Empty ? Convert.ToString(range_bottom) : t.Text));  //뒤로가기였다면
+                }
 
                 if ((tmp < range_bottom || tmp > range_top) && !(e.KeyChar == Convert.ToChar(Keys.Back)))
                 {
@@ -33,14 +38,15 @@ namespace Device_List_0._01
                 }
             }
         }
+
         public void check_effectiveness(object sender, KeyPressEventArgs e, TextBox t)          //for longitude latitude
         {
-            if (!(char.IsDigit(e.KeyChar) || e.KeyChar == Convert.ToChar(Keys.Back) || (e.KeyChar == Convert.ToChar('.'))
-                || (e.KeyChar == Convert.ToChar('-'))))
+            if (!(char.IsDigit(e.KeyChar) || e.KeyChar == Convert.ToChar(Keys.Back) || (e.KeyChar == Convert.ToChar('.')) || (e.KeyChar == Convert.ToChar('-'))))
             {
                 e.Handled = true;
             }
         }
+
         public void rangeset_ver2(TextBox text,double range_bottom, double range_top)           //for longitude latitude
         {
             string name;
@@ -48,14 +54,19 @@ namespace Device_List_0._01
             if ((tmp < range_bottom || tmp > range_top) )
             {
                 if (range_top == 180)
+                {
                     name = "longitude";
+                }
                 else
+                {
                     name = "latitude";
+                }
 
                 MessageBox.Show(name + " error : " + range_bottom + "~" + range_top + " 사이의 " +name+ " 값을 입력해주세요.");
                 text.Text = "";
             }
         }
+
         public void ipset(object sender, KeyPressEventArgs e, TextBox t)
         { 
             int iPos = 0;               // IP 구역의 현재 위치
@@ -88,9 +99,13 @@ namespace Device_List_0._01
                 if (e.KeyChar != '.')
                 {
                     if (iIndex > 0)
+                    {
                         iPos = iLength - iIndex;
+                    }
                     else
+                    {
                         iPos = iLength + 1;
+                    }
 
                     if (iPos == 3)
                     {
@@ -142,7 +157,9 @@ namespace Device_List_0._01
                             return;
                         }
                         else
+                        {
                             iDelimitNumber++;
+                        }
                     }
                 }
             }
