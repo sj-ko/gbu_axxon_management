@@ -60,7 +60,7 @@ namespace Device_List_0._01
                     }
                 }
 
-                excelBook.SaveAs("test.xlsx", Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, missingType, missingType, missingType, missingType, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, missingType, missingType, missingType, missingType, missingType);
+                excelBook.SaveAs("test.xlsx", Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, missingType, missingType, missingType, missingType, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, missingType, missingType, missingType, missingType, missingType);
                 excelApp.Visible = true;
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(excelBook);
                 System.Runtime.InteropServices.Marshal.ReleaseComObject(excelWorksheet);
