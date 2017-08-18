@@ -107,7 +107,7 @@
             this.textBox_rtsp_port = new System.Windows.Forms.TextBox();
             this.textBox_http_port = new System.Windows.Forms.TextBox();
             this.textBox_https_port = new System.Windows.Forms.TextBox();
-            this.textBox_ip_adress = new System.Windows.Forms.TextBox();
+            this.textBox_ip_address = new System.Windows.Forms.TextBox();
             this.tabPage_archive = new System.Windows.Forms.TabPage();
             this.button_archive_cancel = new System.Windows.Forms.Button();
             this.button_archive_modify = new System.Windows.Forms.Button();
@@ -206,6 +206,7 @@
             this.splitContainer1.Size = new System.Drawing.Size(949, 582);
             this.splitContainer1.SplitterDistance = 273;
             this.splitContainer1.TabIndex = 0;
+            this.splitContainer1.TabStop = false;
             // 
             // button_refresh
             // 
@@ -214,6 +215,7 @@
             this.button_refresh.Name = "button_refresh";
             this.button_refresh.Size = new System.Drawing.Size(71, 23);
             this.button_refresh.TabIndex = 9;
+            this.button_refresh.TabStop = false;
             this.button_refresh.Text = "Refresh";
             this.button_refresh.UseVisualStyleBackColor = true;
             this.button_refresh.Click += new System.EventHandler(this.button_refresh_Click);
@@ -225,6 +227,7 @@
             this.button_remove.Name = "button_remove";
             this.button_remove.Size = new System.Drawing.Size(71, 23);
             this.button_remove.TabIndex = 8;
+            this.button_remove.TabStop = false;
             this.button_remove.Text = "Remove";
             this.button_remove.UseVisualStyleBackColor = true;
             this.button_remove.Click += new System.EventHandler(this.button_remove_Click);
@@ -236,6 +239,7 @@
             this.button_add.Name = "button_add";
             this.button_add.Size = new System.Drawing.Size(71, 23);
             this.button_add.TabIndex = 6;
+            this.button_add.TabStop = false;
             this.button_add.Text = "Add";
             this.button_add.UseVisualStyleBackColor = true;
             this.button_add.Click += new System.EventHandler(this.button_add_Click);
@@ -254,6 +258,7 @@
             this.listView_device.Name = "listView_device";
             this.listView_device.Size = new System.Drawing.Size(249, 449);
             this.listView_device.TabIndex = 0;
+            this.listView_device.TabStop = false;
             this.listView_device.UseCompatibleStateImageBehavior = false;
             this.listView_device.Click += new System.EventHandler(this.listView_device_Click);
             // 
@@ -275,6 +280,7 @@
             this.button_listview_collection.Name = "button_listview_collection";
             this.button_listview_collection.Size = new System.Drawing.Size(75, 23);
             this.button_listview_collection.TabIndex = 3;
+            this.button_listview_collection.TabStop = false;
             this.button_listview_collection.Text = "Listview";
             this.button_listview_collection.UseVisualStyleBackColor = true;
             this.button_listview_collection.Click += new System.EventHandler(this.button_listview_collection_Click);
@@ -316,7 +322,7 @@
             this.button_device_cancel.Location = new System.Drawing.Point(538, 400);
             this.button_device_cancel.Name = "button_device_cancel";
             this.button_device_cancel.Size = new System.Drawing.Size(75, 23);
-            this.button_device_cancel.TabIndex = 2;
+            this.button_device_cancel.TabIndex = 7;
             this.button_device_cancel.Text = "Cancel";
             this.button_device_cancel.UseVisualStyleBackColor = true;
             this.button_device_cancel.Click += new System.EventHandler(this.button_device_cancel_Click);
@@ -327,7 +333,7 @@
             this.button_device_modify.Location = new System.Drawing.Point(457, 400);
             this.button_device_modify.Name = "button_device_modify";
             this.button_device_modify.Size = new System.Drawing.Size(75, 23);
-            this.button_device_modify.TabIndex = 1;
+            this.button_device_modify.TabIndex = 6;
             this.button_device_modify.Text = "Modify";
             this.button_device_modify.UseVisualStyleBackColor = true;
             this.button_device_modify.Click += new System.EventHandler(this.button_device_modify_Click);
@@ -366,7 +372,7 @@
             this.textBox_longitude.Location = new System.Drawing.Point(121, 223);
             this.textBox_longitude.Name = "textBox_longitude";
             this.textBox_longitude.Size = new System.Drawing.Size(121, 21);
-            this.textBox_longitude.TabIndex = 18;
+            this.textBox_longitude.TabIndex = 5;
             this.textBox_longitude.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_longitude_KeyPress);
             // 
             // textBox_latitude
@@ -374,7 +380,7 @@
             this.textBox_latitude.Location = new System.Drawing.Point(121, 198);
             this.textBox_latitude.Name = "textBox_latitude";
             this.textBox_latitude.Size = new System.Drawing.Size(121, 21);
-            this.textBox_latitude.TabIndex = 17;
+            this.textBox_latitude.TabIndex = 4;
             this.textBox_latitude.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_latitude_KeyPress);
             // 
             // label40
@@ -475,7 +481,7 @@
             this.textBox_password.Location = new System.Drawing.Point(121, 98);
             this.textBox_password.Name = "textBox_password";
             this.textBox_password.Size = new System.Drawing.Size(121, 21);
-            this.textBox_password.TabIndex = 4;
+            this.textBox_password.TabIndex = 3;
             this.textBox_password.UseSystemPasswordChar = true;
             // 
             // label3
@@ -492,7 +498,7 @@
             this.textBox_username.Location = new System.Drawing.Point(121, 73);
             this.textBox_username.Name = "textBox_username";
             this.textBox_username.Size = new System.Drawing.Size(121, 21);
-            this.textBox_username.TabIndex = 1;
+            this.textBox_username.TabIndex = 2;
             // 
             // Username
             // 
@@ -527,7 +533,7 @@
             this.checkBox_enabled.Location = new System.Drawing.Point(13, 20);
             this.checkBox_enabled.Name = "checkBox_enabled";
             this.checkBox_enabled.Size = new System.Drawing.Size(70, 16);
-            this.checkBox_enabled.TabIndex = 1;
+            this.checkBox_enabled.TabIndex = 0;
             this.checkBox_enabled.Text = "Enabled";
             this.checkBox_enabled.UseVisualStyleBackColor = true;
             // 
@@ -551,7 +557,7 @@
             this.button_video_cancel.Location = new System.Drawing.Point(538, 400);
             this.button_video_cancel.Name = "button_video_cancel";
             this.button_video_cancel.Size = new System.Drawing.Size(75, 23);
-            this.button_video_cancel.TabIndex = 4;
+            this.button_video_cancel.TabIndex = 11;
             this.button_video_cancel.Text = "Cancel";
             this.button_video_cancel.UseVisualStyleBackColor = true;
             this.button_video_cancel.Click += new System.EventHandler(this.button_video_cancel_Click);
@@ -562,7 +568,7 @@
             this.button_video_modify.Location = new System.Drawing.Point(457, 400);
             this.button_video_modify.Name = "button_video_modify";
             this.button_video_modify.Size = new System.Drawing.Size(75, 23);
-            this.button_video_modify.TabIndex = 3;
+            this.button_video_modify.TabIndex = 10;
             this.button_video_modify.Text = "Modify";
             this.button_video_modify.UseVisualStyleBackColor = true;
             this.button_video_modify.Click += new System.EventHandler(this.button_video_modify_Click);
@@ -591,7 +597,7 @@
             this.textBox_bitrate_sub.Location = new System.Drawing.Point(120, 125);
             this.textBox_bitrate_sub.Name = "textBox_bitrate_sub";
             this.textBox_bitrate_sub.Size = new System.Drawing.Size(121, 21);
-            this.textBox_bitrate_sub.TabIndex = 11;
+            this.textBox_bitrate_sub.TabIndex = 9;
             this.textBox_bitrate_sub.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_bitrate_sub_KeyPress);
             // 
             // textBox_quality_sub
@@ -599,7 +605,7 @@
             this.textBox_quality_sub.Location = new System.Drawing.Point(120, 100);
             this.textBox_quality_sub.Name = "textBox_quality_sub";
             this.textBox_quality_sub.Size = new System.Drawing.Size(121, 21);
-            this.textBox_quality_sub.TabIndex = 10;
+            this.textBox_quality_sub.TabIndex = 8;
             this.textBox_quality_sub.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_quality_sub_KeyPress);
             // 
             // textBox_framerate_sub
@@ -607,7 +613,7 @@
             this.textBox_framerate_sub.Location = new System.Drawing.Point(120, 50);
             this.textBox_framerate_sub.Name = "textBox_framerate_sub";
             this.textBox_framerate_sub.Size = new System.Drawing.Size(121, 21);
-            this.textBox_framerate_sub.TabIndex = 9;
+            this.textBox_framerate_sub.TabIndex = 6;
             this.textBox_framerate_sub.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_framerate_sub_KeyPress);
             // 
             // comboBox_codec_sub
@@ -620,7 +626,7 @@
             this.comboBox_codec_sub.Location = new System.Drawing.Point(120, 75);
             this.comboBox_codec_sub.Name = "comboBox_codec_sub";
             this.comboBox_codec_sub.Size = new System.Drawing.Size(121, 20);
-            this.comboBox_codec_sub.TabIndex = 8;
+            this.comboBox_codec_sub.TabIndex = 7;
             // 
             // label12
             // 
@@ -678,7 +684,7 @@
             this.comboBox_resolution_sub.Location = new System.Drawing.Point(120, 25);
             this.comboBox_resolution_sub.Name = "comboBox_resolution_sub";
             this.comboBox_resolution_sub.Size = new System.Drawing.Size(121, 20);
-            this.comboBox_resolution_sub.TabIndex = 1;
+            this.comboBox_resolution_sub.TabIndex = 5;
             // 
             // groupBox_main_stream
             // 
@@ -704,7 +710,7 @@
             this.textBox_bitrate_main.Location = new System.Drawing.Point(120, 125);
             this.textBox_bitrate_main.Name = "textBox_bitrate_main";
             this.textBox_bitrate_main.Size = new System.Drawing.Size(121, 21);
-            this.textBox_bitrate_main.TabIndex = 11;
+            this.textBox_bitrate_main.TabIndex = 4;
             this.textBox_bitrate_main.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_bitrate_main_KeyPress);
             // 
             // textBox_quality_main
@@ -712,7 +718,7 @@
             this.textBox_quality_main.Location = new System.Drawing.Point(120, 100);
             this.textBox_quality_main.Name = "textBox_quality_main";
             this.textBox_quality_main.Size = new System.Drawing.Size(121, 21);
-            this.textBox_quality_main.TabIndex = 10;
+            this.textBox_quality_main.TabIndex = 3;
             this.textBox_quality_main.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_quality_main_KeyPress);
             // 
             // textBox_framerate_main
@@ -720,7 +726,7 @@
             this.textBox_framerate_main.Location = new System.Drawing.Point(120, 50);
             this.textBox_framerate_main.Name = "textBox_framerate_main";
             this.textBox_framerate_main.Size = new System.Drawing.Size(121, 21);
-            this.textBox_framerate_main.TabIndex = 9;
+            this.textBox_framerate_main.TabIndex = 1;
             this.textBox_framerate_main.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_framerate_main_KeyPress);
             // 
             // comboBox_codec_main
@@ -733,7 +739,7 @@
             this.comboBox_codec_main.Location = new System.Drawing.Point(120, 75);
             this.comboBox_codec_main.Name = "comboBox_codec_main";
             this.comboBox_codec_main.Size = new System.Drawing.Size(121, 20);
-            this.comboBox_codec_main.TabIndex = 8;
+            this.comboBox_codec_main.TabIndex = 2;
             // 
             // label11
             // 
@@ -791,7 +797,7 @@
             this.comboBox_resolution_main.Location = new System.Drawing.Point(120, 25);
             this.comboBox_resolution_main.Name = "comboBox_resolution_main";
             this.comboBox_resolution_main.Size = new System.Drawing.Size(121, 20);
-            this.comboBox_resolution_main.TabIndex = 1;
+            this.comboBox_resolution_main.TabIndex = 0;
             // 
             // tabPage_image
             // 
@@ -812,7 +818,7 @@
             this.button_image_cancel.Location = new System.Drawing.Point(538, 400);
             this.button_image_cancel.Name = "button_image_cancel";
             this.button_image_cancel.Size = new System.Drawing.Size(75, 23);
-            this.button_image_cancel.TabIndex = 4;
+            this.button_image_cancel.TabIndex = 1;
             this.button_image_cancel.Text = "Cancel";
             this.button_image_cancel.UseVisualStyleBackColor = true;
             this.button_image_cancel.Click += new System.EventHandler(this.button_image_cancel_Click);
@@ -823,7 +829,7 @@
             this.button_image_modify.Location = new System.Drawing.Point(457, 400);
             this.button_image_modify.Name = "button_image_modify";
             this.button_image_modify.Size = new System.Drawing.Size(75, 23);
-            this.button_image_modify.TabIndex = 3;
+            this.button_image_modify.TabIndex = 0;
             this.button_image_modify.Text = "Modify";
             this.button_image_modify.UseVisualStyleBackColor = true;
             this.button_image_modify.Click += new System.EventHandler(this.button_image_modify_Click);
@@ -851,6 +857,7 @@
             this.trackBar_sharpness.Name = "trackBar_sharpness";
             this.trackBar_sharpness.Size = new System.Drawing.Size(119, 45);
             this.trackBar_sharpness.TabIndex = 6;
+            this.trackBar_sharpness.TabStop = false;
             this.trackBar_sharpness.Value = 5;
             // 
             // trackBar_contrast
@@ -861,6 +868,7 @@
             this.trackBar_contrast.Name = "trackBar_contrast";
             this.trackBar_contrast.Size = new System.Drawing.Size(119, 45);
             this.trackBar_contrast.TabIndex = 5;
+            this.trackBar_contrast.TabStop = false;
             this.trackBar_contrast.Value = 5;
             // 
             // trackBar_brightness
@@ -871,6 +879,7 @@
             this.trackBar_brightness.Name = "trackBar_brightness";
             this.trackBar_brightness.Size = new System.Drawing.Size(119, 45);
             this.trackBar_brightness.TabIndex = 4;
+            this.trackBar_brightness.TabStop = false;
             this.trackBar_brightness.Value = 5;
             // 
             // label19
@@ -919,7 +928,7 @@
             this.button7_network_cancel.Location = new System.Drawing.Point(538, 400);
             this.button7_network_cancel.Name = "button7_network_cancel";
             this.button7_network_cancel.Size = new System.Drawing.Size(75, 23);
-            this.button7_network_cancel.TabIndex = 4;
+            this.button7_network_cancel.TabIndex = 5;
             this.button7_network_cancel.Text = "Cancel";
             this.button7_network_cancel.UseVisualStyleBackColor = true;
             this.button7_network_cancel.Click += new System.EventHandler(this.button7_network_cancel_Click);
@@ -930,7 +939,7 @@
             this.button_network_modify.Location = new System.Drawing.Point(457, 400);
             this.button_network_modify.Name = "button_network_modify";
             this.button_network_modify.Size = new System.Drawing.Size(75, 23);
-            this.button_network_modify.TabIndex = 3;
+            this.button_network_modify.TabIndex = 4;
             this.button_network_modify.Text = "Modify";
             this.button_network_modify.UseVisualStyleBackColor = true;
             this.button_network_modify.Click += new System.EventHandler(this.button_network_modify_Click);
@@ -944,7 +953,7 @@
             this.groupBox_ip.Controls.Add(this.textBox_rtsp_port);
             this.groupBox_ip.Controls.Add(this.textBox_http_port);
             this.groupBox_ip.Controls.Add(this.textBox_https_port);
-            this.groupBox_ip.Controls.Add(this.textBox_ip_adress);
+            this.groupBox_ip.Controls.Add(this.textBox_ip_address);
             this.groupBox_ip.Location = new System.Drawing.Point(6, 6);
             this.groupBox_ip.Name = "groupBox_ip";
             this.groupBox_ip.Size = new System.Drawing.Size(269, 142);
@@ -993,7 +1002,7 @@
             this.textBox_rtsp_port.Location = new System.Drawing.Point(120, 100);
             this.textBox_rtsp_port.Name = "textBox_rtsp_port";
             this.textBox_rtsp_port.Size = new System.Drawing.Size(121, 21);
-            this.textBox_rtsp_port.TabIndex = 13;
+            this.textBox_rtsp_port.TabIndex = 3;
             this.textBox_rtsp_port.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_rtsp_port_KeyPress);
             // 
             // textBox_http_port
@@ -1001,7 +1010,7 @@
             this.textBox_http_port.Location = new System.Drawing.Point(120, 50);
             this.textBox_http_port.Name = "textBox_http_port";
             this.textBox_http_port.Size = new System.Drawing.Size(121, 21);
-            this.textBox_http_port.TabIndex = 12;
+            this.textBox_http_port.TabIndex = 1;
             this.toolTip_http.SetToolTip(this.textBox_http_port, "0~35535 사이의 값을 입력해주세요.");
             this.textBox_http_port.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_http_port_KeyPress);
             // 
@@ -1010,16 +1019,16 @@
             this.textBox_https_port.Location = new System.Drawing.Point(120, 75);
             this.textBox_https_port.Name = "textBox_https_port";
             this.textBox_https_port.Size = new System.Drawing.Size(121, 21);
-            this.textBox_https_port.TabIndex = 11;
+            this.textBox_https_port.TabIndex = 2;
             this.textBox_https_port.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_https_port_KeyPress);
             // 
-            // textBox_ip_adress
+            // textBox_ip_address
             // 
-            this.textBox_ip_adress.Location = new System.Drawing.Point(120, 25);
-            this.textBox_ip_adress.Name = "textBox_ip_adress";
-            this.textBox_ip_adress.Size = new System.Drawing.Size(121, 21);
-            this.textBox_ip_adress.TabIndex = 10;
-            this.textBox_ip_adress.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_ip_adress_KeyPress);
+            this.textBox_ip_address.Location = new System.Drawing.Point(120, 25);
+            this.textBox_ip_address.Name = "textBox_ip_address";
+            this.textBox_ip_address.Size = new System.Drawing.Size(121, 21);
+            this.textBox_ip_address.TabIndex = 0;
+            this.textBox_ip_address.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_ip_adress_KeyPress);
             // 
             // tabPage_archive
             // 
@@ -1041,7 +1050,7 @@
             this.button_archive_cancel.Location = new System.Drawing.Point(538, 400);
             this.button_archive_cancel.Name = "button_archive_cancel";
             this.button_archive_cancel.Size = new System.Drawing.Size(75, 23);
-            this.button_archive_cancel.TabIndex = 4;
+            this.button_archive_cancel.TabIndex = 6;
             this.button_archive_cancel.Text = "Cancel";
             this.button_archive_cancel.UseVisualStyleBackColor = true;
             this.button_archive_cancel.Click += new System.EventHandler(this.button_archive_cancel_Click);
@@ -1052,7 +1061,7 @@
             this.button_archive_modify.Location = new System.Drawing.Point(457, 400);
             this.button_archive_modify.Name = "button_archive_modify";
             this.button_archive_modify.Size = new System.Drawing.Size(75, 23);
-            this.button_archive_modify.TabIndex = 3;
+            this.button_archive_modify.TabIndex = 5;
             this.button_archive_modify.Text = "Modify";
             this.button_archive_modify.UseVisualStyleBackColor = true;
             this.button_archive_modify.Click += new System.EventHandler(this.button_archive_modify_Click);
@@ -1215,14 +1224,14 @@
             this.comboBox_record_stream.Location = new System.Drawing.Point(120, 125);
             this.comboBox_record_stream.Name = "comboBox_record_stream";
             this.comboBox_record_stream.Size = new System.Drawing.Size(121, 20);
-            this.comboBox_record_stream.TabIndex = 13;
+            this.comboBox_record_stream.TabIndex = 4;
             // 
             // textBox_framerate
             // 
             this.textBox_framerate.Location = new System.Drawing.Point(120, 100);
             this.textBox_framerate.Name = "textBox_framerate";
             this.textBox_framerate.Size = new System.Drawing.Size(121, 21);
-            this.textBox_framerate.TabIndex = 12;
+            this.textBox_framerate.TabIndex = 3;
             this.textBox_framerate.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_framerate_KeyPress);
             // 
             // textBox_record_time
@@ -1230,7 +1239,7 @@
             this.textBox_record_time.Location = new System.Drawing.Point(120, 75);
             this.textBox_record_time.Name = "textBox_record_time";
             this.textBox_record_time.Size = new System.Drawing.Size(121, 21);
-            this.textBox_record_time.TabIndex = 11;
+            this.textBox_record_time.TabIndex = 2;
             this.textBox_record_time.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_record_time_KeyPress);
             // 
             // comboBox_record_period
@@ -1243,7 +1252,7 @@
             this.comboBox_record_period.Location = new System.Drawing.Point(120, 50);
             this.comboBox_record_period.Name = "comboBox_record_period";
             this.comboBox_record_period.Size = new System.Drawing.Size(121, 20);
-            this.comboBox_record_period.TabIndex = 3;
+            this.comboBox_record_period.TabIndex = 1;
             // 
             // comboBox_storage
             // 
@@ -1255,7 +1264,7 @@
             this.comboBox_storage.Location = new System.Drawing.Point(120, 25);
             this.comboBox_storage.Name = "comboBox_storage";
             this.comboBox_storage.Size = new System.Drawing.Size(121, 20);
-            this.comboBox_storage.TabIndex = 2;
+            this.comboBox_storage.TabIndex = 0;
             // 
             // tabPage_event
             // 
@@ -1280,7 +1289,7 @@
             this.button_event_cancel.Location = new System.Drawing.Point(538, 400);
             this.button_event_cancel.Name = "button_event_cancel";
             this.button_event_cancel.Size = new System.Drawing.Size(75, 23);
-            this.button_event_cancel.TabIndex = 11;
+            this.button_event_cancel.TabIndex = 9;
             this.button_event_cancel.Text = "Cancel";
             this.button_event_cancel.UseVisualStyleBackColor = true;
             // 
@@ -1290,7 +1299,7 @@
             this.button_event_modify.Location = new System.Drawing.Point(457, 400);
             this.button_event_modify.Name = "button_event_modify";
             this.button_event_modify.Size = new System.Drawing.Size(75, 23);
-            this.button_event_modify.TabIndex = 10;
+            this.button_event_modify.TabIndex = 8;
             this.button_event_modify.Text = "Modify";
             this.button_event_modify.UseVisualStyleBackColor = true;
             // 
@@ -1300,7 +1309,7 @@
             this.button_eventlist_remove.Location = new System.Drawing.Point(433, 175);
             this.button_eventlist_remove.Name = "button_eventlist_remove";
             this.button_eventlist_remove.Size = new System.Drawing.Size(65, 23);
-            this.button_eventlist_remove.TabIndex = 9;
+            this.button_eventlist_remove.TabIndex = 7;
             this.button_eventlist_remove.Text = "Remove";
             this.button_eventlist_remove.UseVisualStyleBackColor = false;
             // 
@@ -1377,14 +1386,14 @@
             this.comboBox_event_type.Location = new System.Drawing.Point(120, 50);
             this.comboBox_event_type.Name = "comboBox_event_type";
             this.comboBox_event_type.Size = new System.Drawing.Size(121, 20);
-            this.comboBox_event_type.TabIndex = 15;
+            this.comboBox_event_type.TabIndex = 1;
             // 
             // textBox_sensitivity
             // 
             this.textBox_sensitivity.Location = new System.Drawing.Point(120, 75);
             this.textBox_sensitivity.Name = "textBox_sensitivity";
             this.textBox_sensitivity.Size = new System.Drawing.Size(121, 21);
-            this.textBox_sensitivity.TabIndex = 14;
+            this.textBox_sensitivity.TabIndex = 2;
             this.textBox_sensitivity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_sensitivity_KeyPress);
             // 
             // textBox_maximum
@@ -1392,7 +1401,7 @@
             this.textBox_maximum.Location = new System.Drawing.Point(120, 125);
             this.textBox_maximum.Name = "textBox_maximum";
             this.textBox_maximum.Size = new System.Drawing.Size(121, 21);
-            this.textBox_maximum.TabIndex = 13;
+            this.textBox_maximum.TabIndex = 4;
             this.textBox_maximum.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_maximum_KeyPress);
             // 
             // textBox_minimux
@@ -1400,7 +1409,7 @@
             this.textBox_minimux.Location = new System.Drawing.Point(120, 100);
             this.textBox_minimux.Name = "textBox_minimux";
             this.textBox_minimux.Size = new System.Drawing.Size(121, 21);
-            this.textBox_minimux.TabIndex = 12;
+            this.textBox_minimux.TabIndex = 3;
             this.textBox_minimux.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox_minimux_KeyPress);
             // 
             // textBox_event_name
@@ -1408,7 +1417,7 @@
             this.textBox_event_name.Location = new System.Drawing.Point(120, 25);
             this.textBox_event_name.Name = "textBox_event_name";
             this.textBox_event_name.Size = new System.Drawing.Size(121, 21);
-            this.textBox_event_name.TabIndex = 11;
+            this.textBox_event_name.TabIndex = 0;
             // 
             // button_eventlist_modify
             // 
@@ -1416,7 +1425,7 @@
             this.button_eventlist_modify.Location = new System.Drawing.Point(345, 175);
             this.button_eventlist_modify.Name = "button_eventlist_modify";
             this.button_eventlist_modify.Size = new System.Drawing.Size(65, 23);
-            this.button_eventlist_modify.TabIndex = 8;
+            this.button_eventlist_modify.TabIndex = 6;
             this.button_eventlist_modify.Text = "Modify";
             this.button_eventlist_modify.UseVisualStyleBackColor = false;
             // 
@@ -1446,6 +1455,7 @@
             this.listView_event_list.Name = "listView_event_list";
             this.listView_event_list.Size = new System.Drawing.Size(214, 386);
             this.listView_event_list.TabIndex = 1;
+            this.listView_event_list.TabStop = false;
             this.listView_event_list.UseCompatibleStateImageBehavior = false;
             // 
             // button_eventlist_add
@@ -1455,7 +1465,7 @@
             this.button_eventlist_add.Location = new System.Drawing.Point(260, 175);
             this.button_eventlist_add.Name = "button_eventlist_add";
             this.button_eventlist_add.Size = new System.Drawing.Size(65, 23);
-            this.button_eventlist_add.TabIndex = 7;
+            this.button_eventlist_add.TabIndex = 5;
             this.button_eventlist_add.Text = "Add";
             this.button_eventlist_add.UseVisualStyleBackColor = false;
             // 
@@ -1491,6 +1501,7 @@
             this.webBrowser.Name = "webBrowser";
             this.webBrowser.Size = new System.Drawing.Size(615, 415);
             this.webBrowser.TabIndex = 7;
+            this.webBrowser.TabStop = false;
             // 
             // Form_main
             // 
@@ -1631,7 +1642,7 @@
         public System.Windows.Forms.TextBox textBox_rtsp_port;
         public System.Windows.Forms.TextBox textBox_http_port;
         public System.Windows.Forms.TextBox textBox_https_port;
-        public System.Windows.Forms.TextBox textBox_ip_adress;
+        public System.Windows.Forms.TextBox textBox_ip_address;
         public System.Windows.Forms.ToolTip toolTip_http;
         public System.Windows.Forms.TextBox textBox_bitrate_sub;
         public System.Windows.Forms.TextBox textBox_quality_sub;

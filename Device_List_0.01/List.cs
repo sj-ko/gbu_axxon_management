@@ -21,12 +21,13 @@ namespace Device_List_0._01
             for (int i = 0; i < r.camera_list.Count; i++)
             {
                 ListViewItem lvi = new ListViewItem(r.camera_list[i].camera_server);
-                lvi.SubItems.Add(r.camera_list[i].camera_IP);
-                lvi.SubItems.Add(r.camera_list[i].device.device_manufacturer);
+                lvi.SubItems.Add(r.camera_list[i].network.network_IP);
+                lvi.SubItems.Add(r.camera_list[i].camera_manufacturer);
                 lvi.SubItems.Add(r.camera_list[i].device.device_model);
                 lvi.SubItems.Add(r.camera_list[i].camera_ID);
-                lvi.SubItems.Add(r.camera_list[i].device.device_username);
-                lvi.SubItems.Add(r.camera_list[i].device.device_PW);
+                lvi.SubItems.Add(r.camera_list[i].camera_name);
+                lvi.SubItems.Add(r.camera_list[i].username);
+                lvi.SubItems.Add(r.camera_list[i].user_PW);
                 r.comboBox_resolution_main.SelectedIndex = r.camera_list[i].video.video_main_resolution;
                 lvi.SubItems.Add(r.comboBox_resolution_main.SelectedItem.ToString());
                 r.comboBox_codec_main.SelectedIndex = r.camera_list[i].video.video_main_codec;
@@ -70,6 +71,7 @@ namespace Device_List_0._01
                 MessageBox.Show("Excel 파일 저장중 에러가 발생했습니다.");
             }
         }
+
         class ListViewItemComparer : IComparer
         {
             private int col;
@@ -93,6 +95,7 @@ namespace Device_List_0._01
                     return String.Compare(((ListViewItem)y).SubItems[col].Text, ((ListViewItem)x).SubItems[col].Text);
             }
         }
+
         private void listView_excel_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             for (int i = 0; i < listView_excel.Columns.Count; i++)

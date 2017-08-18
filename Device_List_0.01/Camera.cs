@@ -6,13 +6,15 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Xml.Serialization;
-
+using System.Text.RegularExpressions;
 namespace Device_List_0._01
 {
     public class json_camera
     {
         public string FriendlyNameLong { get; set; }
         public string State { get; set; }
+        public string Server { get; set; }
+        public string JCamera_id { get; set; }
     }
     public class management
     {
@@ -62,8 +64,14 @@ namespace Device_List_0._01
             foreach (JToken itemObj in array)
             {
                 json_camera issue = new json_camera();                      //리스트에 Parse한 문자열 집어넣기
-                issue.FriendlyNameLong = itemObj.First.SelectToken("friendlyNameLong").ToString();
+                string str = itemObj.First.SelectToken("friendlyNameLong").ToString();
+                string[] sp = str.Split('.');
+                issue.JCamera_id = sp[0];
+                issue.FriendlyNameLong = sp[1];
+                //issue.FriendlyNameLong = itemObj.First.SelectToken("friendlyNameLong").ToString();
                 issue.State = itemObj.First.SelectToken("state").ToString();
+                issue.Server = itemObj.First.SelectToken("origin").ToString();
+                //issue.JCamera_id = Regex.Replace(issue.FriendlyNameLong, @"\D", "");
                 Server_camera.Add(issue);              //리스트 추가
             }
             return Server_camera;
@@ -79,11 +87,14 @@ namespace Device_List_0._01
     {
         public string camera_server = "";
         public string camera_manufacturer = "";
-        public string camera_IP="";
+        //public string camera_IP="";
         public string camera_ID = "";
-        public string camera_PW = "";
-        public string camera_connect = "";
-        
+        public string camera_name = "";
+        public string camera_connect = "connected";
+
+        public string username = "";
+        public string user_PW = "";
+
         public Device device = new Device();
         public Video video = new Video();
         public Image image = new Image();

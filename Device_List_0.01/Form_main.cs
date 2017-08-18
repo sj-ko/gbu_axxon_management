@@ -23,63 +23,68 @@ namespace Device_List_0._01
             listView_device.View = View.Details;
             listView_device.BeginUpdate();
             listView_device.Columns.Add("서버");
-            listView_device.Columns.Add("제조사");
-            listView_device.Columns.Add("IP");
+            listView_device.Columns.Add("카메라 ID");
+            listView_device.Columns.Add("카메라 이름");
             listView_device.Columns.Add("연결상태");
-            
+
             //////////////////////////////
-            if(System.IO.File.Exists("Emp.xml"))
-            try
+            if (System.IO.File.Exists("Emp.xml"))
             {
-                XmlDocument xdoc = new XmlDocument();
-                // XML 데이타를 파일에서 로드
-                xdoc.Load(@"C:\Users\qwer\Documents\Visual Studio 2017\Projects\Device_List_0.01\Device_List_0.01\bin\Debug/Emp.xml");
-                XmlElement root = xdoc.DocumentElement;
-                // 노드 요소들
-                XmlNodeList nodes = root.SelectNodes("/Xmlclass/item/Camera");
-                ///////////////deserialize////////////////////
-                using (StreamReader rd = new StreamReader("Emp.xml"))
+                try
                 {
-                    XmlSerializer xs = new XmlSerializer(typeof(Xmlclass));
-                    dexml = (Xmlclass)xs.Deserialize(rd);
-                    rd.Close();
-                }
-                camera_list.AddRange(dexml.item);
-                
-                int tmp = camera_list.Count;
-                for (int i=0;i<tmp; i++)
-                {
-                    ListViewItem lvi = new ListViewItem("임시서버");
-                    lvi.SubItems.Add(camera_list[i].camera_manufacturer);
-                    lvi.SubItems.Add(camera_list[i].camera_IP);
-                    if (camera_list[tmp - 1].camera_connect == "connected" ||camera_list[tmp - 1].camera_connect == "signal_restored")
+                    XmlDocument xdoc = new XmlDocument();
+                    // XML 데이타를 파일에서 로드
+                    xdoc.Load(@"C:\Users\qwer\Documents\Visual Studio 2017\Projects\Device_List_0.01\Device_List_0.01\bin\Debug/Emp.xml");
+                    XmlElement root = xdoc.DocumentElement;
+                    // 노드 요소들
+                    XmlNodeList nodes = root.SelectNodes("/Xmlclass/item/Camera");
+                    ///////////////deserialize////////////////////
+                    using (StreamReader rd = new StreamReader("Emp.xml"))
+                    {
+                        XmlSerializer xs = new XmlSerializer(typeof(Xmlclass));
+                        dexml = (Xmlclass)xs.Deserialize(rd);
+                        rd.Close();
+                    }
+                    camera_list.AddRange(dexml.item);
+
+                    int tmp = camera_list.Count;
+                    for (int i = 0; i < tmp; i++)
+                    {
+                        ListViewItem lvi = new ListViewItem(camera_list[i].camera_server);
+                        lvi.SubItems.Add(camera_list[i].camera_ID);
+                        lvi.SubItems.Add(camera_list[i].camera_name);
+                        if (camera_list[tmp - 1].camera_connect == "connected" || camera_list[tmp - 1].camera_connect == "signal_restored")
                             lvi.SubItems.Add("connected");
-                    else
+                        else
                             lvi.SubItems.Add("unconnected");
-                    listView_device.Items.Add(lvi);
-                    
-                    x.item.Add(camera_list[i]);
+                        listView_device.Items.Add(lvi);
+
+                        x.item.Add(camera_list[i]);
+                    }
                 }
-            }
-            catch (ArgumentException ex)
-            {
-                MessageBox.Show("XML 문제 발생\r\n" + ex);
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show("XML 문제 발생\r\n" + ex);
+                }
             }
             tabcontrol_menu.Enabled = false; // this disables the controls on it
             tabcontrol_menu.Visible = false; // this hides the controls on it.
         }
+
         private void button_listview_collection_Click(object sender, EventArgs e)
         {
             Form_list li = new Form_list();
             li.Owner = this;
             li.Show();
         }
+
         private void button_add_Click(object sender, EventArgs e)
         {
             Form_add add = new Form_add();
             add.Owner = this;
             add.Show();
         }
+
         private void button_refresh_Click(object sender, EventArgs e)
         {
             camera_list.Clear();
@@ -92,20 +97,24 @@ namespace Device_List_0._01
             
             for (int i = 0; i < J.Count; i++)
             {
-                camera_list.Add(new Camera() { camera_ID = J[i].FriendlyNameLong, camera_connect= J[i].State });
+                camera_list.Add(new Camera() { camera_server = J[i].Server, camera_ID = J[i].JCamera_id, camera_name = J[i].FriendlyNameLong, camera_connect= J[i].State });
             }
 
             int tmp = camera_list.Count;
             Xmlclass re = new Xmlclass();               //
             for (int i = 0; i < tmp; i++)
             {
-                ListViewItem lvi = new ListViewItem("임시서버");
-                lvi.SubItems.Add(camera_list[i].camera_manufacturer);
-                lvi.SubItems.Add(camera_list[i].camera_IP);
+                ListViewItem lvi = new ListViewItem(camera_list[i].camera_server);
+                lvi.SubItems.Add(camera_list[i].camera_ID);
+                lvi.SubItems.Add(camera_list[i].camera_name);
                 if (camera_list[i].camera_connect == "connected" || camera_list[i].camera_connect == "signal_restored")
+                {
                     lvi.SubItems.Add("connected");
+                }
                 else
+                {
                     lvi.SubItems.Add("unconnected");
+                }
                 listView_device.Items.Add(lvi);
 
                 re.item.Add(camera_list[i]);
@@ -153,9 +162,9 @@ namespace Device_List_0._01
 
             ////////Device Setting/////
             checkBox_enabled.Checked = camera_list[tmp].device.enable;
-            textBox_name.Text = camera_list[tmp].camera_ID;
-            textBox_username.Text = camera_list[tmp].device.device_username;
-            textBox_password.Text = camera_list[tmp].device.device_PW;
+            textBox_name.Text = camera_list[tmp].camera_name;
+            textBox_username.Text = camera_list[tmp].username;
+            textBox_password.Text = camera_list[tmp].user_PW;
             label_dmodel.Text = camera_list[tmp].device.device_model;
             label_dmanufacturer.Text = camera_list[tmp].device.device_manufacturer;
             label_dfireware.Text = camera_list[tmp].device.device_firmware;
@@ -180,7 +189,7 @@ namespace Device_List_0._01
             trackBar_sharpness.Value = camera_list[tmp].image.image_sharpness;
 
             ////////Network Setting/////
-            textBox_ip_adress.Text = camera_list[tmp].network.network_IP;
+            textBox_ip_address.Text = camera_list[tmp].network.network_IP;
             textBox_http_port.Text = camera_list[tmp].network.network_http;
             textBox_https_port.Text = camera_list[tmp].network.network_https;
             textBox_rtsp_port.Text = camera_list[tmp].network.network_rtsp;
@@ -233,13 +242,14 @@ namespace Device_List_0._01
                 r.rangeset_ver2(textBox_longitude, -180, 180);
                 if (!(textBox_latitude.Text == "") && !(textBox_longitude.Text == ""))
                 {
-                    camera_list[tmp].camera_PW = textBox_password.Text;
                     camera_list[tmp].device.enable = checkBox_enabled.Checked;
-                    camera_list[tmp].camera_ID = textBox_name.Text;
-                    camera_list[tmp].device.device_username = textBox_username.Text;
-                    camera_list[tmp].device.device_PW = textBox_password.Text;
+                    camera_list[tmp].camera_name = textBox_name.Text;
+                    camera_list[tmp].username = textBox_username.Text;
+                    camera_list[tmp].user_PW = textBox_password.Text;
                     camera_list[tmp].device.latitude = Convert.ToDouble(textBox_latitude.Text);
                     camera_list[tmp].device.longitude = Convert.ToDouble(textBox_longitude.Text);
+
+                    listView_device.Items[tmp].SubItems[2].Text = textBox_name.Text;
 
                     x.item.RemoveAt(tmp);
                     x.item.Insert(tmp, camera_list[tmp]);
@@ -256,8 +266,8 @@ namespace Device_List_0._01
 
             checkBox_enabled.Checked = camera_list[tmp].device.enable;
             textBox_name.Text = camera_list[tmp].camera_ID;
-            textBox_username.Text = camera_list[tmp].device.device_username;
-            textBox_password.Text = camera_list[tmp].device.device_PW;
+            textBox_username.Text = camera_list[tmp].username;
+            textBox_password.Text = camera_list[tmp].user_PW;
             textBox_latitude.Text = camera_list[tmp].device.latitude.ToString();
             textBox_longitude.Text = camera_list[tmp].device.longitude.ToString();
         }
@@ -323,7 +333,7 @@ namespace Device_List_0._01
                 camera_list[tmp].video.video_sub_codec = comboBox_codec_sub.SelectedIndex;
                 camera_list[tmp].video.video_sub_quality = textBox_quality_sub.Text;
                 camera_list[tmp].video.video_sub_bitrate = textBox_bitrate_sub.Text;
-
+               
                 x.item.RemoveAt(tmp);
                 x.item.Insert(tmp, camera_list[tmp]);
                 M.serialize(x);
@@ -378,7 +388,7 @@ namespace Device_List_0._01
         private void textBox_ip_adress_KeyPress(object sender, KeyPressEventArgs e)
         {
             Range r = new Range();
-            r.ipset(sender, e, textBox_ip_adress);
+            r.ipset(sender, e, textBox_ip_address);
         }
 
         private void textBox_http_port_KeyPress(object sender, KeyPressEventArgs e)
@@ -401,22 +411,23 @@ namespace Device_List_0._01
 
         private void button_network_modify_Click(object sender, EventArgs e)
         {
-            if (didyouclicklist == false)
-                MessageBox.Show("우선 카메라를 선택해주세요");
+            if (textBox_ip_address.Text.Length < 1 || textBox_http_port.Text.Length < 1 || textBox_https_port.Text.Length < 1 ||
+                    textBox_rtsp_port.Text.Length < 1 )
+            {
+                MessageBox.Show("모든 항목을 입력해주세요.");
+            }
             else
             {
                 int tmp = 0;
                 if (listView_device.FocusedItem != null)
                     tmp = listView_device.FocusedItem.Index;
 
-                camera_list[tmp].camera_IP = textBox_ip_adress.Text;
-                camera_list[tmp].network.network_IP = textBox_ip_adress.Text;
+                //camera_list[tmp].camera_IP = textBox_ip_adress.Text;
+                camera_list[tmp].network.network_IP = textBox_ip_address.Text;
                 camera_list[tmp].network.network_http = textBox_http_port.Text;
                 camera_list[tmp].network.network_https = textBox_https_port.Text;
                 camera_list[tmp].network.network_rtsp = textBox_rtsp_port.Text;
-
-                listView_device.Items[tmp].SubItems[1].Text = textBox_ip_adress.Text;
-
+                
                 x.item.RemoveAt(tmp);
                 x.item.Insert(tmp, camera_list[tmp]);
                 M.serialize(x);
@@ -429,7 +440,7 @@ namespace Device_List_0._01
             if (listView_device.FocusedItem != null)
                 tmp = listView_device.FocusedItem.Index;
 
-            textBox_ip_adress.Text = camera_list[tmp].network.network_IP;
+            textBox_ip_address.Text = camera_list[tmp].network.network_IP;
             textBox_http_port.Text = camera_list[tmp].network.network_http;
             textBox_https_port.Text = camera_list[tmp].network.network_https;
             textBox_rtsp_port.Text = camera_list[tmp].network.network_rtsp;

@@ -12,7 +12,9 @@ namespace Device_List_0._01
 
         private void button_ok_Click(object sender, EventArgs e)
         {
-            if (comboBox_maker.SelectedItem == null || textBox_IP.Text.Length < 1 || textBox_ID.Text.Length < 1 || textBox_PW.Text.Length < 1 || 
+            if (comboBox_maker.SelectedItem == null || textBox_IP.Text.Length < 1 || textBox_port.Text.Length < 1 ||
+                textBox_username.Text.Length < 1 || textBox_PW.Text.Length < 1 || 
+                textBox_model.Text.Length < 1 || textBox_cameraID.Text.Length < 1 || textBox_cameraNAME.Text.Length < 1 ||
                 textBox_add_latitude.Text.Length < 1 || textBox_add_longgitude.Text.Length < 1)
             {
                 MessageBox.Show("모든 항목을 입력해주세요.");
@@ -27,29 +29,34 @@ namespace Device_List_0._01
                     Form_main m = (Form_main)this.Owner;
 
                     ListViewItem lvi = new ListViewItem("임시서버");
-                    lvi.SubItems.Add(comboBox_maker.SelectedItem.ToString());
-                    lvi.SubItems.Add(textBox_IP.Text);
+                    lvi.SubItems.Add(textBox_cameraID.Text);
+                    lvi.SubItems.Add(textBox_cameraNAME.Text);
                     
-                    m.camera_list.Add(new Camera() { camera_manufacturer = comboBox_maker.SelectedItem.ToString(), camera_IP = textBox_IP.Text, camera_ID = textBox_ID.Text, camera_PW = textBox_PW.Text });
+                    m.camera_list.Add(new Camera() { camera_manufacturer = comboBox_maker.SelectedItem.ToString() });
 
                     //................................................................................///이 아래부터 나중에수정할것들//
                     /////////입력받은 maker, ip, id, pw 로 카메라 검색/ tab 메뉴의 항목에 값 저장&초기값으로 초기화..
                     int tmp = m.camera_list.Count;
                     m.camera_list[tmp - 1].camera_server = "임시서버";
-                    m.camera_list[tmp - 1].camera_connect = "connected";
-
+                    m.camera_list[tmp - 1].camera_ID = textBox_cameraID.Text;
+                    m.camera_list[tmp - 1].camera_name = textBox_cameraNAME.Text;
                     if (m.camera_list[tmp - 1].camera_connect == "connected" || m.camera_list[tmp - 1].camera_connect == "signal_restored")
                         lvi.SubItems.Add("connected");
                     else
                         lvi.SubItems.Add("unconnected");
                     m.listView_device.Items.Add(lvi);           ///리스트 추가
+
+                    m.camera_list[tmp - 1].username = textBox_username.Text;
+                    m.camera_list[tmp - 1].user_PW = textBox_PW.Text;
+
+                    m.textBox_username.Text = m.camera_list[tmp - 1].username;
+                    m.textBox_password.Text = m.camera_list[tmp - 1].user_PW;
                     ///////////////////////////////Device Setting///////////////////////
                     m.camera_list[tmp - 1].device.enable = true;
                     //m.camera_list[tmp - 1].device.device_name = "임시이름 " + tmp;
-                    m.camera_list[tmp - 1].device.device_username = "임시유저 " + tmp;
-                    m.camera_list[tmp - 1].device.device_PW = textBox_PW.Text;
-                    m.camera_list[tmp - 1].device.device_model = "임시모델 " + tmp;
-                    m.camera_list[tmp - 1].device.device_manufacturer = comboBox_maker.SelectedItem.ToString();
+                    
+                    m.camera_list[tmp - 1].device.device_model = textBox_model.Text;
+                    m.camera_list[tmp - 1].device.device_manufacturer = m.camera_list[tmp - 1].camera_manufacturer;
                     m.camera_list[tmp - 1].device.device_firmware = "임시firmware " + tmp;
                     m.camera_list[tmp - 1].device.latitude = Convert.ToDouble(textBox_add_latitude.Text);
                     m.camera_list[tmp - 1].device.longitude = Convert.ToDouble(textBox_add_longgitude.Text);
@@ -57,8 +64,7 @@ namespace Device_List_0._01
                     m.checkBox_enabled.Checked = m.camera_list[tmp - 1].device.enable;
                     //m.Enabled = m.camera_list[tmp - 1].device.enable;
                     m.textBox_name.Text = m.camera_list[tmp - 1].camera_ID;
-                    m.textBox_username.Text = m.camera_list[tmp - 1].device.device_username;
-                    m.textBox_password.Text = m.camera_list[tmp - 1].device.device_PW;
+                    
                     m.label_dmodel.Text = m.camera_list[tmp - 1].device.device_model;
                     m.label_dmanufacturer.Text = m.camera_list[tmp - 1].device.device_manufacturer;
                     m.label_dfireware.Text = m.camera_list[tmp - 1].device.device_firmware;
@@ -95,11 +101,11 @@ namespace Device_List_0._01
 
                     ///////////////////////////////Network Setting///////////////////////
                     m.camera_list[tmp - 1].network.network_IP = textBox_IP.Text;
-                    m.camera_list[tmp - 1].network.network_http = "1" + tmp;
+                    m.camera_list[tmp - 1].network.network_http = textBox_port.Text ;
                     m.camera_list[tmp - 1].network.network_https = "2" + tmp;
                     m.camera_list[tmp - 1].network.network_rtsp = "3" + tmp;
 
-                    m.textBox_ip_adress.Text = m.camera_list[tmp - 1].network.network_IP;
+                    m.textBox_ip_address.Text = m.camera_list[tmp - 1].network.network_IP;
                     m.textBox_http_port.Text = m.camera_list[tmp - 1].network.network_http;
                     m.textBox_https_port.Text = m.camera_list[tmp - 1].network.network_https;
                     m.textBox_rtsp_port.Text = m.camera_list[tmp - 1].network.network_rtsp;
@@ -164,6 +170,12 @@ namespace Device_List_0._01
         {
             Range r = new Range();
             r.check_effectiveness(sender, e, textBox_add_longgitude);
+        }
+
+        private void textBox_port_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Range r = new Range();
+            r.rangeset(sender, e, textBox_port, 0, 65535);
         }
     }
 }

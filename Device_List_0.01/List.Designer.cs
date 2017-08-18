@@ -40,6 +40,7 @@
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.button_save = new System.Windows.Forms.Button();
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // listView_excel
@@ -58,7 +59,8 @@
             this.columnHeader6,
             this.columnHeader7,
             this.columnHeader8,
-            this.columnHeader9});
+            this.columnHeader9,
+            this.columnHeader10});
             this.listView_excel.FullRowSelect = true;
             this.listView_excel.GridLines = true;
             this.listView_excel.Location = new System.Drawing.Point(12, 44);
@@ -87,26 +89,26 @@
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "name";
+            this.columnHeader5.Text = "카메라 id";
             // 
             // columnHeader6
             // 
-            this.columnHeader6.Text = "Username";
+            this.columnHeader6.Text = "카메라 이름";
             this.columnHeader6.Width = 70;
             // 
             // columnHeader7
             // 
-            this.columnHeader7.Text = "Password";
+            this.columnHeader7.Text = "Username";
             this.columnHeader7.Width = 70;
             // 
             // columnHeader8
             // 
-            this.columnHeader8.Text = "Resolution";
+            this.columnHeader8.Text = "Password";
             this.columnHeader8.Width = 80;
             // 
             // columnHeader9
             // 
-            this.columnHeader9.Text = "Codec";
+            this.columnHeader9.Text = "Resolution";
             // 
             // label1
             // 
@@ -129,6 +131,10 @@
             this.button_save.Text = "Save";
             this.button_save.UseVisualStyleBackColor = true;
             this.button_save.Click += new System.EventHandler(this.button_save_Click);
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "Codec";
             // 
             // Form_list
             // 
@@ -160,5 +166,6 @@
         public System.Windows.Forms.ColumnHeader columnHeader8;
         public System.Windows.Forms.ColumnHeader columnHeader9;
         public System.Windows.Forms.ListView listView_excel;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
     }
 }
