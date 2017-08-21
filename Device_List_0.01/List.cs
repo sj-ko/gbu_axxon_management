@@ -32,6 +32,14 @@ namespace Device_List_0._01
                 lvi.SubItems.Add(r.comboBox_resolution_main.SelectedItem.ToString());
                 r.comboBox_codec_main.SelectedIndex = r.camera_list[i].video.video_main_codec;
                 lvi.SubItems.Add(r.comboBox_codec_main.SelectedItem.ToString());
+                if (r.camera_list[i].camera_connect == "connected" || r.camera_list[i].camera_connect == "signal_restored")
+                {
+                    lvi.SubItems.Add("connected");
+                }
+                else
+                {
+                    lvi.SubItems.Add("unconnected");
+                }
                 listView_excel.Items.Add(lvi);
             }
         }

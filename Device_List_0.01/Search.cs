@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Device_List_0._01
@@ -18,7 +12,18 @@ namespace Device_List_0._01
         }
 
         public int Focusecheck = 0;                 //다음 카메라 검색시 활용
+        public bool searchOK = false;
+        public bool beforeButtonisNext = true;
         List<int> checklist = new List<int>();
+
+        private void Form_Search_Load(object sender, EventArgs e)
+        {
+            Form_list m = (Form_list)this.Owner;
+            button_before.Enabled = false;
+            button_next.Enabled = false;
+            textBox_fullname.Enabled = false;
+            textBox_search_KEYWORD.Enabled = false;
+        }
 
         public void button_search_Click(object sender, EventArgs e)
         {
@@ -29,6 +34,7 @@ namespace Device_List_0._01
             {
                 MessageBox.Show("검색 방법과 검색 키워드를 확인해주세요.");
             }
+
             else
             {
                 bool check = false;
@@ -40,6 +46,7 @@ namespace Device_List_0._01
                     m.listView_excel.Items[i].Selected = false;
                     textBox_fullname.Text = "";
                 }
+
                 if (label_type.Text == "카메라 ID")
                 {
                     for (int i = 0; i < m.listView_excel.Items.Count; i++)
@@ -50,10 +57,11 @@ namespace Device_List_0._01
                             m.listView_excel.Items[i].Selected = true;
                             checklist.Add(i);
                             check = true;
+                            searchOK = true;
                         }
                     }
-
                 }
+
                 else if (label_type.Text == "카메라 이름")
                 {
                     for (int i = 0; i < m.listView_excel.Items.Count; i++)
@@ -64,6 +72,7 @@ namespace Device_List_0._01
                             m.listView_excel.Items[i].Selected = true;
                             checklist.Add(i);
                             check = true;
+                            searchOK = true;
                         }
                     }
                 }
@@ -71,11 +80,16 @@ namespace Device_List_0._01
                 if (check == false)
                 {
                     textBox_fullname.Text = "";
+                    button_before.Enabled = false;
+                    button_next.Enabled = false;
                     MessageBox.Show("카메라를 찾을 수 없습니다.");
                 }
+
                 else
                 {
                     textBox_fullname.Text = m.listView_excel.Items[checklist[0]].SubItems[4].Text + "." + m.listView_excel.Items[checklist[0]].SubItems[5].Text;
+                    button_before.Enabled = true;
+                    button_next.Enabled = true;
                     MessageBox.Show("검색을 완료했습니다.");
                 }
             }
@@ -84,25 +98,69 @@ namespace Device_List_0._01
         private void button_next_Click(object sender, EventArgs e)
         {
             Form_list m = (Form_list)this.Owner;
-            if (m.listView_excel.FocusedItem != null)         //체크된 아이템이 있을 경우에만 다음 검색 가능
+            if (m.listView_excel.FocusedItem != null && searchOK==true)         //체크된 아이템이 있을 경우에만 다음 검색 가능
             {
+                if (beforeButtonisNext == false)
+                {
+                    Focusecheck++;
+                    beforeButtonisNext = true;
+                }
+
                 int tmp = checklist[Focusecheck];
+                
                 for (int i = 0; i < m.listView_excel.Items.Count; i++)      //선택 해제
                 {
                     m.listView_excel.Items[i].Focused = false;
                     m.listView_excel.Items[i].Selected = false;
                 }
+
                 textBox_fullname.Text = m.listView_excel.Items[tmp].SubItems[4].Text + "." + m.listView_excel.Items[tmp].SubItems[5].Text;
                 m.listView_excel.Items[tmp].Focused = true;
                 m.listView_excel.Items[tmp].Selected = true;
-
+                
                 Focusecheck++;
+
                 if (Focusecheck >= checklist.Count)
                 {
                     MessageBox.Show("검색 종료");
-                    m.listView_excel.Items[tmp].Focused = false;
-                    m.listView_excel.Items[tmp].Selected = false;
                     Focusecheck = 0;
+                    searchOK = false;
+                    button_before.Enabled = false;
+                    button_next.Enabled = false;
+                }
+            }
+        }
+
+        private void button_before_Click(object sender, EventArgs e)
+        {
+            Form_list m = (Form_list)this.Owner;
+            if (m.listView_excel.FocusedItem != null && searchOK == true)         //체크된 아이템이 있을 경우에만 다음 검색 가능
+            {
+                if (Focusecheck <= 0)
+                {
+                    MessageBox.Show("처음입니다.");
+                }
+
+                else
+                {
+                    Focusecheck--;
+                    if(beforeButtonisNext==true)
+                    {
+                       Focusecheck--;
+                       beforeButtonisNext = false;
+                    }
+                    
+                    int tmp = checklist[Focusecheck];
+
+                    for (int i = 0; i < m.listView_excel.Items.Count; i++)      //선택 해제
+                    {
+                        m.listView_excel.Items[i].Focused = false;
+                        m.listView_excel.Items[i].Selected = false;
+                    }
+
+                    textBox_fullname.Text = m.listView_excel.Items[tmp].SubItems[4].Text + "." + m.listView_excel.Items[tmp].SubItems[5].Text;
+                    m.listView_excel.Items[tmp].Focused = true;
+                    m.listView_excel.Items[tmp].Selected = true;
                 }
             }
         }
@@ -114,6 +172,8 @@ namespace Device_List_0._01
 
         private void comboBox_search_TYPE_SelectedIndexChanged(object sender, EventArgs e)
         {
+            textBox_search_KEYWORD.Enabled = true;
+
             if (comboBox_search_TYPE.SelectedItem.ToString() == "카메라 ID")
             {
                 label_type.Text = "카메라 ID";
