@@ -39,10 +39,11 @@
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ColumnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.button_save = new System.Windows.Forms.Button();
             this.button_search = new System.Windows.Forms.Button();
-            this.ColumnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button_refresh_list = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listView_excel
@@ -70,7 +71,7 @@
             this.listView_excel.Location = new System.Drawing.Point(12, 44);
             this.listView_excel.Name = "listView_excel";
             this.listView_excel.Size = new System.Drawing.Size(815, 735);
-            this.listView_excel.TabIndex = 2;
+            this.listView_excel.TabIndex = 3;
             this.listView_excel.UseCompatibleStateImageBehavior = false;
             this.listView_excel.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView_excel_ColumnClick);
             // 
@@ -121,6 +122,10 @@
             // 
             this.columnHeader10.Text = "Codec";
             // 
+            // ColumnHeader11
+            // 
+            this.ColumnHeader11.Text = "연결상태";
+            // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -138,7 +143,7 @@
             this.button_save.Location = new System.Drawing.Point(853, 730);
             this.button_save.Name = "button_save";
             this.button_save.Size = new System.Drawing.Size(75, 23);
-            this.button_save.TabIndex = 1;
+            this.button_save.TabIndex = 2;
             this.button_save.Text = "Save";
             this.button_save.UseVisualStyleBackColor = true;
             this.button_save.Click += new System.EventHandler(this.button_save_Click);
@@ -149,20 +154,28 @@
             this.button_search.Location = new System.Drawing.Point(853, 691);
             this.button_search.Name = "button_search";
             this.button_search.Size = new System.Drawing.Size(75, 23);
-            this.button_search.TabIndex = 0;
+            this.button_search.TabIndex = 1;
             this.button_search.Text = "Search";
             this.button_search.UseVisualStyleBackColor = true;
             this.button_search.Click += new System.EventHandler(this.button_search_Click);
             // 
-            // ColumnHeader11
+            // button_refresh_list
             // 
-            this.ColumnHeader11.Text = "연결상태";
+            this.button_refresh_list.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_refresh_list.Location = new System.Drawing.Point(853, 652);
+            this.button_refresh_list.Name = "button_refresh_list";
+            this.button_refresh_list.Size = new System.Drawing.Size(75, 23);
+            this.button_refresh_list.TabIndex = 0;
+            this.button_refresh_list.Text = "Refresh";
+            this.button_refresh_list.UseVisualStyleBackColor = true;
+            this.button_refresh_list.Click += new System.EventHandler(this.button_refresh_list_Click);
             // 
             // Form_list
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(951, 791);
+            this.Controls.Add(this.button_refresh_list);
             this.Controls.Add(this.button_search);
             this.Controls.Add(this.button_save);
             this.Controls.Add(this.label1);
@@ -192,5 +205,6 @@
         public System.Windows.Forms.Button button_search;
         public System.Windows.Forms.Button button_save;
         private System.Windows.Forms.ColumnHeader ColumnHeader11;
+        private System.Windows.Forms.Button button_refresh_list;
     }
 }

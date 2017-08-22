@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Device_List_0._01
@@ -13,7 +14,7 @@ namespace Device_List_0._01
             listView_excel.View = View.Details;
             listView_excel.BeginUpdate();
         }
-
+        
         private void Form_list_Load(object sender, EventArgs e)
         {
             Form_main r = (Form_main)this.Owner;
@@ -136,6 +137,83 @@ namespace Device_List_0._01
             Form_Search search = new Form_Search();
             search.Owner = this;
             search.Show();
+        }
+
+        private void button_refresh_list_Click(object sender, EventArgs e)
+        {
+            Form_main r = (Form_main)this.Owner;
+
+            r.camera_list.Clear();
+            listView_excel.Clear();
+            listView_excel.Columns.Add("서버",80);
+            listView_excel.Columns.Add("IP",80);
+            listView_excel.Columns.Add("제조사",60);
+            listView_excel.Columns.Add("Model",60);
+            listView_excel.Columns.Add("카메라 id",80);
+            listView_excel.Columns.Add("카메라 이름",80);
+            listView_excel.Columns.Add("Username",70);
+            listView_excel.Columns.Add("Password",80);
+            listView_excel.Columns.Add("Resolution",80);
+            listView_excel.Columns.Add("Codec",60);
+            listView_excel.Columns.Add("연결상태",60);
+            //listView_excel.Items.Clear();
+            r.listView_device.Items.Clear();
+            ///////////////////////////////////카메라 받아오는 코드 테스트/////////////
+            management server = new management();
+            List<json_camera> J = new List<json_camera>();
+            string json = server.Request_Json();
+            J = server.ParseJson(json);
+
+            for (int i = 0; i < J.Count; i++)
+            {
+                r.camera_list.Add(new Camera() { camera_server = J[i].Server, camera_ID = J[i].JCamera_id, camera_name = J[i].FriendlyNameLong, camera_connect = J[i].State });
+            }
+
+            int tmp = r.camera_list.Count;
+            Xmlclass re = new Xmlclass();               //
+            for (int i = 0; i < tmp; i++)
+            {
+                ListViewItem lvi = new ListViewItem(r.camera_list[i].camera_server);
+                lvi.SubItems.Add(r.camera_list[i].network.network_IP);
+                lvi.SubItems.Add(r.camera_list[i].camera_manufacturer);
+                lvi.SubItems.Add(r.camera_list[i].device.device_model);
+                lvi.SubItems.Add(r.camera_list[i].camera_ID);
+                lvi.SubItems.Add(r.camera_list[i].camera_name);
+                lvi.SubItems.Add(r.camera_list[i].username);
+                lvi.SubItems.Add(r.camera_list[i].user_PW);
+                r.comboBox_resolution_main.SelectedIndex = r.camera_list[i].video.video_main_resolution;
+                lvi.SubItems.Add(r.comboBox_resolution_main.SelectedItem.ToString());
+                r.comboBox_codec_main.SelectedIndex = r.camera_list[i].video.video_main_codec;
+                lvi.SubItems.Add(r.comboBox_codec_main.SelectedItem.ToString());
+                if (r.camera_list[i].camera_connect == "connected" || r.camera_list[i].camera_connect == "signal_restored")
+                {
+                    lvi.SubItems.Add("connected");
+                }
+                else
+                {
+                    lvi.SubItems.Add("unconnected");
+                }
+                listView_excel.Items.Add(lvi);
+
+                re.item.Add(r.camera_list[i]);
+            }
+            r.M.serialize(re);
+            r.x = re;
+            for (int i = 0; i < tmp; i++)
+            {
+                ListViewItem lvi = new ListViewItem(r.camera_list[i].camera_server);
+                lvi.SubItems.Add(r.camera_list[i].camera_ID);
+                lvi.SubItems.Add(r.camera_list[i].camera_name);
+                if (r.camera_list[i].camera_connect == "connected" || r.camera_list[i].camera_connect == "signal_restored")
+                {
+                    lvi.SubItems.Add("connected");
+                }
+                else
+                {
+                    lvi.SubItems.Add("unconnected");
+                }
+                r.listView_device.Items.Add(lvi);
+            }
         }
     }
 }

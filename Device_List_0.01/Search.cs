@@ -87,8 +87,7 @@ namespace Device_List_0._01
 
                 else
                 {
-                    textBox_fullname.Text = m.listView_excel.Items[checklist[0]].SubItems[4].Text + "." + m.listView_excel.Items[checklist[0]].SubItems[5].Text;
-                    button_before.Enabled = true;
+                    textBox_fullname.Text = m.listView_excel.Items[checklist[0]].SubItems[4].Text + "." + m.listView_excel.Items[checklist[0]].SubItems[5].Text; 
                     button_next.Enabled = true;
                     MessageBox.Show("검색을 완료했습니다.");
                 }
@@ -100,6 +99,7 @@ namespace Device_List_0._01
             Form_list m = (Form_list)this.Owner;
             if (m.listView_excel.FocusedItem != null && searchOK==true)         //체크된 아이템이 있을 경우에만 다음 검색 가능
             {
+                button_before.Enabled = true;
                 if (beforeButtonisNext == false)
                 {
                     Focusecheck++;
@@ -138,7 +138,8 @@ namespace Device_List_0._01
             {
                 if (Focusecheck <= 0)
                 {
-                    MessageBox.Show("처음입니다.");
+                    button_before.Enabled = false;
+                    MessageBox.Show("시작 지점 입니다");
                 }
 
                 else
@@ -149,7 +150,12 @@ namespace Device_List_0._01
                        Focusecheck--;
                        beforeButtonisNext = false;
                     }
-                    
+                    if (Focusecheck < 0)
+                    {
+                        button_before.Enabled = false;
+                        MessageBox.Show("시작 지점 입니다");
+                        Focusecheck++;
+                    }
                     int tmp = checklist[Focusecheck];
 
                     for (int i = 0; i < m.listView_excel.Items.Count; i++)      //선택 해제
