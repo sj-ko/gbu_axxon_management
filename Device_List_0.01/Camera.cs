@@ -7,6 +7,8 @@ using System.Net;
 using System.Text;
 using System.Xml.Serialization;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
+
 namespace Device_List_0._01
 {
     public class json_camera
@@ -60,21 +62,29 @@ namespace Device_List_0._01
         public List<json_camera> ParseJson(String json)             //JSON Parse 받아온 json 문자열 파싱
         {
             List<json_camera> Server_camera = new List<json_camera>();     //issues 리스트 생성
-
-            JObject obj = JObject.Parse(json);          //JObject 클래스, JSON 문자열 구하기
-            List<JToken> array = obj.Children().ToList();//JArray 클래스
-            foreach (JToken itemObj in array)
+            if (json == null)
             {
-                json_camera issue = new json_camera();                      //리스트에 Parse한 문자열 집어넣기
-                string str = itemObj.First.SelectToken("friendlyNameLong").ToString();
-                string[] sp = str.Split('.');
-                issue.JCamera_id = sp[0];
-                issue.FriendlyNameLong = sp[1];
-                //issue.FriendlyNameLong = itemObj.First.SelectToken("friendlyNameLong").ToString();
-                issue.State = itemObj.First.SelectToken("state").ToString();
-                issue.Server = itemObj.First.SelectToken("origin").ToString();
-                //issue.JCamera_id = Regex.Replace(issue.FriendlyNameLong, @"\D", "");
-                Server_camera.Add(issue);              //리스트 추가
+                MessageBox.Show("서버 연결을 확인해주세요");
+            }
+            else
+            {
+                JObject obj = JObject.Parse(json);          //JObject 클래스, JSON 문자열 구하기
+                List<JToken> array = obj.Children().ToList();//JArray 클래스
+                foreach (JToken itemObj in array)
+                {
+                    json_camera issue = new json_camera();                      //리스트에 Parse한 문자열 집어넣기
+                    string str = itemObj.First.SelectToken("friendlyNameLong").ToString();
+                    string[] sp = str.Split('.');
+                    issue.JCamera_id = sp[0];
+                    issue.FriendlyNameLong = sp[1];
+                    //issue.FriendlyNameLong = itemObj.First.SelectToken("friendlyNameLong").ToString();
+                    issue.State = itemObj.First.SelectToken("state").ToString();
+                    str = itemObj.First.SelectToken("origin").ToString();
+                    sp = str.Split('/');
+                    issue.Server = sp[0];
+                    //issue.JCamera_id = Regex.Replace(issue.FriendlyNameLong, @"\D", "");
+                    Server_camera.Add(issue);              //리스트 추가
+                }
             }
             return Server_camera;
         }

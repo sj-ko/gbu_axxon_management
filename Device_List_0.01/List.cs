@@ -10,6 +10,7 @@ namespace Device_List_0._01
         public Form_list()
         {
             InitializeComponent();
+            this.KeyPreview = true;
 
             listView_excel.View = View.Details;
             listView_excel.BeginUpdate();
@@ -213,6 +214,14 @@ namespace Device_List_0._01
                     lvi.SubItems.Add("unconnected");
                 }
                 r.listView_device.Items.Add(lvi);
+            }
+        }
+
+        private void Form_list_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Escape))
+            {
+                this.Close();
             }
         }
     }

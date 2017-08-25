@@ -280,7 +280,7 @@ namespace Device_List_0._01
             }
 
             checkBox_enabled.Checked = camera_list[tmp].device.enable;
-            textBox_name.Text = camera_list[tmp].camera_ID;
+            textBox_name.Text = camera_list[tmp].camera_name;
             textBox_username.Text = camera_list[tmp].username;
             textBox_password.Text = camera_list[tmp].user_PW;
             textBox_latitude.Text = camera_list[tmp].device.latitude.ToString();
@@ -555,6 +555,82 @@ namespace Device_List_0._01
             if (didyouclicklist == true)
             {
                 webBrowser.Navigate(camera_list[tmp].network.network_IP);
+            }
+        }
+
+        private void listView_device_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            {
+                didyouclicklist = true;
+                tabcontrol_menu.Enabled = true; // this disables the controls on it
+                tabcontrol_menu.Visible = true; // this hides the controls on it.
+
+                int tmp = 0;
+                if (listView_device.FocusedItem != null)
+                {
+                    tmp = listView_device.FocusedItem.Index;
+                }
+                tabcontrol_menu.SelectedTab = tabPage_device;
+
+                if (camera_list[tmp].camera_connect == "connected" || camera_list[tmp].camera_connect == "signal_restored")
+                {
+                    tabcontrol_menu.Enabled = true;
+                }
+                else
+                {
+                    tabcontrol_menu.Enabled = false;
+                }
+
+                ////////Device Setting/////
+                checkBox_enabled.Checked = camera_list[tmp].device.enable;
+                textBox_name.Text = camera_list[tmp].camera_name;
+                textBox_username.Text = camera_list[tmp].username;
+                textBox_password.Text = camera_list[tmp].user_PW;
+                label_dmodel.Text = camera_list[tmp].device.device_model;
+                label_dmanufacturer.Text = camera_list[tmp].device.device_manufacturer;
+                label_dfireware.Text = camera_list[tmp].device.device_firmware;
+                textBox_latitude.Text = camera_list[tmp].device.latitude.ToString();
+                textBox_longitude.Text = camera_list[tmp].device.longitude.ToString();
+
+                ////////Video Setting/////
+                comboBox_resolution_main.SelectedIndex = camera_list[tmp].video.video_main_resolution;
+                textBox_framerate_main.Text = camera_list[tmp].video.video_main_framerate;
+                comboBox_codec_main.SelectedIndex = camera_list[tmp].video.video_main_codec;
+                textBox_quality_main.Text = camera_list[tmp].video.video_main_quality;
+                textBox_bitrate_main.Text = camera_list[tmp].video.video_main_bitrate;
+                comboBox_resolution_sub.SelectedIndex = camera_list[tmp].video.video_sub_resolution;
+                textBox_framerate_sub.Text = camera_list[tmp].video.video_sub_framerate;
+                comboBox_codec_sub.SelectedIndex = camera_list[tmp].video.video_sub_codec;
+                textBox_quality_sub.Text = camera_list[tmp].video.video_sub_quality;
+                textBox_bitrate_sub.Text = camera_list[tmp].video.video_sub_bitrate;
+
+                ////////Image Setting/////
+                trackBar_brightness.Value = camera_list[tmp].image.image_brightness;
+                trackBar_contrast.Value = camera_list[tmp].image.image_contrast;
+                trackBar_sharpness.Value = camera_list[tmp].image.image_sharpness;
+
+                ////////Network Setting/////
+                textBox_ip_address.Text = camera_list[tmp].network.network_IP;
+                textBox_http_port.Text = camera_list[tmp].network.network_http;
+                textBox_https_port.Text = camera_list[tmp].network.network_https;
+                textBox_rtsp_port.Text = camera_list[tmp].network.network_rtsp;
+
+                ////////Archive Setting/////
+                comboBox_storage.SelectedIndex = camera_list[tmp].archive.archive_set_storage;
+                comboBox_record_period.SelectedIndex = camera_list[tmp].archive.archive_set_record_period;
+                textBox_record_time.Text = camera_list[tmp].archive.archive_set_record_time;
+                textBox_framerate.Text = camera_list[tmp].archive.archive_framerate;
+                comboBox_record_stream.SelectedIndex = camera_list[tmp].archive.archive_set_record_stream;
+                label_archive_name.Text = camera_list[tmp].archive.archive_info_name;
+                label_archive_type.Text = camera_list[tmp].archive.archive_info_type;
+                label_archive_total.Text = camera_list[tmp].archive.archive_info_total;
+                label_archive_free.Text = camera_list[tmp].archive.archive_info_free;
+
+                ////////Event Setting/////
+
+                ////////webpage/////
+                //webBrowser.Navigate(textBox_ip_adress.Text);
             }
         }
     }

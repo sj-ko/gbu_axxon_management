@@ -8,6 +8,7 @@ namespace Device_List_0._01
         public Form_add()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
 
         private void button_ok_Click(object sender, EventArgs e)
@@ -180,6 +181,14 @@ namespace Device_List_0._01
         {
             Range r = new Range();
             r.rangeset(sender, e, textBox_port, 0, 65535);
+        }
+
+        private void Form_add_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Escape))
+            {
+                this.Close();
+            }
         }
     }
 }

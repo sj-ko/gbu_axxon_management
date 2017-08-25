@@ -184,6 +184,7 @@
             this.Name = "Form_list";
             this.Text = "List";
             this.Load += new System.EventHandler(this.Form_list_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form_list_KeyPress);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -74,6 +74,7 @@
             this.MaximizeBox = false;
             this.Name = "Form_Notification";
             this.Text = "Notification";
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form_Notification_KeyPress);
             this.ResumeLayout(false);
             this.PerformLayout();
 

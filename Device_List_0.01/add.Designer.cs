@@ -288,6 +288,7 @@
             this.MaximizeBox = false;
             this.Name = "Form_add";
             this.Text = "Device Add";
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form_add_KeyPress);
             this.ResumeLayout(false);
             this.PerformLayout();
 

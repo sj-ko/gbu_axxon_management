@@ -142,6 +142,7 @@
             this.Name = "Form_Search";
             this.Text = "Search";
             this.Load += new System.EventHandler(this.Form_Search_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form_Search_KeyPress);
             this.ResumeLayout(false);
             this.PerformLayout();
 

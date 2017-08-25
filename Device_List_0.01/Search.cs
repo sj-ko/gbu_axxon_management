@@ -9,6 +9,7 @@ namespace Device_List_0._01
         public Form_Search()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
 
         public int Focusecheck = 0;                 //다음 카메라 검색시 활용
@@ -29,6 +30,8 @@ namespace Device_List_0._01
         {
             Form_list m = (Form_list)this.Owner;
             Focusecheck = 0;
+            button_before.Enabled = false;
+            button_next.Enabled = false;
 
             if (comboBox_search_TYPE.SelectedItem == null || textBox_search_KEYWORD.Text.Length < 1)
             {
@@ -51,7 +54,8 @@ namespace Device_List_0._01
                 {
                     for (int i = 0; i < m.listView_excel.Items.Count; i++)
                     {
-                        if (textBox_search_KEYWORD.Text == m.listView_excel.Items[i].SubItems[4].Text)
+                        int keywordpos = m.listView_excel.Items[i].SubItems[4].Text.IndexOf(textBox_search_KEYWORD.Text);
+                        if (keywordpos != -1)
                         {
                             m.listView_excel.Items[i].Focused = true;
                             m.listView_excel.Items[i].Selected = true;
@@ -66,7 +70,8 @@ namespace Device_List_0._01
                 {
                     for (int i = 0; i < m.listView_excel.Items.Count; i++)
                     {
-                        if (textBox_search_KEYWORD.Text == m.listView_excel.Items[i].SubItems[5].Text)
+                        int keywordpos = m.listView_excel.Items[i].SubItems[5].Text.IndexOf(textBox_search_KEYWORD.Text);
+                        if (keywordpos != -1)
                         {
                             m.listView_excel.Items[i].Focused = true;
                             m.listView_excel.Items[i].Selected = true;
@@ -80,8 +85,7 @@ namespace Device_List_0._01
                 if (check == false)
                 {
                     textBox_fullname.Text = "";
-                    button_before.Enabled = false;
-                    button_next.Enabled = false;
+                    
                     MessageBox.Show("카메라를 찾을 수 없습니다.");
                 }
 
@@ -89,7 +93,8 @@ namespace Device_List_0._01
                 {
                     textBox_fullname.Text = m.listView_excel.Items[checklist[0]].SubItems[4].Text + "." + m.listView_excel.Items[checklist[0]].SubItems[5].Text; 
                     button_next.Enabled = true;
-                    MessageBox.Show("검색을 완료했습니다.");
+                    //MessageBox.Show("검색을 완료했습니다.");
+                    MessageBox.Show(checklist.Count+" 대의 카메라가 검색되었습니다.");
                 }
             }
         }
@@ -187,6 +192,16 @@ namespace Device_List_0._01
             else if(comboBox_search_TYPE.SelectedItem.ToString() == "카메라 이름")
             {
                 label_type.Text = "카메라 이름";
+            }
+        }
+
+        private void Form_Search_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar(Keys.Escape))
+            {
+                Form_list m = (Form_list)this.Owner;
+                m.Focus();
+                this.Close();
             }
         }
     }

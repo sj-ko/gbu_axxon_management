@@ -214,8 +214,7 @@
             this.button_refresh.Location = new System.Drawing.Point(101, 529);
             this.button_refresh.Name = "button_refresh";
             this.button_refresh.Size = new System.Drawing.Size(71, 23);
-            this.button_refresh.TabIndex = 9;
-            this.button_refresh.TabStop = false;
+            this.button_refresh.TabIndex = 2;
             this.button_refresh.Text = "Refresh";
             this.button_refresh.UseVisualStyleBackColor = true;
             this.button_refresh.Click += new System.EventHandler(this.button_refresh_Click);
@@ -226,8 +225,7 @@
             this.button_remove.Location = new System.Drawing.Point(190, 529);
             this.button_remove.Name = "button_remove";
             this.button_remove.Size = new System.Drawing.Size(71, 23);
-            this.button_remove.TabIndex = 8;
-            this.button_remove.TabStop = false;
+            this.button_remove.TabIndex = 3;
             this.button_remove.Text = "Remove";
             this.button_remove.UseVisualStyleBackColor = true;
             this.button_remove.Click += new System.EventHandler(this.button_remove_Click);
@@ -238,8 +236,7 @@
             this.button_add.Location = new System.Drawing.Point(12, 529);
             this.button_add.Name = "button_add";
             this.button_add.Size = new System.Drawing.Size(71, 23);
-            this.button_add.TabIndex = 6;
-            this.button_add.TabStop = false;
+            this.button_add.TabIndex = 1;
             this.button_add.Text = "Add";
             this.button_add.UseVisualStyleBackColor = true;
             this.button_add.Click += new System.EventHandler(this.button_add_Click);
@@ -258,9 +255,9 @@
             this.listView_device.Name = "listView_device";
             this.listView_device.Size = new System.Drawing.Size(249, 449);
             this.listView_device.TabIndex = 0;
-            this.listView_device.TabStop = false;
             this.listView_device.UseCompatibleStateImageBehavior = false;
             this.listView_device.Click += new System.EventHandler(this.listView_device_Click);
+            this.listView_device.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.listView_device_KeyPress);
             // 
             // label1
             // 
@@ -279,8 +276,7 @@
             this.button_listview_collection.Location = new System.Drawing.Point(552, 529);
             this.button_listview_collection.Name = "button_listview_collection";
             this.button_listview_collection.Size = new System.Drawing.Size(75, 23);
-            this.button_listview_collection.TabIndex = 3;
-            this.button_listview_collection.TabStop = false;
+            this.button_listview_collection.TabIndex = 4;
             this.button_listview_collection.Text = "Listview";
             this.button_listview_collection.UseVisualStyleBackColor = true;
             this.button_listview_collection.Click += new System.EventHandler(this.button_listview_collection_Click);
