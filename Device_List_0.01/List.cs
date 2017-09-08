@@ -200,6 +200,7 @@ namespace Device_List_0._01
             }
             r.M.serialize(re);
             r.x = re;
+            
             for (int i = 0; i < tmp; i++)
             {
                 ListViewItem lvi = new ListViewItem(r.camera_list[i].camera_server);

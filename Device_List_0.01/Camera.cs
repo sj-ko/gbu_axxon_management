@@ -32,7 +32,8 @@ namespace Device_List_0._01
         public string Request_Json()       //Refresh 버튼을 누르면 http로 json을 가져온다
         {
             string result = null;
-            string url = "http://192.168.0.109/video-origins/DESKTOP-U8VKICK";
+            //string url = "http://192.168.0.109/video-origins/DESKTOP-U8VKICK";
+            string url = "http://119.194.195.114:5080/video-origins/server2";
             Console.WriteLine("url : " + url);
 
             StringBuilder postParams = new StringBuilder();

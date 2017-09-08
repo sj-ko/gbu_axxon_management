@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
@@ -14,7 +15,7 @@ namespace Device_List_0._01
         public Xmlclass dexml = new Xmlclass();
         public management M = new management();
         public bool didyouclicklist = false;
-
+        public bool treadgo = true;
         //////////////////////////////
         public Form_main()
         {
@@ -80,16 +81,21 @@ namespace Device_List_0._01
             Form_list li = new Form_list();
             li.Owner = this;
             li.Show();
+            treadgo = true;
+            Thread thread1 = new Thread(new ThreadStart(StartThread));
+            thread1.Start();
         }
 
-        private void button_add_Click(object sender, EventArgs e)
+        private void StartThread()
         {
-            Form_add add = new Form_add();
-            add.Owner = this;
-            add.Show();
+            while (treadgo)
+            {
+                listView_device.Invoke(new MethodInvoker(refresh));
+                Thread.Sleep(5000);
+            }
         }
 
-        private void button_refresh_Click(object sender, EventArgs e)
+        private void refresh()
         {
             camera_list.Clear();
             listView_device.Items.Clear();
@@ -98,10 +104,10 @@ namespace Device_List_0._01
             List<json_camera> J = new List<json_camera>();
             string json = server.Request_Json();
             J = server.ParseJson(json);
-            
+
             for (int i = 0; i < J.Count; i++)
             {
-                camera_list.Add(new Camera() { camera_server = J[i].Server, camera_ID = J[i].JCamera_id, camera_name = J[i].FriendlyNameLong, camera_connect= J[i].State });
+                camera_list.Add(new Camera() { camera_server = J[i].Server, camera_ID = J[i].JCamera_id, camera_name = J[i].FriendlyNameLong, camera_connect = J[i].State });
             }
 
             int tmp = camera_list.Count;
@@ -130,6 +136,18 @@ namespace Device_List_0._01
             didyouclicklist = false;
         }
 
+        private void button_add_Click(object sender, EventArgs e)
+        {
+            Form_add add = new Form_add();
+            add.Owner = this;
+            add.Show();
+        }
+
+        private void button_refresh_Click(object sender, EventArgs e)
+        {
+            refresh();
+        }
+
         private void button_remove_Click(object sender, EventArgs e)
         {
             if (didyouclicklist == true)
@@ -152,6 +170,7 @@ namespace Device_List_0._01
         /// /////////////////////////////////////////////////////////////////////////////////////////////////
         private void listView_device_Click(object sender, EventArgs e)      //리스트 아이템 클릭시 tab 속성들 변경
         {
+            treadgo = false;
             didyouclicklist = true;
             tabcontrol_menu.Enabled = true; // this disables the controls on it
             tabcontrol_menu.Visible = true; // this hides the controls on it.
