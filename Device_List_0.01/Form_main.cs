@@ -107,7 +107,7 @@ namespace Device_List_0._01
 
             for (int i = 0; i < J.Count; i++)
             {
-                camera_list.Add(new Camera() { camera_server = J[i].Server, camera_ID = J[i].JCamera_id, camera_name = J[i].FriendlyNameLong, camera_connect = J[i].State });
+                camera_list.Add(new Camera() { camera_server = J[i].Server, camera_ID = J[i].JCamera_id, camera_name = J[i].FriendlyNameLong, camera_connect = J[i].State, video_url=J[i].video_url });
             }
 
             int tmp = camera_list.Count;
@@ -240,6 +240,8 @@ namespace Device_List_0._01
 
             ////////webpage/////
             //webBrowser.Navigate(textBox_ip_adress.Text);
+
+            axWindowsMediaPlayer.URL = camera_list[tmp].video_url;
         }
 
         /// /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -267,7 +269,9 @@ namespace Device_List_0._01
             {
                 int tmp = 0;
                 if (listView_device.FocusedItem != null)
+                {
                     tmp = listView_device.FocusedItem.Index;
+                }
 
                 Range r = new Range();
                 r.rangeset_ver2(textBox_latitude, -90, 90);
@@ -355,7 +359,9 @@ namespace Device_List_0._01
             {
                 int tmp = 0;
                 if (listView_device.FocusedItem != null)
+                {
                     tmp = listView_device.FocusedItem.Index;
+                }
                 camera_list[tmp].video.video_main_resolution = comboBox_resolution_main.SelectedIndex;
                 camera_list[tmp].video.video_main_framerate = textBox_framerate_main.Text;
                 camera_list[tmp].video.video_main_codec = comboBox_codec_main.SelectedIndex;
@@ -513,7 +519,9 @@ namespace Device_List_0._01
             {
                 int tmp = 0;
                 if (listView_device.FocusedItem != null)
+                {
                     tmp = listView_device.FocusedItem.Index;
+                }
 
                 camera_list[tmp].archive.archive_set_storage = comboBox_storage.SelectedIndex;
                 camera_list[tmp].archive.archive_set_record_period = comboBox_record_period.SelectedIndex;
@@ -650,7 +658,9 @@ namespace Device_List_0._01
 
                 ////////webpage/////
                 //webBrowser.Navigate(textBox_ip_adress.Text);
+                axWindowsMediaPlayer.URL = camera_list[tmp].video_url;
             }
         }
     }
 }
+

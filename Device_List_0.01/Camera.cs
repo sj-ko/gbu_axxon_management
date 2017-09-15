@@ -5,9 +5,8 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
-using System.Xml.Serialization;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace Device_List_0._01
 {
@@ -17,6 +16,7 @@ namespace Device_List_0._01
         public string State { get; set; }
         public string Server { get; set; }
         public string JCamera_id { get; set; }
+        public string video_url { get; set; }
     }
 
     public class management
@@ -81,6 +81,7 @@ namespace Device_List_0._01
                     //issue.FriendlyNameLong = itemObj.First.SelectToken("friendlyNameLong").ToString();
                     issue.State = itemObj.First.SelectToken("state").ToString();
                     str = itemObj.First.SelectToken("origin").ToString();
+                    issue.video_url = "http://root:root@192.168.0.109/live/media/"+str+"?format=mp4";
                     sp = str.Split('/');
                     issue.Server = sp[0];
                     //issue.JCamera_id = Regex.Replace(issue.FriendlyNameLong, @"\D", "");
@@ -108,6 +109,8 @@ namespace Device_List_0._01
 
         public string username = "";
         public string user_PW = "";
+
+        public string video_url = "";
 
         public Device device = new Device();
         public Video video = new Video();

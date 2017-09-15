@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_main));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.button_refresh = new System.Windows.Forms.Button();
             this.button_remove = new System.Windows.Forms.Button();
@@ -155,6 +156,8 @@
             this.groupBox_webpage = new System.Windows.Forms.GroupBox();
             this.webBrowser = new System.Windows.Forms.WebBrowser();
             this.toolTip_http = new System.Windows.Forms.ToolTip(this.components);
+            this.tabpage_videomp4 = new System.Windows.Forms.TabPage();
+            this.axWindowsMediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -180,6 +183,8 @@
             this.groupBox_list.SuspendLayout();
             this.tabPage_webpage.SuspendLayout();
             this.groupBox_webpage.SuspendLayout();
+            this.tabpage_videomp4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -293,6 +298,7 @@
             this.tabcontrol_menu.Controls.Add(this.tabPage_archive);
             this.tabcontrol_menu.Controls.Add(this.tabPage_event);
             this.tabcontrol_menu.Controls.Add(this.tabPage_webpage);
+            this.tabcontrol_menu.Controls.Add(this.tabpage_videomp4);
             this.tabcontrol_menu.Location = new System.Drawing.Point(10, 29);
             this.tabcontrol_menu.Name = "tabcontrol_menu";
             this.tabcontrol_menu.SelectedIndex = 0;
@@ -1496,8 +1502,28 @@
             this.webBrowser.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser.Name = "webBrowser";
             this.webBrowser.Size = new System.Drawing.Size(615, 415);
-            this.webBrowser.TabIndex = 7;
+            this.webBrowser.TabIndex = 8;
             this.webBrowser.TabStop = false;
+            // 
+            // tabpage_videomp4
+            // 
+            this.tabpage_videomp4.Controls.Add(this.axWindowsMediaPlayer);
+            this.tabpage_videomp4.Location = new System.Drawing.Point(4, 22);
+            this.tabpage_videomp4.Name = "tabpage_videomp4";
+            this.tabpage_videomp4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabpage_videomp4.Size = new System.Drawing.Size(633, 451);
+            this.tabpage_videomp4.TabIndex = 7;
+            this.tabpage_videomp4.Text = "Video";
+            this.tabpage_videomp4.UseVisualStyleBackColor = true;
+            // 
+            // axWindowsMediaPlayer
+            // 
+            this.axWindowsMediaPlayer.Enabled = true;
+            this.axWindowsMediaPlayer.Location = new System.Drawing.Point(0, 0);
+            this.axWindowsMediaPlayer.Name = "axWindowsMediaPlayer";
+            this.axWindowsMediaPlayer.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer.OcxState")));
+            this.axWindowsMediaPlayer.Size = new System.Drawing.Size(633, 451);
+            this.axWindowsMediaPlayer.TabIndex = 0;
             // 
             // Form_main
             // 
@@ -1544,6 +1570,8 @@
             this.groupBox_list.PerformLayout();
             this.tabPage_webpage.ResumeLayout(false);
             this.groupBox_webpage.ResumeLayout(false);
+            this.tabpage_videomp4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1676,6 +1704,8 @@
         private System.Windows.Forms.Label label33;
         public System.Windows.Forms.TextBox textBox_longitude;
         public System.Windows.Forms.TextBox textBox_latitude;
+        private System.Windows.Forms.TabPage tabpage_videomp4;
+        private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer;
     }
 }
 
